@@ -5,7 +5,12 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
+    <div class="header">
+    <% include templates/header.ejs %>
+    </div>
+    <div class="main"> 
     <p>Welcome to <%= title %></p>
+    </div>
+    <div class="footer"> <% include templates/footer.ejs %></div>
   </body>
 </html>
