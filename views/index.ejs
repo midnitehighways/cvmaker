@@ -8,8 +8,24 @@
     <div class="header">
     <% include templates/header.ejs %>
     </div>
+    <!-- <form action="/add" method="POST"><input type="text" name="fff"><input type="submit"></form> -->
     <div class="main"> 
     <p>Welcome to <%= title %></p>
+<!--     <form action="/add" method="POST">
+		First Name: <input type="text" name="first_name">  <br><br>
+
+		Last Name: <input type="text" name="last_name"> <br><br>
+		<input type="submit" value="Submit">
+
+    </form>
+ -->
+		<form action="/add" method="POST">
+			<input type="text" name="fn">
+			<input type="text" name="sn">
+			<input type="submit">
+		</form>
+		<%= counter %>
+ 		<script type="text/javascript">console.log("!!!");</script>
     </div>
     <div class="footer"> <% include templates/footer.ejs %></div>
   </body>
