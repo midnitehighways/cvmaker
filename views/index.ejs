@@ -3,6 +3,9 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<!--<script src="//mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>-->
+	<script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
   </head>
   <body>
     <div class="header">
@@ -10,6 +13,69 @@
     </div>
     <!-- <form action="/add" method="POST"><input type="text" name="fff"><input type="submit"></form> -->
     <div class="main"> 
+    			<div class="span6" style="float: left">
+					<iframe class="preview-pane" type="application/pdf" width="100%" height="500px" 
+					frameborder="0" style="position:relative;z-index:999"></iframe>
+				</div>
+    <script>
+    function demoFromHTML() {
+        var pdf = new jsPDF('p', 'pt', 'letter');
+        
+
+        var doc = new jsPDF();
+        doc.setFontSize(40);
+		doc.text(40,40,"hello");
+		doc.setLineWidth(0.5);
+		doc.line(10, 25, 210, 25);
+		var string = doc.output('bloburi');
+		console.log(string);
+		$('.preview-pane').attr('src', string);
+
+
+        // source can be HTML-formatted string, or a reference
+        // to an actual DOM element from which the text will be scraped.
+        source = $('#content')[0];
+
+        // we support special element handlers. Register them with jQuery-style 
+        // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+        // There is no support for any other type of selectors 
+        // (class, of compound) at this time.
+        specialElementHandlers = {
+            // element with id of "bypass" - jQuery style selector
+            '#bypassme': function (element, renderer) {
+                // true = "handled elsewhere, bypass text extraction"
+                return true
+            }
+        };
+        margins = {
+            top: 80,
+            bottom: 60,
+            left: 40,
+            width: 522
+        };
+        // all coords and widths are in jsPDF instance's declared units
+        // 'inches' in this case
+        doc.fromHTML(
+        source, // HTML string or DOM elem ref.
+        margins.left, // x coord
+        margins.top, { // y coord
+            'width': margins.width, // max width of content on PDF
+            'elementHandlers': specialElementHandlers
+        },
+
+        function (dispose) {
+            // dispose: object with X, Y of the last line add to the PDF 
+            //          this allow the insertion of new lines after html
+            // doc.save('Test.pdf');
+        }, margins);
+    }
+</script>
+<a href="javascript:demoFromHTML()" class="button">Run Code</a>
+<div id="content">
+    <h1>  
+        We support special element handlers. Register them with jQuery-style.
+    </h1>
+</div>
     <p>Welcome to <%= title %></p>
 <!--     <form action="/add" method="POST">
 		First Name: <input type="text" name="first_name">  <br><br>

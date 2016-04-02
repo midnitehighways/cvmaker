@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Build your CV', counter: counter });
 });
 
+/* handling POST request from form */
 router.post('/add', function (req, res) {
   counter++;
   console.log(req.body.fn + " " + req.body.sn);
