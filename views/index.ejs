@@ -18,18 +18,33 @@
 					frameborder="0" style="position:relative;z-index:999"></iframe>
 				</div>
     <script>
-    function demoFromHTML() {
-        var pdf = new jsPDF('p', 'pt', 'letter');
-        
-
-        var doc = new jsPDF();
+    var doc = new jsPDF();
+    function preparePDF() {
+        var sometext = "A HTML5 client-side solution for generating PDFs. Perfect for event tickets, reports, certificates, you name it!No servers were used in the making of this demo.Choose example";
         doc.setFontSize(40);
-		doc.text(40,40,"hello");
+		doc.text(10, 20, "<%= fn %> <%= ln %>");	// first and last names
 		doc.setLineWidth(0.5);
-		doc.line(10, 25, 210, 25);
+		doc.line(10, 30, 180, 30);
+		doc.setFontSize(18);
+		doc.text(10, 50, "Education");
+		doc.text(10, 80, "Work experience");
+		doc.text(10, 110, "Qualifications");
 		var string = doc.output('bloburi');
 		console.log(string);
 		$('.preview-pane').attr('src', string);
+    }
+    preparePDF();
+    function demoFromHTML() {
+        // var pdf = new jsPDF('p', 'pt', 'letter');
+        
+        preparePDF();
+
+
+		// var splitTitle = doc.splitTextToSize(sometext, 80); // split lines!!
+		// doc.text(40, 80, splitTitle);
+		// doc.text(40, 80, sometext);
+		
+		
 
 
         // source can be HTML-formatted string, or a reference
@@ -66,14 +81,14 @@
         function (dispose) {
             // dispose: object with X, Y of the last line add to the PDF 
             //          this allow the insertion of new lines after html
-            // doc.save('Test.pdf');
+             doc.save('Test.pdf');
         }, margins);
     }
 </script>
-<a href="javascript:demoFromHTML()" class="button">Run Code</a>
+<a href="javascript:demoFromHTML()" class="button">Download PDF</a>
 <div id="content">
     <h1>  
-        We support special element handlers. Register them with jQuery-style.
+        
     </h1>
 </div>
     <p>Welcome to <%= title %></p>
@@ -86,8 +101,11 @@
     </form>
  -->
 		<form action="/add" method="POST">
-			<input type="text" name="fn">
-			<input type="text" name="sn">
+			First name <input type="text" name="fn">
+			Last name <input type="text" name="ln"><br/><br/>
+			Email <input type="text" name="email"><br/><br/>
+			Phone <input type="text" name="phone"><br/><br/>
+			Education <input type="text" name="edu"><br/><br/>
 			<input type="submit">
 		</form>
 		<%= counter %>
