@@ -14,21 +14,71 @@
     <!-- <form action="/add" method="POST"><input type="text" name="fff"><input type="submit"></form> -->
     <div class="main"> 
     			<div class="span6" style="float: left">
-					<iframe class="preview-pane" type="application/pdf" width="100%" height="500px" 
+					<iframe class="preview-pane" type="application/pdf" width="100%" height="480px" 
 					frameborder="0" style="position:relative;z-index:999"></iframe>
 				</div>
     <script>
-    var doc = new jsPDF();
+    var splitRegex = /\r\n|\r|\n/g;
+jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
+    var fontSize = this.internal.getFontSize() / this.internal.scaleFactor;
+    // As defined in jsPDF source code
+    var lineHeightProportion = 1.15;
+    var splittedText = null;
+    var lineCount = 1;
+    if (vAlign === 'middle' || vAlign === 'bottom' || hAlign === 'center' || hAlign === 'right') {
+        splittedText = typeof text === 'string' ? text.split(splitRegex) : text;
+
+        lineCount = splittedText.length || 1;
+    }
+    // Align the top
+    y += fontSize * (2 - lineHeightProportion);
+
+    if (vAlign === 'middle')
+        y -= (lineCount / 2) * fontSize;
+    else if (vAlign === 'bottom')
+        y -= lineCount * fontSize;
+
+    if (hAlign === 'center' || hAlign === 'right') {
+        var alignSize = fontSize;
+        if (hAlign === 'center')
+            alignSize *= 0.5;
+        if (lineCount > 1) {
+            for (var iLine = 0; iLine < splittedText.length; iLine++) {
+                this.text(splittedText[iLine], x - this.getStringUnitWidth(splittedText[iLine]) * alignSize, y);
+                y += fontSize;
+            }
+            return this;
+        }
+        x -= this.getStringUnitWidth(text) * alignSize;
+    }
+    this.text(text, x, y);
+    return this;
+};
+
+    var doc = new jsPDF();	// global
+
     function preparePDF() {
-        var sometext = "A HTML5 client-side solution for generating PDFs. Perfect for event tickets, reports, certificates, you name it!No servers were used in the making of this demo.Choose example";
+    	var x = 10;			// left horizontal border
+    	var y = 20;			// top vertical border
+    	var maxX = x+190;	// right horizontal border
+    	// var 
+        var sometext = "A HTML5 client-side solution for generating PDFs. Perfect for event tickets, reports, certificates, you name it!No servers w";
         doc.setFontSize(40);
-		doc.text(10, 20, "<%= fn %> <%= ln %>");	// first and last names
+		doc.text(x, y, "<%= full_name %>");	// first and last names
 		doc.setLineWidth(0.5);
-		doc.line(10, 30, 180, 30);
+		doc.line(x, y+10, maxX, y+10);
 		doc.setFontSize(18);
-		doc.text(10, 50, "Education");
-		doc.text(10, 80, "Work experience");
-		doc.text(10, 110, "Qualifications");
+		// doc.text(x, y+30, "Contact");
+		doc.textEx("Contact", x, y+30, "left");
+		doc.textEx("Personal", x, y+30*2, "left");
+		doc.textEx("Education", x, y+30*3, "left");
+		doc.textEx("Work experience", x, y+30*4, "left");
+		doc.textEx("Qualifications", x, y+30*5, "left");
+
+		doc.setFontSize(12);
+		doc.textEx("Email: <%= person.email %>", maxX, y+30, "right");
+		doc.textEx("Phone: <%= person.phone %>", maxX, y+30+10, "right");
+		doc.textEx("<%= person.address %>", x+50, y+30, "left");
 		var string = doc.output('bloburi');
 		console.log(string);
 		$('.preview-pane').attr('src', string);
@@ -85,13 +135,12 @@
         }, margins);
     }
 </script>
-<a href="javascript:demoFromHTML()" class="button">Download PDF</a>
 <div id="content">
     <h1>  
         
     </h1>
 </div>
-    <p>Welcome to <%= title %></p>
+    <p>Please fill the fields below</p>
 <!--     <form action="/add" method="POST">
 		First Name: <input type="text" name="first_name">  <br><br>
 
@@ -101,15 +150,18 @@
     </form>
  -->
 		<form action="/add" method="POST">
-			First name <input type="text" name="fn">
+			Full name <input type="text" name="full_name" value="Alexandru Oat">
 			Last name <input type="text" name="ln"><br/><br/>
-			Email <input type="text" name="email"><br/><br/>
-			Phone <input type="text" name="phone"><br/><br/>
+			Date of birth <input type="date" name="dob" max="2002-12-31" value="1982-03-23"><br/><br/>
+			Email <input type="email" name="email" value="oat.alexandru@gmail.com"><br/><br/>
+			Phone <input type="text" name="phone" value="+358466360623"><br/><br/>
+			Address <input type="text" name="address" value="Ralssintie 16 B 14 Helsinki"><br/><br/>
 			Education <input type="text" name="edu"><br/><br/>
 			<input type="submit">
 		</form>
-		<%= counter %>
  		<script type="text/javascript">console.log("!!!");</script>
+		<br/><br/><br/><br/><br/><br/><br/><br/>
+ 		<a href="javascript:demoFromHTML()" class="button">Download PDF</a>
     </div>
     <div class="footer"> <% include templates/footer.ejs %></div>
   </body>
