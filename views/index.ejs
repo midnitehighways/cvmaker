@@ -14,7 +14,7 @@
     <!-- <form action="/add" method="POST"><input type="text" name="fff"><input type="submit"></form> -->
     <div class="main"> 
     			<div class="span6" style="float: left">
-					<iframe class="preview-pane" type="application/pdf" width="100%" height="480px" 
+					<iframe class="preview-pane" type="application/pdf" width="350px" height="600px" 
 					frameborder="0" style="position:relative;z-index:999"></iframe>
 				</div>
     <script>
@@ -64,23 +64,31 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     	// var 
         var sometext = "A HTML5 client-side solution for generating PDFs. Perfect for event tickets, reports, certificates, you name it!No servers w";
         doc.setFontSize(40);
-		doc.text(x, y, "<%= full_name %>");	// first and last names
+		doc.text(x, y, "<%= person.fullName %>");	// first and last names
 		doc.setLineWidth(0.5);
-		doc.line(x, y+10, maxX, y+10);
-		doc.setFontSize(18);
-		// doc.text(x, y+30, "Contact");
-		doc.textEx("Contact", x, y+30, "left");
-		doc.textEx("Personal", x, y+30*2, "left");
-		doc.textEx("Education", x, y+30*3, "left");
-		doc.textEx("Work experience", x, y+30*4, "left");
-		doc.textEx("Qualifications", x, y+30*5, "left");
+		doc.line(x, y+10, maxX, y+10);		// line
+		doc.setFontSize(14);
+		doc.setTextColor(255, 255, 255);
+		doc.rect(x-1, y+30-1, 34, 7, 'F');
+		doc.rect(x-1, y+30*2-1, 34, 7, 'F');
+		doc.rect(x-1, y+30*3-1, 34, 7, 'F');
+		doc.rect(x-1, y+30*4-1, 34, 15, 'F');
+		doc.rect(x-1, y+30*5-1, 34, 7, 'F');
+		doc.textEx("CONTACT", x, y+30, "left");
+		doc.textEx("PERSONAL", x, y+30*2, "left");
+		doc.textEx("EDUCATION", x, y+30*3, "left");
+		doc.textEx("WORK", x, y+30*4, "left");doc.textEx("EXPERIENCE", x, y+30*4+8, "left");
+		doc.textEx("SKILLS", x, y+30*5, "left");
 
 		doc.setFontSize(12);
+		doc.setTextColor(0, 0, 0);
 		doc.textEx("Email: <%= person.email %>", maxX, y+30, "right");
 		doc.textEx("Phone: <%= person.phone %>", maxX, y+30+10, "right");
-		doc.textEx("<%= person.address %>", x+50, y+30, "left");
+		doc.textEx("<%= person.address %>", x+40, y+30, "left");
+		doc.textEx("Date of birth: <%= person.born %>", x+40, y+30*2, "left");
+		doc.textEx("Citizenship: <%= person.citizenship %>", x+40, y+30*2+10*1, "left");
 		var string = doc.output('bloburi');
-		console.log(string);
+		// console.log("person.citizenship");
 		$('.preview-pane').attr('src', string);
     }
     preparePDF();
@@ -152,16 +160,18 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
 		<form action="/add" method="POST">
 			Full name <input type="text" name="full_name" value="Alexandru Oat">
 			Last name <input type="text" name="ln"><br/><br/>
-			Date of birth <input type="date" name="dob" max="2002-12-31" value="1982-03-23"><br/><br/>
+			Date of birth <input type="date" name="born" max="2002-12-31" value="1982-03-23"><br/><br/>
 			Email <input type="email" name="email" value="oat.alexandru@gmail.com"><br/><br/>
 			Phone <input type="text" name="phone" value="+358466360623"><br/><br/>
-			Address <input type="text" name="address" value="Ralssintie 16 B 14 Helsinki"><br/><br/>
+			Address <input type="text" name="address" value="Rälssintie 16 B 14 Helsinki"><br/><br/>
+			Citizenship <input type="text" name="citizenship" value="Moldova"><br/><br/>
 			Education <input type="text" name="edu"><br/><br/>
 			<input type="submit">
 		</form>
  		<script type="text/javascript">console.log("!!!");</script>
 		<br/><br/><br/><br/><br/><br/><br/><br/>
  		<a href="javascript:demoFromHTML()" class="button">Download PDF</a>
+ 		<canvas id="demo" width=400 height=100></canvas>
     </div>
     <div class="footer"> <% include templates/footer.ejs %></div>
   </body>

@@ -10,14 +10,15 @@ var person = {
 	phone : "+358466360623",
 	// gender = 
 	born : "23.03.1982",  
-	address : "",
+	address : "Rälssintie 16 B 14 Helsinki",
+	citizenship : "Moldova",
 	education : []
 }
 var full_name="Alexandru Oat";
 
 var ln = "";
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Build your CV', full_name:person.fullName, person:person, ln:ln, });
+  res.render('index', { title: 'Build your CV', person:person, });
 });
 
 /* handling POST request from form */
@@ -26,6 +27,7 @@ router.post('/add', function (req, res) {
   person.email = req.body.email;
   person.phone = req.body.phone;
   person.address = req.body.address;
+  person.citizenship = req.body.citizenship;
   // console.log(req.body.full_name + " " + req.body.ln);
   res.redirect('/');
 });
