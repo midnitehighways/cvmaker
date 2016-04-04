@@ -90,12 +90,14 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
 		
 		doc.textEx("Date of birth: <%= person.born %>", midX, y+30*2, "left");				// DOB
 		doc.textEx("Citizenship: <%= person.citizenship %>", midX, y+30*2+10*1, "left");	// citizenship
+		<% for (var i=0; i < person.education.length; i++) { %>
 		doc.setFontType("bold");
-		doc.textEx("<%= person.education[0].university %>", midX, y+30*3, "left");			// uni
+		doc.textEx("<%= person.education[i].university %>", midX, y+30*3+interval*<%= i*2 %>, "left");			// uni
 		doc.setFontType("normal");
-		doc.textEx("<%= person.education[0].faculty %>", midX, y+30*3+interval, "left");	// faculty
+		doc.textEx("<%= person.education[i].faculty %>", midX, y+30*3+interval*(<%= i*2 %>+1), "left");			// faculty
 		doc.textEx("<%= person.education[0].from %> - <%= person.education[0].till %>", maxX, y+30*3, "right");
-		
+		<% }%>
+		console.log("<%= person.education.length %> -----sssss")
 		var string = doc.output('bloburi');
 		// console.log("person.citizenship");
 		$('.preview-pane').attr('src', string);
@@ -159,8 +161,7 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
 </div>
     <p>Please fill the fields below</p>
 		<form action="/add" method="POST">
-			Full name <input type="text" name="full_name" value="Alexandru Oat">
-			Last name <input type="text" name="ln"><br/><br/>
+			Full name <input type="text" name="full_name" value="Alexandru Oat"><br/><br/>
 			Date of birth <input type="date" name="born" max="2002-12-31" value="1982-03-23"><br/><br/>
 			Email <input type="email" name="email" value="oat.alexandru@gmail.com"><br/><br/>
 			Phone <input type="text" name="phone" value="+358466360623"><br/><br/>
@@ -169,7 +170,7 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
 			Education University <input type="text" name="university" value="Haaga-Helia University of Applied Sciences">
 			Faculty <input type="text" name="faculty" value="Business Information Technology">
 			Period from <input type="month" name="edu_from" value="2013-08">till <input type="month" name="edu_till" value="2016-12"><br/><br/>
-			<input type="submit">
+			<input type="submit" value="Preview">
 		</form>
  		<script type="text/javascript">console.log("!!!");</script>
 		<br/><br/><br/><br/><br/><br/><br/><br/>
