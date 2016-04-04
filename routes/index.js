@@ -4,6 +4,12 @@ var router = express.Router();
  MAKE CV OBJECT with name, edu and other fields
  CHANGE LANGUAGE */
 /* GET home page. */
+var edu = {
+	university : "Haaga----Helia University of Applied Sciences",
+	faculty : "Business Information Technology",
+	from : "Aug. 2013",
+	till : "Dec. 2016"
+}
 var person = {
 	fullName : "Alexandru Oat",
 	email : "oat.alexandru@gmail.com",
@@ -12,8 +18,9 @@ var person = {
 	born : "23.03.1982",  
 	address : "Rälssintie 16 B 14 Helsinki",
 	citizenship : "Moldova",
-	education : []
+	education : [{university : "Haaga-Helia University of Applied Sciences",	faculty : "Business Information Technology",	from : "",	till : ""	}]
 }
+person.education[0] = edu;
 var full_name="Alexandru Oat";
 
 var ln = "";
@@ -23,14 +30,18 @@ router.get('/', function(req, res, next) {
 
 /* handling POST request from form */
 router.post('/add', function (req, res) {
-  person.fullName = req.body.full_name;
-  person.email = req.body.email;
-  person.phone = req.body.phone;
-  person.address = req.body.address;
-  person.citizenship = req.body.citizenship;
-  // console.log(req.body.full_name + " " + req.body.ln);
-  res.redirect('/');
+  	person.fullName = req.body.full_name;
+  	person.email = req.body.email;
+  	person.phone = req.body.phone;
+  	person.address = req.body.address;
+  	person.citizenship = req.body.citizenship;
+  	edu.university = req.body.university;
+  	edu.faculty = req.body.faculty;
+  	edu.from = req.body.edu_from;
+  	edu.till = req.body.edu_till;
+ 	// console.log(req.body.uni+"....////......");
+  	res.redirect('/');
 });
 
-
+console.log(person.education);
 module.exports = router;

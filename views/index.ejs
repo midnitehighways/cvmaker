@@ -61,9 +61,11 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     	var x = 10;			// left horizontal border
     	var y = 20;			// top vertical border
     	var maxX = x+190;	// right horizontal border
+    	var midX = x+38;
+    	var interval = 9;	// between the normal lines
     	// var 
         var sometext = "A HTML5 client-side solution for generating PDFs. Perfect for event tickets, reports, certificates, you name it!No servers w";
-        doc.setFontSize(40);
+        doc.setFontSize(25);
 		doc.text(x, y, "<%= person.fullName %>");	// first and last names
 		doc.setLineWidth(0.5);
 		doc.line(x, y+10, maxX, y+10);		// line
@@ -83,10 +85,17 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
 		doc.setFontSize(12);
 		doc.setTextColor(0, 0, 0);
 		doc.textEx("Email: <%= person.email %>", maxX, y+30, "right");
-		doc.textEx("Phone: <%= person.phone %>", maxX, y+30+10, "right");
-		doc.textEx("<%= person.address %>", x+40, y+30, "left");
-		doc.textEx("Date of birth: <%= person.born %>", x+40, y+30*2, "left");
-		doc.textEx("Citizenship: <%= person.citizenship %>", x+40, y+30*2+10*1, "left");
+		doc.textEx("Phone: <%= person.phone %>", maxX, y+30+interval, "right");
+		doc.textEx("<%= person.address %>", midX, y+30, "left");
+		
+		doc.textEx("Date of birth: <%= person.born %>", midX, y+30*2, "left");				// DOB
+		doc.textEx("Citizenship: <%= person.citizenship %>", midX, y+30*2+10*1, "left");	// citizenship
+		doc.setFontType("bold");
+		doc.textEx("<%= person.education[0].university %>", midX, y+30*3, "left");			// uni
+		doc.setFontType("normal");
+		doc.textEx("<%= person.education[0].faculty %>", midX, y+30*3+interval, "left");	// faculty
+		doc.textEx("<%= person.education[0].from %> - <%= person.education[0].till %>", maxX, y+30*3, "right");
+		
 		var string = doc.output('bloburi');
 		// console.log("person.citizenship");
 		$('.preview-pane').attr('src', string);
@@ -149,14 +158,6 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     </h1>
 </div>
     <p>Please fill the fields below</p>
-<!--     <form action="/add" method="POST">
-		First Name: <input type="text" name="first_name">  <br><br>
-
-		Last Name: <input type="text" name="last_name"> <br><br>
-		<input type="submit" value="Submit">
-
-    </form>
- -->
 		<form action="/add" method="POST">
 			Full name <input type="text" name="full_name" value="Alexandru Oat">
 			Last name <input type="text" name="ln"><br/><br/>
@@ -165,7 +166,9 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
 			Phone <input type="text" name="phone" value="+358466360623"><br/><br/>
 			Address <input type="text" name="address" value="Rälssintie 16 B 14 Helsinki"><br/><br/>
 			Citizenship <input type="text" name="citizenship" value="Moldova"><br/><br/>
-			Education <input type="text" name="edu"><br/><br/>
+			Education University <input type="text" name="university" value="Haaga-Helia University of Applied Sciences">
+			Faculty <input type="text" name="faculty" value="Business Information Technology">
+			Period from <input type="month" name="edu_from" value="2013-08">till <input type="month" name="edu_till" value="2016-12"><br/><br/>
 			<input type="submit">
 		</form>
  		<script type="text/javascript">console.log("!!!");</script>
