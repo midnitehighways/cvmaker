@@ -234,32 +234,56 @@ getDataUri('images/a.png', function(dataUri) {
         }, margins);
     }
 
-function encodeImageFileAsURL(cb) {
-    console.log("hei");
-    return function(){
-        var file = this.files[0];
-        var reader  = new FileReader();
-        reader.onloadend = function () {
-            cb(reader.result);
+// function encodeImageFileAsURL(cb) {
+//     console.log("hei");
+//     return function(){
+//         var file = this.files[0];
+//         var reader  = new FileReader();
+//         reader.onloadend = function () {
+//             cb(reader.result);
+//         }
+//         reader.readAsDataURL(file);
+//     }
+// };
+
+// $('#inputFileToLoad2').change(encodeImageFileAsURL(function(base64Img){
+//     // $('.output')
+//     //   .find('textarea')
+//     //     .val(base64Img)
+//     //     .end()
+//     //   .find('a')
+//     //     .attr('href', base64Img)
+//     //     .text(base64Img)
+//     //     .end()
+//     //   .find('img')
+//     //     .attr('src', base64Img);
+//         console.log("hello");
+// }));
+
+$(function () {  
+    $('#inputFileToLoad').on('change', function encodeImageFileAsUrl(){
+    console.log("HELLO");
+    var filesSelected = document.getElementById("inputFileToLoad").files;
+    if(filesSelected){
+        if(filesSelected.length > 0){
+            var fileToLoad = filesSelected[0];
+            var fileReader = new FileReader();
+            fileReader.onload = function(fileLoadedEvent){
+                var srcData = fileLoadedEvent.target.result;
+                var newImage = document.createElement('img');
+                newImage.src = srcData;
+                $("#pic").val(srcData);
+                document.getElementById("imgText").value = srcData;
+                document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+            };
+            fileReader.readAsDataURL(fileToLoad);
         }
-        reader.readAsDataURL(file);
     }
-};
+    else{
+        alert("You'll need a more modern browser to get this to work.");
+    }
 
-$('#inputFileToLoad2').c.change(encodeImageFileAsURL(function(base64Img){
-    // $('.output')
-    //   .find('textarea')
-    //     .val(base64Img)
-    //     .end()
-    //   .find('a')
-    //     .attr('href', base64Img)
-    //     .text(base64Img)
-    //     .end()
-    //   .find('img')
-    //     .attr('src', base64Img);
-        console.log("hello");
-}));
-
+    })});
 
 </script>
 <div id="content">
@@ -281,19 +305,10 @@ $('#inputFileToLoad2').c.change(encodeImageFileAsURL(function(base64Img){
             <input type="text" name="pic" id="pic">
 			<input type="submit" value="Preview">
 		</form>
-        <h2>Input</h2>  
-<form class="input-group" id="img2b64">
-    <input id="inputFileToLoad2" type="file" onchange="encodeImageFileAsURL();" />
-</form>
-            
-<hr>
-    
-<h2>Output</h2>        
-<div class="output">
-    <textarea class="form-control"></textarea><br>
-    aaa<a></a><br><br>
-    <img><br>
-</div>
+
+<input id="inputFileToLoad" type="file"  />
+<div id="imgTest"></div>
+<textarea id="imgText">(Image's base64 code will appear here.)</textarea>                
 
  		<!-- <script type="text/javascript">console.log("!!!");</script>-->
  		<!-- <img src="images/m.jpeg"/> -->
