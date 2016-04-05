@@ -32,3 +32,297 @@ a {
 	text-align: center;
 /*	background-color: lightgrey;	*/
 }
+
+
+
+/* FORMS */
+
+.input {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	margin: 1em;
+	max-width: 350px;
+	width: calc(100% - 2em);
+	vertical-align: top;
+}
+
+.input__field {
+	position: relative;
+	display: block;
+	float: right;
+	padding: 0.8em;
+	width: 60%;
+	border: none;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #aaa;
+	font-weight: bold;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-appearance: none; /* for box shadows to show on iOS */
+}
+
+.input__field:focus {
+	outline: none;
+}
+
+.input__label {
+	display: inline-block;
+	float: right;
+	padding: 0 1em;
+	width: 40%;
+	color: #6a7989;
+	font-weight: bold;
+	font-size: 70.25%;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.input__label-content {
+	position: relative;
+	display: block;
+	padding: 1.6em 0;
+	width: 100%;
+}
+
+.graphic {
+	position: absolute;
+	top: 0;
+	left: 0;
+	fill: none;
+}
+
+.icon {
+	color: #ddd;
+	font-size: 150%;
+}
+
+/* Individual styles */
+
+/* Haruki */
+
+.input--haruki {
+	margin: 4em 1em 1em;
+}
+
+.input__field--haruki {
+	padding: 0.4em 0.25em;
+	width: 100%;
+	background: transparent;
+	color: #AFB5BB;
+	font-size: 1.55em;
+}
+
+.input__label--haruki {
+	position: absolute;
+	width: 100%;
+	text-align: left;
+	pointer-events: none;
+}
+
+.input__label-content--haruki {
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.input__label--haruki::before,
+.input__label--haruki::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 4px;
+	background: #6a7989;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.input__label--haruki::before {
+	top: 0;
+}
+
+.input__label--haruki::after {
+	bottom: 0;
+}
+
+.input__field--haruki:focus + .input__label--haruki .input__label-content--haruki,
+.input--filled .input__label-content--haruki {
+	-webkit-transform: translate3d(0, -90%, 0);
+	transform: translate3d(0, -90%, 0);
+}
+
+.input__field--haruki:focus + .input__label--haruki::before,
+.input--filled .input__label--haruki::before {
+	-webkit-transform: translate3d(0, -0.5em, 0);
+	transform: translate3d(0, -0.5em, 0);
+}
+
+.input__field--haruki:focus + .input__label--haruki::after,
+.input--filled .input__label--haruki::after {
+	-webkit-transform: translate3d(0, 0.5em, 0);
+	transform: translate3d(0, 0.5em, 0);
+}
+
+
+
+
+
+
+
+/* Akira */
+.input--akira {
+	margin-top: 2em;
+}
+
+.input__field--akira {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	display: block;
+	padding: 0 1em;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	text-align: center;
+}
+
+.input__label--akira {
+	padding: 0;
+	width: 100%;
+	background: #696a6e;
+	color: #cc6055;
+	cursor: text;
+}
+
+.input__label--akira::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #2f3238;
+	-webkit-transform: scale3d(0.97, 0.85, 1);
+	transform: scale3d(0.97, 0.85, 1);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.input__label-content--akira {
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.input__field--akira:focus + .input__label--akira::before,
+.input--filled .input__label--akira::before {
+	-webkit-transform: scale3d(0.99, 0.95, 1);
+	transform: scale3d(0.99, 0.95, 1);
+}
+
+.input__field--akira:focus + .input__label--akira,
+.input--filled .input__label--akira {
+	cursor: default;
+	pointer-events: none;
+}
+
+.input__field--akira:focus + .input__label--akira .input__label-content--akira,
+.input--filled .input__label-content--akira {
+	-webkit-transform: translate3d(0, -3.5em, 0);
+	transform: translate3d(0, -3.5em, 0);
+}
+
+
+
+
+
+
+
+/* Isao */
+.input__field--isao {
+	z-index: 10;
+	padding: 0.75em 0.1em 0.25em;
+	width: 100%;
+	background: transparent;
+	color: #afb3b8;
+}
+
+.input__label--isao {
+	position: relative;
+	overflow: hidden;
+	padding: 0;
+	width: 100%;
+	color: #dadada;
+	text-align: left;
+}
+
+.input__label--isao::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 7px;
+	background: #dadada;
+	-webkit-transform: scale3d(1, 0.4, 1);
+	transform: scale3d(1, 0.4, 1);
+	-webkit-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+	-webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
+	transition: transform 0.3s, background-color 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.input__label--isao::after {
+	content: attr(data-content);
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0.75em 0.15em;
+	color: #da7071;
+	opacity: 0;
+	-webkit-transform: translate3d(0, 50%, 0);
+	transform: translate3d(0, 50%, 0);
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	pointer-events: none;
+}
+
+.input__field--isao:focus + .input__label--isao::before {
+	background-color: #da7071;
+	-webkit-transform: scale3d(1, 1, 1);
+	transform: scale3d(1, 1, 1);
+}
+
+.input__field--isao:focus + .input__label--isao {
+	pointer-events: none;
+}
+
+.input__field--isao:focus + .input__label--isao::after {
+	opacity: 1;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.input__label-content--isao {
+	padding: 0.75em 0.15em;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.input__field--isao:focus + .input__label--isao .input__label-content--isao {
+	opacity: 0;
+	-webkit-transform: translate3d(0, -50%, 0);
+	transform: translate3d(0, -50%, 0);
+}

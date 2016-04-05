@@ -7,6 +7,13 @@ Transform month: numbers to letters Dec. Jan. Feb. etc.
 If no img file is chosen - do smth
 prevent uploading other formats than png and jpg
 doc.addPage('a4')
+!
+
+!!!!!! CREATE CV OBJECT. INSIDE will be all the vertical distances according to person object. THEN just loop for it's properties and put them in pdf
+		INSIDE OBJECT - text lines, rectangles, image
+		<% for text in cv.texts %>
+		 	doc.textEx(x + <%=...%>, y + <%=...%>, allign
+ 
  */
 /* GET home page. */
 var edu = {
@@ -35,6 +42,11 @@ var person = {
 }
 person.education[0] = edu;
 person.employment[0] = job;
+var cv = {
+
+}
+
+
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Build your CV', person:person, });
