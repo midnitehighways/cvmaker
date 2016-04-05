@@ -6,6 +6,8 @@
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<!--<script src="//mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>-->
 	<script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+	<script src="javascripts/pdfmake.min.js" type="text/javascript"></script>
+	<script src="javascripts/vfs_fonts.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="header">
@@ -18,6 +20,7 @@
 					frameborder="0" style="position:relative;z-index:999"></iframe>
 				</div>
     <script>
+
     var splitRegex = /\r\n|\r|\n/g;
 jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     var fontSize = this.internal.getFontSize() / this.internal.scaleFactor;
@@ -55,18 +58,93 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     return this;
 };
 
+
     var doc = new jsPDF();	// global
+    
+
+function getDataUri(url, callback) {
+    var image = new Image();
+
+    image.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+        canvas.getContext('2d').drawImage(this, 0, 0);
+
+        // Get raw image data
+        callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
+
+        // ... or get as Data URI
+        callback(canvas.toDataURL('image/png'));
+    };
+
+    image.src = url;
+};
+
+// Usage
+getDataUri('images/a.png', function(dataUri) {
+    // Do whatever you'd like with the Data URI!
+    // $("#pic").val("data:image/png;base64,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");
+    $("#pic").val(dataUri);
+    console.log("77777777777777777!!!!!!!777777");
+    console.log("HERE" + dataUri);
+});
+
+// var a="000000000000";
+// var aa=0;
+// function encodeImageFileAsURL(){
+
+//     var filesSelected = document.getElementById("inputFileToLoad").files;
+//     if (filesSelected.length > 0)
+//     {
+//         var fileToLoad = filesSelected[0];
+
+//         var fileReader = new FileReader();
+
+//         fileReader.onload = function(fileLoadedEvent) {
+//             var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+//             var newImage = document.createElement('img');
+//             newImage.src = srcData;
+
+//             document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+//             // alert("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
+//             console.log("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
+// a=document.getElementById("imgTest").innerHTML;
+// // aa=1;
+// // preparePDF();
+// doc.text(100,5, a);
+// 		doc.line(10, 100, 200, 40);		// line
+// 		doc.addImage(a, 'JPEG', 15, 40, 180, 180);
+// 		var string = doc.output('bloburi');
+// 		// console.log("person.citizenship");
+// 		$('.preview-pane').attr('src', string);
+// 		console.log(a);
+//         }
+//         mP();
+
+//         fileReader.readAsDataURL(fileToLoad);
+//         return document.getElementById("imgTest").innerHTML;
+//     }
+//     return "nothing here";
+// }
+
+// // doc.text(100,5,encodeImageFileAsURL());
+// function mP(){
+
+// }
 
     function preparePDF() {
     	var x = 10;			// left horizontal border
     	var y = 20;			// top vertical border
     	var maxX = x+190;	// right horizontal border
     	var midX = x+38;
-    	var interval = 9;	// between the normal lines
-    	// var 
+    	var interval = 8;	// between the normal lines
         var sometext = "A HTML5 client-side solution for generating PDFs. Perfect for event tickets, reports, certificates, you name it!No servers w";
         doc.setFontSize(25);
 		doc.text(x, y, "<%= person.fullName %>");	// first and last names
+		// doc.text(5,5, a);
 		doc.setLineWidth(0.5);
 		doc.line(x, y+10, maxX, y+10);		// line
 		doc.setFontSize(14);
@@ -81,7 +159,8 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
 		doc.textEx("EDUCATION", x, y+30*3, "left");
 		doc.textEx("WORK", x, y+30*4, "left");doc.textEx("EXPERIENCE", x, y+30*4+8, "left");
 		doc.textEx("SKILLS", x, y+30*5, "left");
-
+        // doc.addImage("data:image/png;base64,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", 'PNG', 15, 40, 180, 180);
+        doc.addImage("<%= person.pic %>", 'JPEG', 150, 140);
 		doc.setFontSize(12);
 		doc.setTextColor(0, 0, 0);
 		doc.textEx("Email: <%= person.email %>", maxX, y+30, "right");
@@ -89,13 +168,14 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
 		doc.textEx("<%= person.address %>", midX, y+30, "left");
 		
 		doc.textEx("Date of birth: <%= person.born %>", midX, y+30*2, "left");				// DOB
-		doc.textEx("Citizenship: <%= person.citizenship %>", midX, y+30*2+10*1, "left");	// citizenship
+		doc.textEx("Citizenship: <%= person.citizenship %>", midX, y+30*2+interval*1, "left");	// citizenship
+
 		<% for (var i=0; i < person.education.length; i++) { %>
-		doc.setFontType("bold");
-		doc.textEx("<%= person.education[i].university %>", midX, y+30*3+interval*<%= i*2 %>, "left");			// uni
-		doc.setFontType("normal");
-		doc.textEx("<%= person.education[i].faculty %>", midX, y+30*3+interval*(<%= i*2 %>+1), "left");			// faculty
-		doc.textEx("<%= person.education[0].from %> - <%= person.education[0].till %>", maxX, y+30*3, "right");
+			doc.setFontType("bold");
+			doc.textEx("<%= person.education[i].university %>", midX, y+30*3+interval*<%= i*2 %>, "left");			// uni
+			doc.setFontType("normal");
+			doc.textEx("<%= person.education[i].faculty %>", midX, y+30*3+interval*(<%= i*2 %>+1), "left");			// faculty
+			doc.textEx("<%= person.education[i].from %> - <%= person.education[i].till %>", maxX, y+30*3+interval*<%= i*2 %>, "right");
 		<% }%>
 		console.log("<%= person.education.length %> -----sssss")
 		var string = doc.output('bloburi');
@@ -153,6 +233,34 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
              doc.save('Test.pdf');
         }, margins);
     }
+
+function encodeImageFileAsURL(cb) {
+    console.log("hei");
+    return function(){
+        var file = this.files[0];
+        var reader  = new FileReader();
+        reader.onloadend = function () {
+            cb(reader.result);
+        }
+        reader.readAsDataURL(file);
+    }
+};
+
+$('#inputFileToLoad2').c.change(encodeImageFileAsURL(function(base64Img){
+    // $('.output')
+    //   .find('textarea')
+    //     .val(base64Img)
+    //     .end()
+    //   .find('a')
+    //     .attr('href', base64Img)
+    //     .text(base64Img)
+    //     .end()
+    //   .find('img')
+    //     .attr('src', base64Img);
+        console.log("hello");
+}));
+
+
 </script>
 <div id="content">
     <h1>  
@@ -170,12 +278,33 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
 			Education University <input type="text" name="university" value="Haaga-Helia University of Applied Sciences">
 			Faculty <input type="text" name="faculty" value="Business Information Technology">
 			Period from <input type="month" name="edu_from" value="2013-08">till <input type="month" name="edu_till" value="2016-12"><br/><br/>
+            <input type="text" name="pic" id="pic">
 			<input type="submit" value="Preview">
 		</form>
- 		<script type="text/javascript">console.log("!!!");</script>
+        <h2>Input</h2>  
+<form class="input-group" id="img2b64">
+    <input id="inputFileToLoad2" type="file" onchange="encodeImageFileAsURL();" />
+</form>
+            
+<hr>
+    
+<h2>Output</h2>        
+<div class="output">
+    <textarea class="form-control"></textarea><br>
+    aaa<a></a><br><br>
+    <img><br>
+</div>
+
+ 		<!-- <script type="text/javascript">console.log("!!!");</script>-->
+ 		<!-- <img src="images/m.jpeg"/> -->
 		<br/><br/><br/><br/><br/><br/><br/><br/>
  		<a href="javascript:demoFromHTML()" class="button">Download PDF</a>
  		<canvas id="demo" width=400 height=100></canvas>
+<!--     <input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL();" /> -->
+<!-- <div id="imgTest"></div> -->
+<script type='text/javascript'>
+
+</script>
     </div>
     <div class="footer"> <% include templates/footer.ejs %></div>
   </body>
