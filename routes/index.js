@@ -4,7 +4,9 @@ var router = express.Router();
  MAKE CV OBJECT with name, edu and other fields
  CHANGE LANGUAGE 
 Transform month: numbers to letters Dec. Jan. Feb. etc.
-
+If no img file is chosen - do smth
+prevent uploading other formats than png and jpg
+doc.addPage('a4')
  */
 /* GET home page. */
 var edu2 = {
@@ -38,7 +40,8 @@ router.post('/add', function (req, res) {
   	person.phone = req.body.phone;
   	person.address = req.body.address;
   	person.citizenship = req.body.citizenship;
-	person.pic = req.body.pic;  	
+	person.pic = req.body.pic;
+	if(!person.pic) {console.log("no pic");}
   	var edu = {}
   	edu.university = req.body.university;
   	edu.faculty = req.body.faculty;
