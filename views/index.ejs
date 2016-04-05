@@ -21,15 +21,17 @@
 					frameborder="0" style="position:relative;z-index:999"></iframe>
 				</div>
     <script>
-    var v;
+    var v, u;
     var doc = new jsPDF();	// global
     function preparePDF() {
-    	var x = 10;			// left horizontal border
-    	var y = 20;			// top vertical border
-    	var maxX = x+190;	// right horizontal border
-    	var midX = x+38;
+    	var x = 8;			// left horizontal border
+    	var y = 18;			// top vertical border
+    	var maxX = x+194;	// right horizontal border
+    	var midX = x+36;
     	var interval = 8;	// between the normal lines
         v=(<%= person.education.length %>)*2*interval;      // doc.addPage('a4');
+        u=30*3+v;
+        var w = (<%= person.education.length %>)*2*interval + (<%= person.employment.length %>)*2*interval - 30;
         doc.setFontSize(25);
 		doc.text(x, y, "<%= person.fullName %>");	// first and last names
 		// doc.text(5,5, a);
@@ -43,17 +45,16 @@
 		doc.rect(x-1, y+30*2-1, 34, 7, 'F');
 		doc.rect(x-1, y+30*3-1, 34, 7, 'F');
 		doc.rect(x-1, y+30*3-1+v, 34, 15, 'F');
-		doc.rect(x-1, y+30*4-1+v, 34, 7, 'F');
+		doc.rect(x-1, y+30*4-1+w, 34, 7, 'F');
 		doc.textEx("CONTACT", x, y+30, "left");
 		doc.textEx("PERSONAL", x, y+30*2, "left");
 		doc.textEx("EDUCATION", x, y+30*3, "left");
 		doc.textEx("WORK", x, y+30*3+v, "left");doc.textEx("EXPERIENCE", x, y+30*3+8+v, "left");
-		doc.textEx("SKILLS", x, y+30*4+v, "left");
+		doc.textEx("SKILLS", x, y+30*4+w, "left");
 		doc.setFontSize(12); doc.setTextColor(0, 0, 0);
 		doc.textEx("Email: <%= person.email %>", maxX, y+30, "right");
 		doc.textEx("Phone: <%= person.phone %>", maxX, y+30+interval, "right");
 		doc.textEx("<%= person.address %>", midX, y+30, "left");
-		
 		doc.textEx("Date of birth: <%= person.born %>", midX, y+30*2, "left");				// DOB
 		doc.textEx("Citizenship: <%= person.citizenship %>", midX, y+30*2+interval*1, "left");	// citizenship
 
@@ -65,6 +66,13 @@
 			doc.textEx("<%= person.education[i].from %> - <%= person.education[i].till %>", maxX, y+30*3+interval*<%= i*2 %>, "right");
 		<% }%>
 		console.log("<%= person.education.length %> -----sssss")
+        <% for (var i=0; i < person.employment.length; i++) { %>
+            doc.setFontType("bold");
+            doc.textEx("<%= person.employment[i].company %>", midX, y+u+interval*<%= i*2 %>, "left");          // company
+            doc.setFontType("normal");
+            doc.textEx("<%= person.employment[i].position %>", midX, y+u+interval*(<%= i*2 %>+1), "left");         // position
+            doc.textEx("<%= person.employment[i].from %> - <%= person.employment[i].till %>", maxX, y+u+interval*<%= i*2 %>, "right");
+        <% }%>
 		var string = doc.output('bloburi');
 		// console.log("person.citizenship");
 		$('.preview-pane').attr('src', string);
@@ -82,6 +90,9 @@
 			Education University <input type="text" name="university" value="Haaga-Helia University of Applied Sciences">
 			Faculty <input type="text" name="faculty" value="Business Information Technology">
 			Period from <input type="month" name="edu_from" value="2013-08">till <input type="month" name="edu_till" value="2016-12"><br/><br/>
+            Employment Company <input type="text" name="company" value="Wonder Masters Oy">
+            Position <input type="text" name="position" value="Web developer">
+            Period from <input type="month" name="job_from" value="2015-06">till <input type="month" name="job_till" value="2016-01"><br/><br/>
             <input type="hidden" name="pic" id="pic" >
 			<input type="submit" value="Preview">
 		</form>
