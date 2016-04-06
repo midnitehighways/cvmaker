@@ -43,7 +43,6 @@ var person = {
 person.education[0] = edu;
 person.employment[0] = job;
 var cv = {
-
 }
 
 
@@ -55,6 +54,7 @@ router.get('/', function(req, res, next) {
 /* handling POST request from form */
 router.post('/add', function (req, res) {
   	person.fullName = req.body.full_name;
+  	person.born = req.body.born;
   	person.email = req.body.email;
   	person.phone = req.body.phone;
   	person.address = req.body.address;

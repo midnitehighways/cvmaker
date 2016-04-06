@@ -1,8 +1,10 @@
 body, html {
   /*padding: 50px;*/
-  height: 100%;
+  /*height: 100%*/;
   width: 100%;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
   margin: 0px;
   padding: 0px;
   border: 0px; 
@@ -73,7 +75,7 @@ a {
 	width: 40%;
 	color: #6a7989;
 	font-weight: bold;
-	font-size: 70.25%;
+	font-size: 75%;
 	-webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 	-webkit-touch-callout: none;
@@ -251,7 +253,9 @@ a {
 	padding: 0.75em 0.1em 0.25em;
 	width: 100%;
 	background: transparent;
-	color: #afb3b8;
+	/*color: #afb3b8;*/				/* input text color  */
+	/*color: black;*/
+	color: #2E2E2E;
 }
 
 .input__label--isao {
@@ -260,6 +264,7 @@ a {
 	padding: 0;
 	width: 100%;
 	color: #dadada;
+	color: #424242;
 	text-align: left;
 }
 
@@ -286,7 +291,10 @@ a {
 	top: 0;
 	left: 0;
 	padding: 0.75em 0.15em;
-	color: #da7071;
+	/*color: #da7071;*/
+	/*color: green;*/
+	color: #2E64FE;
+	/*color: black;*/
 	opacity: 0;
 	-webkit-transform: translate3d(0, 50%, 0);
 	transform: translate3d(0, 50%, 0);
@@ -298,7 +306,9 @@ a {
 }
 
 .input__field--isao:focus + .input__label--isao::before {
-	background-color: #da7071;
+	/*background-color: #da7071;*/
+	/*background-color: green;*/
+	background-color: #5882FA;
 	-webkit-transform: scale3d(1, 1, 1);
 	transform: scale3d(1, 1, 1);
 }
@@ -325,4 +335,60 @@ a {
 	opacity: 0;
 	-webkit-transform: translate3d(0, -50%, 0);
 	transform: translate3d(0, -50%, 0);
+}
+
+
+
+/* Ruri */
+.input__field--ruri {
+	width: 100%;
+	background: transparent;
+	padding: 0.5em 0;
+	margin-bottom: 2em;
+	color: #6a7989;
+}
+
+.input__label--ruri {
+	width: 100%;
+	position: absolute;
+	text-align: left;
+	font-size: 1em;
+	padding: 10px 0 5px;
+	pointer-events: none;
+}
+
+.input__label--ruri::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 7px;
+	background: #B7C3AC;
+	left: 0;
+	top: 100%;
+	-webkit-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+	-webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
+	transition: transform 0.3s, background-color 0.3s;
+}
+
+.input__label-content--ruri {
+	padding: 0;
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+	-webkit-transition: -webkit-transform 0.3s, color 0.3s;
+	transition: transform 0.3s, color 0.3s;
+}
+
+.input__field--ruri:focus + .input__label--ruri::after,
+.input--filled .input__label--ruri::after {
+	background: #a3d39c;
+	-webkit-transform: scale3d(1, 0.25, 1);
+	transform: scale3d(1, 0.25, 1);
+}
+
+.input__field--ruri:focus + .input__label--ruri .input__label-content--ruri,
+.input--filled .input__label--ruri .input__label-content--ruri {
+	color: #a3d39c;
+	-webkit-transform: translate3d(0, 2em, 0) scale3d(0.655, 0.655, 1);
+	transform: translate3d(0, 2em, 0) scale3d(0.655, 0.655, 1);
 }

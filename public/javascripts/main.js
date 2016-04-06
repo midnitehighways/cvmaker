@@ -14,7 +14,7 @@ $(function () {
                 newImage.src = srcData;
                 $("#pic").val(srcData);
                 // document.getElementById("imgText").value = srcData;
-                // document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+                document.getElementById("imgTest").innerHTML = newImage.outerHTML;
             };
             fileReader.readAsDataURL(fileToLoad);
         }
@@ -23,6 +23,12 @@ $(function () {
     })
 });
 
+$(function () {                         // reset form values
+    $(".reset").click(function() {
+        $(this).closest('form').find("input[type=text], [type=email], [type=date], textarea").val("");
+        console.log("reset");
+    })
+});
 
 var splitRegex = /\r\n|\r|\n/g;
 jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {

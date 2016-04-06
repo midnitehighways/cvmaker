@@ -2,12 +2,12 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/demo.css" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/demo.css" />
+    <link rel="stylesheet" href="stylesheets/normalize.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<!--<script src="//mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>-->
 	<script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+    <link rel="stylesheet" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> <!-- needed for ruri class for form controls -->
 	<!--<script src="javascripts/pdfmake.min.js" type="text/javascript"></script>
 	<script src="javascripts/vfs_fonts.js" type="text/javascript"></script>-->
     <script src="javascripts/main.js"></script>
@@ -16,7 +16,6 @@
     <div class="header">
     <% include templates/header.ejs %>
     </div>
-    <!-- <form action="/add" method="POST"><input type="text" name="fff"><input type="submit"></form> -->
     <div class="main"> 
     			<div class="span6" style="float: left">
 					<iframe class="preview-pane" type="application/pdf" width="350px" height="600px" 
@@ -39,7 +38,7 @@
 		// doc.text(5,5, a);
 		doc.setLineWidth(0.3);
 		doc.line(x, y+12, maxX, y+12);		// line
-        if("<%= person.pic %>"){            // if image was uploaded
+        if("<%= person.pic %>"){            // if image was uploaded. Without this condition would be addImage error
             doc.addImage("<%= person.pic %>", 'JPEG', maxX-26, 4, 26, 26);
         }
 		doc.setFontSize(14); doc.setTextColor(255, 255, 255);
@@ -81,62 +80,108 @@
     }
     preparePDF();
 </script>
-    <p>Please fill the fields below</p>
-                <!-- <section class="content bgcolor-8"> -->
-            <!-- </section> -->
+        <!-- <section class="content bgcolor-8">     -->
 		<form action="/add" method="POST">
-			<span class="input input--isao">
+<!--             <span class="input input--isao">
                     <input class="input__field input__field--isao" type="text" id="input-1" name="full_name" value="Alexandru Oat"/>
                     <label class="input__label input__label--isao" for="input-1" data-content="Full name">
                         <span class="input__label-content input__label-content--isao">Full name</span>
                     </label>
             </span>
-            <!-- Full name <input type="text" name="full_name" value="Alexandru Oat"><br/><br/> -->
-			Date of birth <input type="date" name="born" max="2002-12-31" value="1982-03-23"><br/>
-			<!-- Email <input type="email" name="email" value="oat.alexandru@gmail.com"><br/><br/> -->
+            <span class="input input--isao">
+                    <input class="input__field input__field--isao" type="date" id="input-2" name="born" max="2002-12-31" value="1982-03-23"/>
+                    <label class="input__label input__label--isao" for="input-2" data-content="Date of birth">
+                        <span class="input__label-content input__label-content--isao">Date of birth</span>
+                    </label>
+            </span>
             <span class="input input--isao">
                     <input class="input__field input__field--isao" type="email" id="input-3" name="email" value="oat.alexandru@gmail.com"/>
                     <label class="input__label input__label--isao" for="input-3" data-content="E-mail">
                         <span class="input__label-content input__label-content--isao">E-mail</span>
                     </label>
             </span>
-			<!-- Phone <input type="text" name="phone" value="+358466360623"><br/><br/> -->
             <span class="input input--isao">
                     <input class="input__field input__field--isao" type="text" id="input-4" name="phone" value="+358466360623"/>
                     <label class="input__label input__label--isao" for="input-4" data-content="Phone">
                         <span class="input__label-content input__label-content--isao">Phone</span>
                     </label>
             </span>
-			<!-- Address <input type="text" name="address" value="Rälssintie 16 B 14 Helsinki"><br/><br/> -->
 			 <span class="input input--isao">
                     <input class="input__field input__field--isao" type="text" id="input-5" name="address" value="Rälssintie 16 B 14 Helsinki" />
                     <label class="input__label input__label--isao" for="input-5" data-content="Address">
                         <span class="input__label-content input__label-content--isao">Address</span>
                     </label>
             </span>
-            <!-- Citizenship <input type="text" name="citizenship" value="Moldova"><br/><br/> -->
             <span class="input input--isao">
                     <input class="input__field input__field--isao" type="text" id="input-6" name="citizenship" value="Moldova" />
                     <label class="input__label input__label--isao" for="input-6" data-content="Citizenship">
                         <span class="input__label-content input__label-content--isao">Citizenship</span>
                     </label>
             </span>
-			<!-- Education University <input type="text" name="university" value="Haaga-Helia University of Applied Sciences"> -->
 			 <span class="input input--isao">
                     <input class="input__field input__field--isao" type="text" id="input-7" name="university" value="Haaga-Helia University of Applied Sciences" />
                     <label class="input__label input__label--isao" for="input-7" data-content="University">
                         <span class="input__label-content input__label-content--isao">University</span>
                     </label>
             </span>
-            <!-- Faculty <input type="text" name="faculty" value="Business Information Technology"> -->
 			 <span class="input input--isao">
                     <input class="input__field input__field--isao" type="text" id="input-8" name="faculty" value="Business Information Technology" />
                     <label class="input__label input__label--isao" for="input-8" data-content="Faculty">
                         <span class="input__label-content input__label-content--isao">Faculty</span>
                     </label>
+            </span> -->
+            Personal<br/>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-1" name="full_name" value="Alexandru Oat"/>
+                <label class="input__label input__label--ruri" for="input-1">
+                    <span class="input__label-content input__label-content--ruri">Full name</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-2" name="born" max="2002-12-31" value="1982-03-23" onfocus="(this.type='date')" onfocusout="(this.type='text')" />
+                <label class="input__label input__label--ruri" for="input-2">
+                    <span class="input__label-content input__label-content--ruri">Date of birth</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="email" id="input-3" name="email" value="oat.alexandru@gmail.com"/>
+                <label class="input__label input__label--ruri" for="input-3">
+                    <span class="input__label-content input__label-content--ruri">E-mail</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-4" name="phone" value="+358466360623"/>
+                <label class="input__label input__label--ruri" for="input-4">
+                    <span class="input__label-content input__label-content--ruri">Phone</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-5" name="address" value="Rälssintie 16 B 14 Helsinki" />
+                <label class="input__label input__label--ruri" for="input-5">
+                    <span class="input__label-content input__label-content--ruri">Address</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-6" name="citizenship" value="Moldova" />
+                <label class="input__label input__label--ruri" for="input-6">
+                    <span class="input__label-content input__label-content--ruri">Citizenship</span>
+                </label>
+            </span>
+            <br/>Education<br/>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-7" name="university" value="Haaga-Helia University of Applied Sciences" />
+                <label class="input__label input__label--ruri" for="input-7">
+                    <span class="input__label-content input__label-content--ruri">University</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-8" name="faculty" value="Business Information Technology" />
+                <label class="input__label input__label--ruri" for="input-8">
+                    <span class="input__label-content input__label-content--ruri">Faculty</span>
+                </label>
             </span>
             <!-- Period from <input type="month" name="edu_from" value="2013-08">till <input type="month" name="edu_till" value="2016-12"><br/><br/> -->
-            <span class="input input--isao">
+<!--             <span class="input input--isao">
                     <input class="input__field input__field--isao" type="text" id="input-9" name="edu_from" value="2013-08" />
                     <label class="input__label input__label--isao" for="input-9" data-content="From (e.g. Aug. 2013)">
                         <span class="input__label-content input__label-content--isao">From (e.g. Aug. 2013)</span>
@@ -147,67 +192,70 @@
                     <label class="input__label input__label--isao" for="input-9" data-content="Till (e.g. Dec. 2016)">
                         <span class="input__label-content input__label-content--isao">Till (e.g. Dec. 2016)</span>
                     </label>
+            </span> -->
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-8" name="edu_from" value="Aug 2013" />
+                <label class="input__label input__label--ruri" for="input-10">
+                    <span class="input__label-content input__label-content--ruri">From (e.g. Aug. 2013)</span>
+                </label>
             </span>
-            Employment Company <input type="text" name="company" value="Wonder Masters Oy">
-            Position <input type="text" name="position" value="Web developer">
-            Period from <input type="month" name="job_from" value="2015-06">till <input type="month" name="job_till" value="2016-01"><br/><br/>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-9" name="edu_till" value="Dec. 2016" />
+                <label class="input__label input__label--ruri" for="input-10">
+                    <span class="input__label-content input__label-content--ruri">Till (e.g. Dec. 2016)</span>
+                </label>
+            </span>
+            <!-- Employment -->
+            <br/>Employment<br/>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-10" name="company" value="Wonder Masters Oy" />
+                <label class="input__label input__label--ruri" for="input-10">
+                    <span class="input__label-content input__label-content--ruri">Company</span>
+                </label>
+            </span>            
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-11" name="position" value="Web developer" />
+                <label class="input__label input__label--ruri" for="input-10">
+                    <span class="input__label-content input__label-content--ruri">Position</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-12" name="job_from" value="2015-06" />
+                <label class="input__label input__label--ruri" for="input-12">
+                    <span class="input__label-content input__label-content--ruri">From (e.g. Jun. 2015)</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-13" name="job_till" value="Present" />
+                <label class="input__label input__label--ruri" for="input-13">
+                    <span class="input__label-content input__label-content--ruri">Till (e.g. Dec. 2015)</span>
+                </label>
+            </span>
             <input type="hidden" name="pic" id="pic" >
 			<input type="submit" value="Preview">
+            <input type="button" class="reset" value="Reset form"/>
 		</form>
+
+        <!-- </section> -->
 <!-- 
 <div class="container">
             <section class="content bgcolor-1">
-                
-                <span class="input input--haruki">
-                    <input class="input__field input__field--haruki" type="text" id="input-1" />
-                    <label class="input__label input__label--haruki" for="input-1">
-                        <span class="input__label-content input__label-content--haruki">First Name</span>
-                    </label>
-                </span>
-                <span class="input input--haruki">
-                    <input class="input__field input__field--haruki" type="text" id="input-2" />
-                    <label class="input__label input__label--haruki" for="input-2">
-                        <span class="input__label-content input__label-content--haruki">Last Name</span>
-                    </label>
-                </span>
-                <span class="input input--haruki">
-                    <input class="input__field input__field--haruki" type="text" id="input-3" />
-                    <label class="input__label input__label--haruki" for="input-3">
-                        <span class="input__label-content input__label-content--haruki">Email</span>
-                    </label>
-                </span>
             </section>
  
  <section class="content bgcolor-4">
-                
-                <span class="input input--akira">
-                    <input class="input__field input__field--akira" type="text" id="input-22" />
-                    <label class="input__label input__label--akira" for="input-22">
-                        <span class="input__label-content input__label-content--akira">First Name</span>
-                    </label>
-                </span>
-                <span class="input input--akira">
-                    <input class="input__field input__field--akira" type="text" id="input-23" />
-                    <label class="input__label input__label--akira" for="input-23">
-                        <span class="input__label-content input__label-content--akira">Last Name</span>
-                    </label>
-                </span>
-                <span class="input input--akira">
-                    <input class="input__field input__field--akira" type="text" id="input-24" />
-                    <label class="input__label input__label--akira" for="input-24">
-                        <span class="input__label-content input__label-content--akira">Maiden Name</span>
-                    </label>
-                </span>
             </section>
 </div> -->
 <input id="inputFileToLoad" type="file" value="Add photo" />
 <div id="imgTest"></div>
 
 
-		<br/><br/><br/><br/><br/><br/><br/><br/>
+		<br/><br/><br/><br/>
  		<a href="javascript:savePDF()" class="button">Download PDF</a>
 
-<script src="javascripts/classie.js"></script>
+
+    </div>
+    <div class="footer"> <% include templates/footer.ejs %></div>
+    <script src="javascripts/classie.js"></script>
         <script>
             (function() {
                 // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
@@ -243,7 +291,5 @@
                 }
             })();
         </script>
-    </div>
-    <div class="footer"> <% include templates/footer.ejs %></div>
   </body>
 </html>
