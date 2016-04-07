@@ -61,40 +61,40 @@ router.post('/add', function (req, res) {
   	person.citizenship = req.body.citizenship;
 	person.pic = req.body.pic;
 	if(!person.pic) {console.log("no pic");}
+  	// edu = {}
+  	// edu.university = req.body.university;
+  	// edu.faculty = req.body.faculty;
+  	// edu.from = req.body.edu_from;
+  	// edu.till = req.body.edu_till;
+  	// person.education.push(edu);
+  	// job = {}
+  	// job.company = req.body.company;
+  	// job.position = req.body.position;
+  	// job.from = req.body.job_from;
+  	// job.till = req.body.job_till;
+  	// person.employment.push(job);
+  	console.log(req.body.pic);
+ 	// console.log(req.body.uni+"....////......");
+  	res.redirect('/');
+});
+router.post('/add_edu', function (req, res) {
   	edu = {}
   	edu.university = req.body.university;
   	edu.faculty = req.body.faculty;
   	edu.from = req.body.edu_from;
   	edu.till = req.body.edu_till;
   	person.education.push(edu);
+  	res.redirect('/');
+});
+router.post('/add_job', function (req, res) {
   	job = {}
   	job.company = req.body.company;
   	job.position = req.body.position;
   	job.from = req.body.job_from;
   	job.till = req.body.job_till;
   	person.employment.push(job);
-  	console.log(req.body.pic);
- 	// console.log(req.body.uni+"....////......");
   	res.redirect('/');
 });
-// router.post('/add_edu', function (req, res) {
-//   	edu = {}
-//   	edu.university = req.body.university;
-//   	edu.faculty = req.body.faculty;
-//   	edu.from = req.body.edu_from;
-//   	edu.till = req.body.edu_till;
-//   	person.education.push(edu);
-//   	job = {}
-//   	job.company = req.body.company;
-//   	job.position = req.body.position;
-//   	job.from = req.body.job_from;
-//   	job.till = req.body.job_till;
-//   	person.employment.push(job);
-//   	console.log(req.body.pic);
-//  	// console.log(req.body.uni+"....////......");
-//   	res.redirect('/');
-// });
-
 
 
 console.log(person.education.length);

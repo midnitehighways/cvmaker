@@ -87,7 +87,7 @@
         <!-- <section class="content bgcolor-8">     -->
 		
 
-        <form class="tabs" action="/add" method="POST">
+        <form action="/add" method="POST">
             Personal<br/><br/><br/>
             <span class="input input--ruri">
                 <input class="input__field input__field--ruri" type="text" id="input-1" name="full_name" value="Alexandru Oat"/>
@@ -125,7 +125,13 @@
                     <span class="input__label-content input__label-content--ruri">Citizenship</span>
                 </label>
             </span>
+            <input id="inputFileToLoad" type="file" value="Add photo" /><input type="hidden" name="pic" id="pic" >
+            <input type="submit" class="my-button" value="Update preview">
+            </form>
+            <br/><br/>
+            <div id="imgTest"></div>
             <br/><br/><br/>Education<br/><br/><br/>
+            <form action="/add_edu" method="POST">
             <span class="input input--ruri">
                 <input class="input__field input__field--ruri" type="text" id="input-7" name="university" value="Haaga-Helia University of Applied Sciences" />
                 <label class="input__label input__label--ruri" for="input-7">
@@ -150,7 +156,10 @@
                     <span class="input__label-content input__label-content--ruri">Till (e.g. Dec. 2016)</span>
                 </label>
             </span>
+            <input type="submit" class="my-button" value="Update preview">
+            </form>
             <!-- Employment -->
+            <form action="/add_job" method="POST">
             <br/><br/><br/>Employment<br/><br/><br/>
             <span class="input input--ruri">
                 <input class="input__field input__field--ruri" type="text" id="input-10" name="company" value="Wonder Masters Oy" />
@@ -176,7 +185,7 @@
                     <span class="input__label-content input__label-content--ruri">Till (e.g. Dec. 2015)</span>
                 </label>
             </span>
-            <input id="inputFileToLoad" type="file" value="Add photo" /><input type="hidden" name="pic" id="pic" >
+            
 			<input type="submit" class="my-button" value="Update preview">
             <input type="button" class="reset my-button" value="Reset form"/>
             <a href="javascript:savePDF()" class="my-button">Download PDF</a>
@@ -191,8 +200,7 @@
  <section class="content bgcolor-4">
             </section>
 </div> -->
-        <br/><br/>
-        <div id="imgTest"></div>
+        
 
     </div>
     <div id="tabs-container">
