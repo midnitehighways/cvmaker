@@ -3,6 +3,7 @@
     border-top: 10px; 
     height: 30px;
     list-style-type: none;		/* no bullets before list items */
+
 }
 
 .tabs-menu li {
@@ -14,6 +15,7 @@
     border-top: 1px solid #d4d4d1;
     border-right: 1px solid #d4d4d1;
     border-left: 1px solid #d4d4d1;
+
 }
 
 .tabs-menu li.current {
@@ -32,18 +34,20 @@
 
 .tabs-menu .current a {
     color: #2e7da3;
+    outline: none;
 }
 
 .tab {
     border: 1px solid #d4d4d1;
-    background-color: #fff;
+    /*background-color: #fff;*/
     float: left;
     bottom: 20px;
     width: auto;
 }
 
 .tab-content {
-    /*width: 660px;*/
+    min-width: 600px;
+    /*width: 60%;*/
     /*padding: 20px;*/
     display: none;
 }
@@ -473,8 +477,8 @@ a {
   -webkit-border-radius: 7;
   -moz-border-radius: 7;
   border-radius: 7px;
-  font-weight: 600;
-  color: #000;
+  font-weight: 400;
+  color: #333;
   font-size: 17px;
   background: #dddddd;
   padding: 5px 10px 5px 10px;
@@ -483,6 +487,8 @@ a {
   outline: none;
   border: 0;			/* remove 3d effect */
   transition: all .3s ease-in-out; 
+  float: right;
+  margin-right: 30px;
 }
 
 .my-button:hover {

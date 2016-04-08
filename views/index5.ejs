@@ -38,10 +38,11 @@
     	var maxX = x+194;	// right horizontal border
     	var midX = x+36;
     	var interval = 8;	// between the normal lines
-        v=(<%= person.education.length %>)*2*interval;      // doc.addPage('a4');
-        u=30*3+v;
-        var w = (<%= person.education.length %>)*2*interval + (<%= person.employment.length %>)*2*interval - 30;
-        doc.setFontSize(25);
+        var dist = 20;
+        v=(<%= person.education.length %>)*2*(interval)+3;      // doc.addPage('a4');
+        u=dist*3+v;
+        var w = (<%= person.education.length %>)*2*interval + (<%= person.employment.length %>)*2*interval - 12;
+        doc.setFontSize(22);
 		doc.text(x, y, "<%= person.fullName %>");	// first and last names
 		// doc.text(5,5, a);
 		doc.setLineWidth(0.3);
@@ -50,38 +51,43 @@
             doc.addImage("<%= person.pic %>", 'JPEG', maxX-26, 4, 26, 26);
         }
         doc.setFontSize(14); doc.setTextColor(255, 255, 255);
-		doc.rect(x-1, y+30-1, 34, 7, 'F');
-		doc.rect(x-1, y+30*2-1, 34, 7, 'F');
-		doc.rect(x-1, y+30*3-1, 34, 7, 'F');
-		doc.rect(x-1, y+30*3-1+v, 34, 15, 'F');
-		doc.rect(x-1, y+30*4-1+w, 34, 7, 'F');
-		doc.textEx("CONTACT", x, y+30, "left");
-		doc.textEx("PERSONAL", x, y+30*2, "left");
-		doc.textEx("EDUCATION", x, y+30*3, "left");
-		doc.textEx("WORK", x, y+30*3+v, "left");doc.textEx("EXPERIENCE", x, y+30*3+8+v, "left");
-		doc.textEx("SKILLS", x, y+30*4+w, "left");
+		doc.rect(x-1, y+dist-1, 34, 7, 'F');
+		doc.rect(x-1, y+dist*2-1, 34, 7, 'F');
+		doc.rect(x-1, y+dist*3-1, 34, 7, 'F');
+		doc.rect(x-1, y+dist*3-1+v, 34, 15, 'F');
+		doc.rect(x-1, y+dist*4-1+w, 34, 7, 'F');
+		doc.textEx("CONTACT", x, y+dist, "left");
+		doc.textEx("PERSONAL", x, y+dist*2, "left");
+		doc.textEx("EDUCATION", x, y+dist*3, "left");
+		doc.textEx("WORK", x, y+dist*3+v, "left");doc.textEx("EXPERIENCE", x, y+dist*3+8+v, "left");
+		doc.textEx("SKILLS", x, y+dist*4+w, "left");
 		doc.setFontSize(12); doc.setTextColor(0, 0, 0);
-		doc.textEx("Email: <%= person.email %>", maxX, y+30, "right");
-		doc.textEx("Phone: <%= person.phone %>", maxX, y+30+interval, "right");
-		doc.textEx("<%= person.address %>", midX, y+30, "left");
-		doc.textEx("Date of birth: <%= person.born %>", midX, y+30*2, "left");				// DOB
-		doc.textEx("Citizenship: <%= person.citizenship %>", midX, y+30*2+interval*1, "left");	// citizenship
+		doc.textEx("Email: <%= person.email %>", maxX, y+dist, "right");
+		doc.textEx("Phone: <%= person.phone %>", maxX, y+dist+interval, "right");
+		doc.textEx("<%= person.address %>", midX, y+dist, "left");
+		doc.textEx("Date of birth: <%= person.born %>", midX, y+dist*2, "left");				// DOB
+		doc.textEx("Citizenship: <%= person.citizenship %>", midX, y+dist*2+interval*1, "left");	// citizenship
 
 		<% for (var i=0; i < person.education.length; i++) { %>
 			doc.setFontType("bold");
-			doc.textEx("<%= person.education[i].university %>", midX, y+30*3+interval*<%= i*2 %>, "left");			// uni
+			doc.textEx("<%= person.education[i].university %>", midX, y+dist*3+interval*<%= i*2 %>, "left");			// uni
 			doc.setFontType("normal");
-			doc.textEx("<%= person.education[i].faculty %>", midX, y+30*3+interval*(<%= i*2 %>+1), "left");			// faculty
-			doc.textEx("<%= person.education[i].from %> - <%= person.education[i].till %>", maxX, y+30*3+interval*<%= i*2 %>, "right");
+			doc.textEx("<%= person.education[i].faculty %>", midX, y+dist*3+interval*(<%= i*2 %>+1)-2, "left");			// faculty
+			doc.textEx("<%= person.education[i].from %> - <%= person.education[i].till %>", maxX, y+dist*3+interval*<%= i*2 %>, "right");
 		<% }%>
 		console.log("<%= person.education.length %> -----sssss")
         <% for (var i=0; i < person.employment.length; i++) { %>
             doc.setFontType("bold");
             doc.textEx("<%= person.employment[i].company %>", midX, y+u+interval*<%= i*2 %>, "left");          // company
             doc.setFontType("normal");
-            doc.textEx("<%= person.employment[i].position %>", midX, y+u+interval*(<%= i*2 %>+1), "left");         // position
+            doc.textEx("<%= person.employment[i].position %>", midX, y+u+interval*(<%= i*2 %>+1)-2, "left");         // position
             doc.textEx("<%= person.employment[i].from %> - <%= person.employment[i].till %>", maxX, y+u+interval*<%= i*2 %>, "right");
         <% }%>
+
+        <% for (var i=0; i < person.skills.length; i++) { %>
+            doc.textEx("<%= person.skills[i] %>", midX, y+dist*4+w+1+interval*(<%= i %>), "left");          // skill
+        <% }%>
+
 		var string = doc.output('bloburi');
 		// console.log("person.citizenship");
 		$('.preview-pane').attr('src', string);
@@ -95,6 +101,7 @@
         <li><a href="#education">Education</a></li>
         <li><a href="#employment">Employment</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#other">Other</a></li>
     </ul>
     <div class="tab">
         <div id="personal" class="tab-content">
@@ -208,9 +215,19 @@
             <input type="button" class="reset my-button" value="Reset form"/>
         </form>
         </div>
-    
 
         <div id="skills" class="tab-content">        
+          <form action="/add_skill" method="POST">
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-14" name="skill" value="Web Application Development" />
+                <label class="input__label input__label--ruri" for="input-14">
+                    <span class="input__label-content input__label-content--ruri">Skills and qualifications</span>
+                </label>
+            </span>            
+            <br/>
+            <input type="submit" class="my-button" value="Save">
+            <input type="button" class="reset my-button" value="Reset form"/>
+        </form>
         </div>
     </div>
     <br/><br/><br/>
