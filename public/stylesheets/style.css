@@ -1,15 +1,8 @@
-body {
-/*padding: 20px;*/
-/*font-family: Arial, Helvetica, sans-serif;*/
-line-height: 1.5;
-/*font-size: 14px; */       
-}
-
 .tabs-menu {
+    padding-top: 20px; 		/* move menu a bit lower to touch content-space */
+    border-top: 10px; 
     height: 30px;
-    float: left;
-    clear: both;
-    background-color: black;
+    list-style-type: none;		/* no bullets before list items */
 }
 
 .tabs-menu li {
@@ -27,7 +20,7 @@ line-height: 1.5;
     position: relative;
     background-color: #fff;
     border-bottom: 1px solid #fff;
-    z-index: 5;
+    z-index: 10;
 }
 
 .tabs-menu li a {
@@ -45,17 +38,17 @@ line-height: 1.5;
     border: 1px solid #d4d4d1;
     background-color: #fff;
     float: left;
-    margin-bottom: 20px;
+    bottom: 20px;
     width: auto;
 }
 
 .tab-content {
-    width: 660px;
-    padding: 20px;
+    /*width: 660px;*/
+    /*padding: 20px;*/
     display: none;
 }
 
-#tab-1 {
+#personal {
  display: block;   
 }
 
@@ -63,12 +56,13 @@ line-height: 1.5;
 
 
 
+
 body, html {
-  /*padding: 50px;*/
-  /*height: 100%*/;
-  width: 100%;
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  height: 100%;
+  width: 100%;
   font-size: 14px;
   margin: 0px;
   padding: 0px;
@@ -77,12 +71,12 @@ body, html {
 }
 
 a {
-  color: #00B7FF;
+  /*color: #00B7FF;*/
 }
 
 .header {
 	width: 100%;
-	height: 5%;
+	height: 25px;
 	background-color: lightgrey;
 	color: white;
 	text-align: center;
@@ -92,6 +86,17 @@ a {
 	width: 100%;
 	height: 88%;
 	background-color: white;
+}
+.left {
+	width: 29%;
+	height: 100%;
+	float: left;
+	/*background-color: grey;*/
+}
+.right {
+	width: 70%;
+	height: 100%;
+	float: left;
 }
 .footer {
 	width: 100%;
