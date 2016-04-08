@@ -136,9 +136,9 @@
                 </label>
             </span>
             <input id="inputFileToLoad" type="file" value="Add photo" /><input type="hidden" name="pic" id="pic" >
-            <input type="submit" class="my-button" value="Update preview">
+            <input type="submit" class="my-button" value="Save">
+            <input type="button" class="reset my-button" value="Reset form"/>
             </form>
-            <br/><br/>
             <div id="imgTest"></div>
         </div>
 
@@ -170,13 +170,13 @@
                     <span class="input__label-content input__label-content--ruri">Till (e.g. Dec. 2016)</span>
                 </label>
             </span>
-            <input type="submit" class="my-button" value="Update preview">
+            <input type="submit" class="my-button" value="Save">
+            <input type="button" class="reset my-button" value="Reset form"/>
             </form>
         </div>
     
     
         <div id="employment" class="tab-content">
-            <p>
         <form action="/add_job" method="POST">
             <span class="input input--ruri">
                 <input class="input__field input__field--ruri" type="text" id="input-10" name="company" value="Wonder Masters Oy" />
@@ -203,20 +203,16 @@
                 </label>
             </span>
             
-            <input type="submit" class="my-button" value="Update preview">
+            <input type="submit" class="my-button" value="Save">
             <input type="button" class="reset my-button" value="Reset form"/>
-            <a href="javascript:savePDF()" class="my-button">Download PDF</a>
         </form>
-            </p>
         </div>
     
 
         <div id="skills" class="tab-content">        
-            <p>
-
-            </p>
         </div>
     </div>
+    <a href="javascript:savePDF()" class="my-button">Download PDF</a>
 </div>
     <div class="footer"> <% include templates/footer.ejs %></div>
     <script src="javascripts/classie.js"></script>
