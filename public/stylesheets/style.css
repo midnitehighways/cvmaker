@@ -57,7 +57,11 @@
 }
 
 
-
+.buttons {
+	position: absolute;
+	bottom: 30%;
+	left: 372px;
+}
 
 
 
@@ -487,8 +491,6 @@ a {
   outline: none;
   border: 0;			/* remove 3d effect */
   transition: all .3s ease-in-out; 
-  float: right;
-  margin-right: 30px;
 }
 
 .my-button:hover {

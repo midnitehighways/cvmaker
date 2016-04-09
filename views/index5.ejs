@@ -38,10 +38,10 @@
     	var maxX = x+194;	// right horizontal border
     	var midX = x+36;
     	var interval = 8;	// between the normal lines
-        var dist = 20;
+        var dist = 30;
         v=(<%= person.education.length %>)*2*(interval)+3;      // doc.addPage('a4');
         u=dist*3+v;
-        var w = (<%= person.education.length %>)*2*interval + (<%= person.employment.length %>)*2*interval - 12;
+        var w = (<%= person.education.length %>)*2*interval + (<%= person.employment.length %>)*2*interval + dist - 50;
         doc.setFontSize(22);
 		doc.text(x, y, "<%= person.fullName %>");	// first and last names
 		// doc.text(5,5, a);
@@ -142,11 +142,13 @@
                     <span class="input__label-content input__label-content--ruri">Citizenship</span>
                 </label>
             </span><br/>
-            <input id="inputFileToLoad" type="file" value="Add photo" /><input type="hidden" name="pic" id="pic" ><br/>
-            <input type="submit" class="my-button" value="Save">
+            Add your photo<input id="inputFileToLoad" type="file" value="Add photo" /><input type="hidden" name="pic" id="pic" >
+            <div class="buttons"><input type="submit" class="my-button" value="Save">
+            <a href="/clean" class="my-button">Clean</a></div>
             <input type="button" class="reset my-button" value="Reset form"/>
+            <a href="javascript:savePDF()" class="my-button">Download PDF</a></div>
             </form>
-            <div id="imgTest"></div>
+            <!-- <div id="imgTest"></div> -->
         </div>
 
 
@@ -177,9 +179,9 @@
                     <span class="input__label-content input__label-content--ruri">Till (e.g. Dec. 2016)</span>
                 </label>
             </span>
-            <br/>
-            <input type="submit" class="my-button" value="Save">
+            <div class="buttons"><input type="submit" class="my-button" value="Save">
             <input type="button" class="reset my-button" value="Reset form"/>
+            <a href="javascript:savePDF()" class="my-button">Download PDF</a></div>
             </form>
         </div>
     
@@ -210,9 +212,9 @@
                     <span class="input__label-content input__label-content--ruri">Till (e.g. Dec. 2015)</span>
                 </label>
             </span>
-            <br/>
-            <input type="submit" class="my-button" value="Save">
+            <div class="buttons"><input type="submit" class="my-button" value="Save">
             <input type="button" class="reset my-button" value="Reset form"/>
+            <a href="javascript:savePDF()" class="my-button">Download PDF</a></div>
         </form>
         </div>
 
@@ -224,14 +226,14 @@
                     <span class="input__label-content input__label-content--ruri">Skills and qualifications</span>
                 </label>
             </span>            
-            <br/>
-            <input type="submit" class="my-button" value="Save">
+            <div class="buttons"><input type="submit" class="my-button" value="Save">
             <input type="button" class="reset my-button" value="Reset form"/>
+            <a href="javascript:savePDF()" class="my-button">Download PDF</a></div>
         </form>
         </div>
     </div>
     <br/><br/><br/>
-    <a href="javascript:savePDF()" class="my-button">Download PDF</a>
+    
 </div>
     <div class="footer"> <% include templates/footer.ejs %></div>
     <script src="javascripts/classie.js"></script>
