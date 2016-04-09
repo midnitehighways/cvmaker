@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="stylesheets/normalize.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+    <link rel="stylesheet" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> <!-- needed for ruri class for form controls -->
+    <script src="javascripts/main.js"></script>
     <!-- Latest compiled and minified CSS -->
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
 
@@ -15,19 +17,23 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
-
-    <link rel="stylesheet" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> <!-- needed for ruri class for form controls -->
-    <script src="javascripts/main.js"></script>
   </head>
   <body>
-    <div class="header">
-    <% include templates/header.ejs %>
-    </div>
+<div class="header clearfix">
+    <!-- <div class="container"> -->
+        <span class="logo"><a href="#"> <span class="yellow">CV</span> Maker </a></span>
+        <span class="menu"><a href="#"> About </a></span>
+        <span class="menu"><a href="#"> Settings </a></span>
+        <span class="menu"><a href="#"> <% include templates/header.ejs %> </a></span>
+    <!-- </div> -->
+</div>
+
+
     <div class="main"> 
     	<!-- <div class="span6" style="float: left"> -->
         <div class="left">
-			<iframe class="preview-pane" type="application/pdf" width="350px" height="600px" 
-			frameborder="0" style="position:relative;z-index:999"></iframe>
+			<iframe class="preview-pane" type="application/pdf" width="100%" height="100%" 
+			frameborder="0" style="position:relative;z-index:999">Unfortunately, your browser does not support PDF preview:(</iframe>
 		</div>
     <script>
     var v, u;
@@ -96,11 +102,13 @@
 </script>
     
     <div class="right">
+    <div class = "work-space container">
     <ul class="tabs-menu">
         <li class="current"><a href="#personal">Personal</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#employment">Employment</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#languages">Languages</a></li>
         <li><a href="#other">Other</a></li>
     </ul>
     <div class="tab">
@@ -237,6 +245,7 @@
     </div>
     <br/><br/><br/>
     
+</div>
 </div>
     <div class="footer"> <% include templates/footer.ejs %></div>
     <script src="javascripts/classie.js"></script>

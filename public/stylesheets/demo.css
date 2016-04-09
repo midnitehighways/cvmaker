@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:200,500,700,800);
 
-@font-face {
+/*@font-face {
 	font-weight: normal;
 	font-style: normal;
 	font-family: 'codropsicons';
@@ -10,7 +10,7 @@
 		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
 		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
 }
-
+*/
 *, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
 .clearfix:before, .clearfix:after { content: ''; display: table; }
 .clearfix:after { clear: both; }

@@ -33,17 +33,17 @@ var job = {
 	from: "Jun. 2015",
 	till: "Present"
 };
-function Person(fullName, email, phone, born, address, citizenship, pic, education, employment, skills) {
+function Person(fullName, email, phone, born, address, citizenship, education, employment, skills, pic) {
 	this.fullName = fullName || "";
 	this.email = email || "";
 	this.phone = phone || "";
 	this.born = born || "";  
 	this.address = address || "";
 	this.citizenship = citizenship || "";
-	this.pic = pic || myPic;
 	this.education = education || [];
 	this.employment = employment || [];
 	this.skills = skills || [];
+	this.pic = pic || myPic;
 }
 // var person = {
 // 	fullName: "Alexandru Oat",
@@ -55,9 +55,10 @@ function Person(fullName, email, phone, born, address, citizenship, pic, educati
 // 	citizenship: "Moldova",
 // 	education: [edu],
 // 	employment: [job],
-// 	skills: ["Object Oriented Programming"]
+// 	skills: ["Object Oriented Programming"],
+//	pic: myPic
 // };
-var person = new Person("Alexandru Oat", "oat.alexandru@gmail.com", "+358466360623", "23.03.1982", "Rälssintie 16 B 14 Helsinki", "Moldova",myPic,[edu],[job],["Object Oriented Programming"]);
+var person = new Person("Alexandru Oat","oat.alexandru@gmail.com", "+358466360623", "23.03.1982", "Rälssintie 16 B 14 Helsinki", "Moldova",[edu],[job],["Object Oriented Programming"],myPic);
 
 // person.education[0] = edu;
 // person.employment[0] = job;
@@ -154,7 +155,7 @@ router.post('/add_skill', function (req, res) {
 });
 router.get('/clean', function (req, res) {
   	// person.skills.push("new skills");
-  	person = new Person ("", "", "", "", "", "","",[],[],[]);
+  	person = new Person ("", "", "", "", "", "",[],[],[],"");
   	res.redirect('/');
 });
 

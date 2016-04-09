@@ -1,5 +1,5 @@
 .tabs-menu {
-    padding-top: 20px; 		/* move menu a bit lower to touch content-space */
+    /*padding-top: 20px; 	*/	/* move menu a bit lower to touch content-space */
     border-top: 10px; 
     height: 30px;
     list-style-type: none;		/* no bullets before list items */
@@ -38,7 +38,7 @@
 }
 
 .tab {
-    border: 1px solid #d4d4d1;
+    /*border: 1px solid #d4d4d1;*/
     /*background-color: #fff;*/
     float: left;
     bottom: 20px;
@@ -52,22 +52,23 @@
     display: none;
 }
 
-#personal {
+#personal {				/* tab active by default */
  display: block;   
 }
 
 
 .buttons {
-	position: absolute;
-	bottom: 30%;
-	left: 372px;
+	/*position: absolute;*/
+	/*bottom: 10%;*/
+	/*left: 372px;*/
+	padding-top: 50px;
 }
 
 
 
 body, html {
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+/*  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 
   height: 100%;
   width: 100%;
@@ -82,14 +83,65 @@ a {
   /*color: #00B7FF;*/
 }
 
+.container {    /*ЦЕНТРОВКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 10px;
+  /*background: blue;*/ }
+
 .header {
-	width: 100%;
-	height: 25px;
+/*	width: 100%;
+	height: 50px;
 	background-color: grey;
 	color: white;
 	text-align: center;
+	font-size: 20px;*/
+}
+
+.header {
+	/*background-color: #289f77;*/
+  	background: #088A08; 
+  	background: -webkit-linear-gradient(#38610B, #088A68); 
+    background: -o-linear-gradient(#38610B, #088A68); 
+    background: -moz-linear-gradient(#38610B, #088A68); 
+    background: linear-gradient(#38610B, #088A68);
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  	width: 100%; }
+
+.header a {
+	color: white;
+	font-size: 16px;
+	text-transform: uppercase;
+	display: inline-block;
+	padding: 20px; 
+}
+
+.header .menu {
+	display: block;
+	/*text-align: right;*/
+	float: right;
+}
+.header .logo {
+	float: left;
+}
+.yellow {
+	color: yellow;
 	font-size: 20px;
 }
+.header a:hover {
+	background: #173B0B;
+	color: white;
+    -webkit-transition: 0.8s; /* Safari */
+    transition: 0.8s;
+}
+
+/*.clearfix:after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0; }
+*/
 .main {
 	width: 100%;
 	height: 88%;
@@ -103,7 +155,8 @@ a {
 .right {
 	width: 70%;
 	height: 100%;
-	float: left;
+	float: right;
+	/*background: blue;*/
 }
 .footer {
 	width: 100%;
@@ -124,7 +177,7 @@ a {
 	z-index: 1;
 	display: inline-block;
 	margin: 1em;
-	max-width: 350px;
+	max-width: 300px;
 	width: calc(100% - 2em);
 	vertical-align: top;
 }
