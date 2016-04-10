@@ -32,7 +32,7 @@ var job = {
 	company: "Wonder Masters Oy",
 	position: "Web developer",
 	from: "Jun. 2015",
-	till: "Present"
+	till: "Jan. 2016"
 };
 function Person(fullName, email, phone, born, address, citizenship, education, employment, skills, languages, pic) {
 	this.fullName = fullName || "";
@@ -87,7 +87,7 @@ var person = new Person("Alexandru Oat","oat.alexandru@gmail.com", "+35846636062
 
 
 router.get('/', function(req, res, next) {
-  res.render('index5', { title: 'Build your CV', person:person});
+  res.render('index7', { title: 'Build your CV', person:person});
 });
 
 /* handling POST request from form */

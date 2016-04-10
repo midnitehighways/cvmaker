@@ -23,14 +23,15 @@ $(function () {
                 var srcData = fileLoadedEvent.target.result;
                 var newImage = document.createElement('img');
                 newImage.src = srcData;
+                console.log(srcData);
                 $("#pic").val(srcData);
                 // document.getElementById("imgText").value = srcData;
-                document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+                // document.getElementById("imgTest").innerHTML = newImage.outerHTML;
             };
             fileReader.readAsDataURL(fileToLoad);
         }
     }
-    else{ alert("You'll need a more modern browser to get this to work."); }
+    else{ alert("Unfortunately, your browser can't do this operation"); }
     })
 });
 
