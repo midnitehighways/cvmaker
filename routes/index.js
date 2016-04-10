@@ -19,6 +19,7 @@ doc.addPage('a4')
 
 !!!!!!!!!!!!!!!!!!!!!DEFAULT VAULES in object - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model
  
+ !!!!!!!!!!!!!! CV built in accordance with PERSON object!!!! --- or option above
  */
 /* GET home page. */
 var edu = {
@@ -33,7 +34,7 @@ var job = {
 	from: "Jun. 2015",
 	till: "Present"
 };
-function Person(fullName, email, phone, born, address, citizenship, education, employment, skills, pic) {
+function Person(fullName, email, phone, born, address, citizenship, education, employment, skills, languages, pic) {
 	this.fullName = fullName || "";
 	this.email = email || "";
 	this.phone = phone || "";
@@ -43,6 +44,7 @@ function Person(fullName, email, phone, born, address, citizenship, education, e
 	this.education = education || [];
 	this.employment = employment || [];
 	this.skills = skills || [];
+	this.languages = languages || [];
 	this.pic = pic || myPic;
 }
 // var person = {
@@ -58,7 +60,7 @@ function Person(fullName, email, phone, born, address, citizenship, education, e
 // 	skills: ["Object Oriented Programming"],
 //	pic: myPic
 // };
-var person = new Person("Alexandru Oat","oat.alexandru@gmail.com", "+358466360623", "23.03.1982", "Rälssintie 16 B 14 Helsinki", "Moldova",[edu],[job],["Object Oriented Programming"],myPic);
+var person = new Person("Alexandru Oat","oat.alexandru@gmail.com", "+358466360623", "23.03.1982", "Rälssintie 16 B 14 Helsinki", "Moldova",[edu],[job],["Object Oriented Programming"],["English (fluent), Russian (native), French (good), Finnish (basic)"],myPic);
 
 // person.education[0] = edu;
 // person.employment[0] = job;
@@ -153,9 +155,13 @@ router.post('/add_skill', function (req, res) {
   	person.skills.push(req.body.skill);
   	res.redirect('/');
 });
+router.post('/add_lang', function (req, res) {
+  	person.languages.push(req.body.skill);
+  	res.redirect('/');
+});
 router.get('/clean', function (req, res) {
   	// person.skills.push("new skills");
-  	person = new Person ("", "", "", "", "", "",[],[],[],"");
+  	person = new Person ("", "", "", "", "", "",[],[],[],[],"");
   	res.redirect('/');
 });
 

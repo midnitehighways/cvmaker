@@ -23,22 +23,22 @@ body {
 	font-family: 'Raleway', Arial, sans-serif;
 }
 
-a {
+/*a {
 	color: #2fa0ec;
 	text-decoration: none;
 	outline: none;
-}
+}*/
 
 a:hover, a:focus {
 	color: #404d5b;
 }
 
-.container {
+/*.container {
 	margin: 0 auto;
 	text-align: center;
 	overflow: hidden;
 }
-
+*/
 .content {
 	font-size: 150%;
 	padding: 3em 0;

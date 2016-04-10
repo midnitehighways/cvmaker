@@ -9,7 +9,6 @@ $(document).ready(function() {
     });
 });
 
-
 function savePDF() { doc.save('Test.pdf'); }
 
 $(function () {  
