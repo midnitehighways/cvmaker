@@ -98,6 +98,9 @@
         for(var i = 0; i < person.languages.length; i++) {
             doc.textEx(person.languages[i], x, y, "left");y+=interval;
         }
+        y+=big_interval-4;
+        doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("A bit about me",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
+        doc.textEx(person.about, x, y, "left");y+=interval;
 
         // doc.textEx(person.email, x+7, 36, "left");
         // doc.addImage(email_icon, 'JPEG', x, 36, 4, 4);
@@ -322,7 +325,23 @@
             <a href="/clean" class="my-button">Clean PDF</a>
             <a href="javascript:savePDF()" class="my-button">Get PDF</a></div>
         </form>
-        </div>
+    </div>
+        <div id="other" class="tab-content">        
+          <form action="/add_other" method="POST">
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-16" name="about" value="Responsible, hard-working and an adaptable person, always ready for a new challenge. I consider myself a good team player and equally a creative individual. My interests are reading, self-development, swimming and extreme sports." />
+                <label class="input__label input__label--ruri" for="input-16">
+                    <span class="input__label-content input__label-content--ruri">A bit about myself</span>
+                </label>
+            </span>            
+            <div class="buttons"><input type="submit" class="my-button" value="Save form">
+            <input type="button" class="reset my-button" value="Reset form"/>
+            <a href="/clean" class="my-button">Clean PDF</a>
+            <a href="javascript:savePDF()" class="my-button">Get PDF</a></div>
+        </form>
+    </div>
+
+
     </div>
     
 </div>

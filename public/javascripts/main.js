@@ -23,7 +23,7 @@ $(function () {
                 var srcData = fileLoadedEvent.target.result;
                 var newImage = document.createElement('img');
                 newImage.src = srcData;
-                console.log(srcData);
+                // console.log(srcData);
                 $("#pic").val(srcData);
                 // document.getElementById("imgText").value = srcData;
                 // document.getElementById("imgTest").innerHTML = newImage.outerHTML;
