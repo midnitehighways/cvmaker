@@ -45,10 +45,10 @@
     var doc = new jsPDF();	// global
     function preparePDF() {
         var person = <%- JSON.stringify(person)%>;
-        var x = 8;
+        var x = 8+3;
         var x1 = 30;
-        var y = 15;
-        var mx = x+194;
+        var y = 15+3;
+        var mx = x+188;
         var x2 = x 
         var interval = 8;
         var big_interval = 14;
@@ -184,37 +184,37 @@
         <div id="personal" class="tab-content">
         <form action="/add" method="POST">    
             <span class="input input--ruri">
-                <input class="input__field input__field--ruri" type="text" id="input-1" name="full_name" value="Alexandru Oat"/>
+                <input class="input__field input__field--ruri" type="text" id="input-1" name="full_name" />
                 <label class="input__label input__label--ruri" for="input-1">
                     <span class="input__label-content input__label-content--ruri">Full name</span>
                 </label>
             </span>
             <span class="input input--ruri">
-                <input class="input__field input__field--ruri" type="text" id="input-2" name="born" max="2002-12-31" value="1982-03-23" onfocus="(this.type='date')" onfocusout="(this.type='text')" />
+                <input class="input__field input__field--ruri" type="text" id="input-2" name="born" max="2002-12-31" onfocus="(this.type='date')" onfocusout="(this.type='text')" />
                 <label class="input__label input__label--ruri" for="input-2">
                     <span class="input__label-content input__label-content--ruri">Date of birth</span>
                 </label>
             </span>
             <span class="input input--ruri">
-                <input class="input__field input__field--ruri" type="email" id="input-3" name="email" value="oat.alexandru@gmail.com"/>
+                <input class="input__field input__field--ruri" type="email" id="input-3" name="email" />
                 <label class="input__label input__label--ruri" for="input-3">
                     <span class="input__label-content input__label-content--ruri">E-mail</span>
                 </label>
             </span>
             <span class="input input--ruri">
-                <input class="input__field input__field--ruri" type="text" id="input-4" name="phone" value="+358466360623"/>
+                <input class="input__field input__field--ruri" type="text" id="input-4" name="phone" />
                 <label class="input__label input__label--ruri" for="input-4">
                     <span class="input__label-content input__label-content--ruri">Phone</span>
                 </label>
             </span>
             <span class="input input--ruri">
-                <input class="input__field input__field--ruri" type="text" id="input-5" name="address" value="Rälssintie 16 B 14 Helsinki" />
+                <input class="input__field input__field--ruri" type="text" id="input-5" name="address" />
                 <label class="input__label input__label--ruri" for="input-5">
                     <span class="input__label-content input__label-content--ruri">Address</span>
                 </label>
             </span>
             <span class="input input--ruri">
-                <input class="input__field input__field--ruri" type="text" id="input-6" name="citizenship" value="Moldova" />
+                <input class="input__field input__field--ruri" type="text" id="input-6" name="citizenship" />
                 <label class="input__label input__label--ruri" for="input-6">
                     <span class="input__label-content input__label-content--ruri">Citizenship</span>
                 </label>
