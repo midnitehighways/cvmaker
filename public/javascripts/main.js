@@ -41,6 +41,7 @@ $(document).ready(function() {
 
 function savePDF(name) { doc.save(name + '.pdf'); }
 
+////////////////////// Encode image to base64 format
 $(function () {  
     $('#inputFileToLoad').on('change', function encodeImageFileAsUrl(){
     console.log("HELLO");
@@ -52,9 +53,9 @@ $(function () {
             fileReader.onload = function(fileLoadedEvent){
                 var srcData = fileLoadedEvent.target.result;
                 var newImage = document.createElement('img');
-                newImage.src = srcData;
+                newImage.src = srcData;              // result is here as a string
                 // console.log(srcData);
-                $("#pic").val(srcData);
+                $("#pic").val(srcData);              // pass result to this hidden input, then it'll be uploaded with POST data after form submission
                 // document.getElementById("imgText").value = srcData;
                 // document.getElementById("imgTest").innerHTML = newImage.outerHTML;
             };
@@ -156,14 +157,14 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
         for(var i = 0; i < person.education.length; i++) {
             doc.textEx(person.education[i].university, x, y, "left");
             doc.textEx(person.education[i].from + " - " + person.education[i].till, mx, y, "right");y+=interval-2;
-            doc.textEx(person.education[i].faculty, x, y, "left");y+=interval;
+            doc.setFontSize(10);doc.textEx(person.education[i].faculty, x, y, "left");doc.setFontSize(12);y+=interval;
         }
         y+=big_interval-4;
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("Work experience",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         for(var i = 0; i < person.employment.length; i++) {
             doc.textEx(person.employment[i].company, x, y, "left");
             doc.textEx(person.employment[i].from + " - " + person.employment[i].till, mx, y, "right");y+=interval-2;
-            doc.textEx(person.employment[i].position, x, y, "left");y+=interval;
+            doc.setFontSize(10);doc.textEx(person.employment[i].position, x, y, "left");doc.setFontSize(12);y+=interval;
         }
         y+=big_interval-4;
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("Qualifications and skills",x,y-7,"left");doc.setFontType("normal");y+=small_interval;

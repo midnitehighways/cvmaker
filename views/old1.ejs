@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/demo.css" />
+    <link rel="stylesheet" href="stylesheets/normalize.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+
+<!-- Optional theme -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
+
+<!-- Latest compiled and minified JavaScript -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
+
+    <link rel="stylesheet" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> <!-- needed for ruri class for form controls -->
+    <script src="javascripts/main.js"></script>
+  </head>
+  <body>
+    <div class="header">
+    <% include templates/header.ejs %>
+    </div>
+    <div class="main"> 
+    	<!-- <div class="span6" style="float: left"> -->
+        <div class="left">
+			<iframe class="preview-pane" type="application/pdf" width="350px" height="600px" 
+			frameborder="0" style="position:relative;z-index:999"></iframe>
+		</div>
+    <script>
+    var v, u;
+    var doc = new jsPDF();	// global
+    function preparePDF() {
+    	var x = 8;			// left horizontal border
+    	var y = 18;			// top vertical border
+    	var maxX = x+194;	// right horizontal border
+    	var midX = x+36;
+    	var interval = 8;	// between the normal lines
+        v=(<%= person.education.length %>)*2*interval;      // doc.addPage('a4');
+        u=30*3+v;
+        var w = (<%= person.education.length %>)*2*interval + (<%= person.employment.length %>)*2*interval - 30;
+        doc.setFontSize(25);
+		doc.text(x, y, "<%= person.fullName %>");	// first and last names
+		// doc.text(5,5, a);
+		doc.setLineWidth(0.3);
+		doc.line(x, y+12, maxX, y+12);		// line
+        if("<%= person.pic %>"){            // if image was uploaded. Without this condition would be addImage error
+            doc.addImage("<%= person.pic %>", 'JPEG', maxX-26, 4, 26, 26);
+        }
+        doc.setFontSize(14); doc.setTextColor(255, 255, 255);
+		doc.rect(x-1, y+30-1, 34, 7, 'F');
+		doc.rect(x-1, y+30*2-1, 34, 7, 'F');
+		doc.rect(x-1, y+30*3-1, 34, 7, 'F');
+		doc.rect(x-1, y+30*3-1+v, 34, 15, 'F');
+		doc.rect(x-1, y+30*4-1+w, 34, 7, 'F');
+		doc.textEx("CONTACT", x, y+30, "left");
+		doc.textEx("PERSONAL", x, y+30*2, "left");
+		doc.textEx("EDUCATION", x, y+30*3, "left");
+		doc.textEx("WORK", x, y+30*3+v, "left");doc.textEx("EXPERIENCE", x, y+30*3+8+v, "left");
+		doc.textEx("SKILLS", x, y+30*4+w, "left");
+		doc.setFontSize(12); doc.setTextColor(0, 0, 0);
+		doc.textEx("Email: <%= person.email %>", maxX, y+30, "right");
+		doc.textEx("Phone: <%= person.phone %>", maxX, y+30+interval, "right");
+		doc.textEx("<%= person.address %>", midX, y+30, "left");
+		doc.textEx("Date of birth: <%= person.born %>", midX, y+30*2, "left");				// DOB
+		doc.textEx("Citizenship: <%= person.citizenship %>", midX, y+30*2+interval*1, "left");	// citizenship
+
+		<% for (var i=0; i < person.education.length; i++) { %>
+			doc.setFontType("bold");
+			doc.textEx("<%= person.education[i].university %>", midX, y+30*3+interval*<%= i*2 %>, "left");			// uni
+			doc.setFontType("normal");
+			doc.textEx("<%= person.education[i].faculty %>", midX, y+30*3+interval*(<%= i*2 %>+1), "left");			// faculty
+			doc.textEx("<%= person.education[i].from %> - <%= person.education[i].till %>", maxX, y+30*3+interval*<%= i*2 %>, "right");
+		<% }%>
+		console.log("<%= person.education.length %> -----sssss")
+        <% for (var i=0; i < person.employment.length; i++) { %>
+            doc.setFontType("bold");
+            doc.textEx("<%= person.employment[i].company %>", midX, y+u+interval*<%= i*2 %>, "left");          // company
+            doc.setFontType("normal");
+            doc.textEx("<%= person.employment[i].position %>", midX, y+u+interval*(<%= i*2 %>+1), "left");         // position
+            doc.textEx("<%= person.employment[i].from %> - <%= person.employment[i].till %>", maxX, y+u+interval*<%= i*2 %>, "right");
+        <% }%>
+		var string = doc.output('bloburi');
+		// console.log("person.citizenship");
+		$('.preview-pane').attr('src', string);
+    }
+    preparePDF();
+</script>
+    
+    <div class="right">
+    <ul class="tabs-menu">
+        <li class="current"><a href="#personal">Personal</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#employment">Employment</a></li>
+        <li><a href="#skills">Skills</a></li>
+    </ul>
+    <div class="tab">
+        <div id="personal" class="tab-content">
+        <form action="/add" method="POST">    
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-1" name="full_name" value="Alexandru Oat"/>
+                <label class="input__label input__label--ruri" for="input-1">
+                    <span class="input__label-content input__label-content--ruri">Full name</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-2" name="born" max="2002-12-31" value="1982-03-23" onfocus="(this.type='date')" onfocusout="(this.type='text')" />
+                <label class="input__label input__label--ruri" for="input-2">
+                    <span class="input__label-content input__label-content--ruri">Date of birth</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="email" id="input-3" name="email" value="oat.alexandru@gmail.com"/>
+                <label class="input__label input__label--ruri" for="input-3">
+                    <span class="input__label-content input__label-content--ruri">E-mail</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-4" name="phone" value="+358466360623"/>
+                <label class="input__label input__label--ruri" for="input-4">
+                    <span class="input__label-content input__label-content--ruri">Phone</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-5" name="address" value="Rälssintie 16 B 14 Helsinki" />
+                <label class="input__label input__label--ruri" for="input-5">
+                    <span class="input__label-content input__label-content--ruri">Address</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-6" name="citizenship" value="Moldova" />
+                <label class="input__label input__label--ruri" for="input-6">
+                    <span class="input__label-content input__label-content--ruri">Citizenship</span>
+                </label>
+            </span><br/>
+            <input id="inputFileToLoad" type="file" value="Add photo" /><input type="hidden" name="pic" id="pic" ><br/>
+            <input type="submit" class="my-button" value="Save">
+            <input type="button" class="reset my-button" value="Reset form"/>
+            </form>
+            <div id="imgTest"></div>
+        </div>
+
+
+
+        <div id="education" class="tab-content">
+            <form action="/add_edu" method="POST">
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-7" name="university" value="Haaga-Helia University of Applied Sciences" />
+                <label class="input__label input__label--ruri" for="input-7">
+                    <span class="input__label-content input__label-content--ruri">University</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-8" name="faculty" value="Business Information Technology" />
+                <label class="input__label input__label--ruri" for="input-8">
+                    <span class="input__label-content input__label-content--ruri">Faculty</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-8" name="edu_from" value="Aug. 2013" />
+                <label class="input__label input__label--ruri" for="input-10">
+                    <span class="input__label-content input__label-content--ruri">From (e.g. Aug. 2013)</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-9" name="edu_till" value="Dec. 2016" />
+                <label class="input__label input__label--ruri" for="input-10">
+                    <span class="input__label-content input__label-content--ruri">Till (e.g. Dec. 2016)</span>
+                </label>
+            </span>
+            <br/>
+            <input type="submit" class="my-button" value="Save">
+            <input type="button" class="reset my-button" value="Reset form"/>
+            </form>
+        </div>
+    
+    
+        <div id="employment" class="tab-content">
+        <form action="/add_job" method="POST">
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-10" name="company" value="Wonder Masters Oy" />
+                <label class="input__label input__label--ruri" for="input-10">
+                    <span class="input__label-content input__label-content--ruri">Company</span>
+                </label>
+            </span>            
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-11" name="position" value="Web developer" />
+                <label class="input__label input__label--ruri" for="input-10">
+                    <span class="input__label-content input__label-content--ruri">Position</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-12" name="job_from" value="Jun. 2015" />
+                <label class="input__label input__label--ruri" for="input-12">
+                    <span class="input__label-content input__label-content--ruri">From (e.g. Jun. 2015)</span>
+                </label>
+            </span>
+            <span class="input input--ruri">
+                <input class="input__field input__field--ruri" type="text" id="input-13" name="job_till" value="Present" />
+                <label class="input__label input__label--ruri" for="input-13">
+                    <span class="input__label-content input__label-content--ruri">Till (e.g. Dec. 2015)</span>
+                </label>
+            </span>
+            <br/>
+            <input type="submit" class="my-button" value="Save">
+            <input type="button" class="reset my-button" value="Reset form"/>
+        </form>
+        </div>
+    
+
+        <div id="skills" class="tab-content">        
+        </div>
+    </div>
+    <br/><br/><br/>
+    <a href="javascript:savePDF()" class="my-button">Download PDF</a>
+</div>
+    <div class="footer"> <% include templates/footer.ejs %></div>
+    <script src="javascripts/classie.js"></script>
+        <script>
+            (function() {
+                // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+                if (!String.prototype.trim) {
+                    (function() {
+                        // Make sure we trim BOM and NBSP
+                        var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+                        String.prototype.trim = function() {
+                            return this.replace(rtrim, '');
+                        };
+                    })();
+                }
+
+                [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+                    // in case the input is already filled..
+                    if( inputEl.value.trim() !== '' ) {
+                        classie.add( inputEl.parentNode, 'input--filled' );
+                    }
+
+                    // events:
+                    inputEl.addEventListener( 'focus', onInputFocus );
+                    inputEl.addEventListener( 'blur', onInputBlur );
+                } );
+
+                function onInputFocus( ev ) {
+                    classie.add( ev.target.parentNode, 'input--filled' );
+                }
+
+                function onInputBlur( ev ) {
+                    if( ev.target.value.trim() === '' ) {
+                        classie.remove( ev.target.parentNode, 'input--filled' );
+                    }
+                }
+            })();
+        </script>
+  </body>
+</html>

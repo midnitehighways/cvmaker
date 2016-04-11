@@ -11,7 +11,6 @@ If no img file is chosen - do smth
 prevent uploading other formats than png and jpg
 doc.addPage('a4')
 !
-
 !!!!!! CREATE CV OBJECT. INSIDE will be all the vertical distances according to person object. THEN just loop for it's properties and put them in pdf
 		INSIDE OBJECT - text lines, rectangles, image
 		<% for text in cv.texts %>
@@ -50,47 +49,11 @@ function Person(fullName, email, phone, born, address, citizenship, education, e
 	this.about = about;
 	this.pic = pic || myPic;
 }
-// var person = {
-// 	fullName: "Alexandru Oat",
-// 	email: "oat.alexandru@gmail.com",
-// 	phone: "+358466360623",
-// 	// gender = 
-// 	born: "23.03.1982",  
-// 	address: "Rälssintie 16 B 14 Helsinki",
-// 	citizenship: "Moldova",
-// 	education: [edu],
-// 	employment: [job],
-// 	skills: ["Object Oriented Programming"],
-//	pic: myPic
-// };
-var person = new Person("Alexandru Oat","oat.alexandru@gmail.com", "+358466360623", "23.03.1982", "Rälssintie 16 B 14 Helsinki", "Moldova",[edu],[job],["Object Oriented Programming"],["English (fluent), Russian (native), French (good), Finnish (basic)"],about,myPic);
 
-// person.education[0] = edu;
-// person.employment[0] = job;
-// var text = {
-// 	type: "title",
-// 	string: "Curriculum Vitae",
-// 	x: 204-100,
-// 	y: 10,
-// 	al: "right",
-// 	size: 24
-// };
-// var cv = {
-// 	texts: [text],
-// 	lines: [],
-// 	figures: []
-// };
-// // var line =
-// var x = 8;			// left horizontal border
-// var y = 18;			// top vertical border
-// var maxX = x+194;	// right horizontal border
-// var midX = x+36;
-// var interval = 8;	// between the normal lines
-
-
+var person = new Person("Alexandru Oat","oat.alexandru@gmail.com", "+358-466-360-623", "23.03.1982", "Rälssintie 16 B 14 Helsinki", "Moldova",[edu],[job],["Object Oriented Programming"],["English (fluent), Russian (native), French (good), Finnish (basic)"],about,myPic);
 
 router.get('/', function(req, res, next) {
-  res.render('index7', { title: 'Build your CV', person:person});
+  res.render('index', { title: 'Build your CV', person:person});
 });
 
 /* handling POST request from form */
@@ -172,6 +135,5 @@ router.get('/clean', function (req, res) {
   	res.redirect('/');
 });
 
-
-console.log(person.education.length);
+// console.log(person.education.length);
 module.exports = router;
