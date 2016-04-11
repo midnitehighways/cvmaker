@@ -53,11 +53,13 @@ $(function () {
             fileReader.onload = function(fileLoadedEvent){
                 var srcData = fileLoadedEvent.target.result;
                 var newImage = document.createElement('img');
+                var filename = $('input[type=file]').val().split('\\').pop();       // get the file' name
+                $('.fileUpload').html(filename);
                 newImage.src = srcData;              // result is here as a string
                 // console.log(srcData);
                 $("#pic").val(srcData);              // pass result to this hidden input, then it'll be uploaded with POST data after form submission
                 // document.getElementById("imgText").value = srcData;
-                // document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+                document.getElementById("imgTest").src = srcData;   // show image in imgTest img-container
             };
             fileReader.readAsDataURL(fileToLoad);
         }

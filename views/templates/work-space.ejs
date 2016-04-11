@@ -52,13 +52,22 @@
                     <span class="input__label-content input__label-content--ruri">Citizenship</span>
                 </label>
             </span><br/>
-            Add your photo<input id="inputFileToLoad" type="file" value="Add photo" /><input type="hidden" name="pic" id="pic" >
+            
+
+            
+            <!-- styling the file-input button -->
+            <a class="fileUpload my-button">Add your photo<input id="inputFileToLoad" class="upload" type="file" /></a>
+            <input type="hidden" name="pic" id="pic" >
+            <img width="50" min-height="50" id="imgTest"></img>
+            
+
+
             <div class="buttons"><input type="submit" class="my-button" value="Save form">
             <input type="button" class="reset my-button" value="Reset form"/>
             <a href="/clean" class="my-button">Clean PDF</a>
             <a href="javascript:savePDF('CV_'+person.fullName)" class="my-button">Get PDF</a></div>
         </form>
-            <!-- <div id="imgTest"></div> -->
+            
     </div>
 <!--////////////////////////////////// BEGIN EDUCATION //////////////////////////////  -->
     <div id="education" class="tab-content">
