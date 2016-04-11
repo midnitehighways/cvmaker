@@ -1,5 +1,13 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:300,500,700,800);
 
+.upload-section {
+	height: 90px;
+}
+.upload-section img {
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+}
 .fileUpload {				/* cover the original file input and replace it with add-button */
 	position: relative;
 	overflow: hidden;
