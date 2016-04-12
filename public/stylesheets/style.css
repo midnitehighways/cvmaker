@@ -558,15 +558,16 @@ body .nomargin-bottom {
   -webkit-border-radius: 7;
   -moz-border-radius: 7;
   border-radius: 7px;
-  font-weight: 400;
-  color: #333;
+  font-weight: 300;
+  color: #000;
   font-size: 17px;
-  background: #dddddd;
+  /*background: #dddddd;*/
   padding: 5px 10px 5px 10px;
   text-decoration: none;
   text-align: left;
   outline: none;
-  border: 0;			/* remove 3d effect */
+  margin-right: 5px;
+  border: 1px solid black;			/* remove 3d effect */
   transition: all .3s ease-in-out; 
 }
 
@@ -575,6 +576,7 @@ body .nomargin-bottom {
   /*background-color: grey;*/
   /*background-color: #CEF6E3;*/
   background-color: #81BEF7;
+  border: 1px solid #81BEF7;
   /*color: white;*/
   text-decoration: none;
   transition: all .4s ease-in-out; 
