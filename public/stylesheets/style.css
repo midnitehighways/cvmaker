@@ -1,5 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:300,500,700,800);
-
+/*hr { 
+   border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}*/
 .upload-section {
 	height: 90px;
 }
@@ -28,6 +33,10 @@
 	right: 20%;
 	position: absolute;*/
 	padding-top: 50px;
+/*	 border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);*/
 }
 
 body, html {
@@ -61,51 +70,12 @@ a {
 
 
 
-.headmenu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;border: 0;
-    overflow: hidden;
-    background: #088A08; 
-  	background: -webkit-linear-gradient(#38610B, #088A68); 
-    background: -o-linear-gradient(#38610B, #088A68); 
-    background: -moz-linear-gradient(#38610B, #088A68); 
-    background: linear-gradient(#03401F, #0F6905);
-    text-transform: uppercase;
-}
-.headmenu li {
-    float: right;
-}
-#logo {
-	float: left;
-	margin-left: 50px;
-}
-.headmenu img {
-	display: inline-block;
-	vertical-align: middle;
-	padding: 0;border: 0; margin: 0;
-}
-.headmenu li a {
-    display: block;
-    color: white;
-    font-weight: 300;
-    text-align: center;
-    padding: 20px 16px;
-    text-decoration: none;
-}
-
-.headmenu a:hover:not(.active) {
-    background-color: #041C01;
-    -webkit-transition: 0.7s; /* Safari */
-    transition: 0.7s;
-}
-
 .active {
 	background-color:#228A32;
 }
 
 .yellow {
-	color: yellow;
+	color: red;
 	font-weight: 900;
 	letter-spacing: 4px;
 }
@@ -151,62 +121,120 @@ a {
 /*	background-color: lightgrey;	*/
 }
 
+
+
+
+
+.headmenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;border: 0;
+    overflow: hidden;
+    background: #088A08; 
+  	background: -webkit-linear-gradient(#38610B, #088A68); 
+    background: -o-linear-gradient(#38610B, #088A68); 
+    background: -moz-linear-gradient(#38610B, #088A68); 
+    background: linear-gradient(#03401F, #0F6905);
+    text-transform: uppercase;
+}
+.headmenu li {
+    float: right;
+}
+#logo {
+	float: left;
+	margin-left: 50px;
+}
+.headmenu img {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0;border: 0; margin: 0;
+}
+.headmenu li a {
+    display: block;
+    color: white;
+    font-weight: 300;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+}
+
+.headmenu a:hover:not(.active) {
+    background-color: #041C01;
+    -webkit-transition: 0.7s; /* Safari */
+    transition: 0.7s;
+}
+/*//!!!!!!!!!*/ /*START!!!!!!!*/
 /* ---------------------------------------------------- START TABS CSS ------------------------------------------------*/
 .tabs-menu {
     /*padding-top: 20px; 	*/	/* move menu a bit lower to touch content-space */
-    height: 30px;
+    height: 60px;
+    background: white;
     list-style-type: none;		/* no bullets before list items */
     text-align: center;
     		/* ONLY TEMPORARY !!!! To adjust allignment */
     min-width: 800px;			/* avoid moving tabs to 2nd row */
-    /*background: black;*/
-    border-bottom: 1px solid black;
+    /*	 border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);*/
+    
+    /*border-bottom: 1px solid black;
+    border-top: 1px solid black;*/
 }
 .tabs-menu li {
+ 	float: right;
     height: 30px;
-    line-height: 30px;
-    display: inline-block;
-    margin-right: 5px;
+    line-height: 60px;
+ /*display: block;   */
     text-align: center;
+    width: 130px;
+}
+.tabs-menu li.left-side {
+	float: left;
+}
+.tabs-menu li.left-side > a {
+	color: green;
 }
 .tabs-menu li.current {
     /*position: relative;*/
     /*padding: 0;*/
 }
 .tabs-menu li a {
-     text-align: center;
-    padding: 7px;
+    text-align: center;
+    display: block;
     text-transform: lowercase;
     /*color: #fff;*/
     color: #000;
     font-weight: 300;
     font-size: 16px;
     text-decoration: none; 
-    letter-spacing: 0.5px;
+    letter-spacing: 0px;
 }
 .tabs-menu li:hover:not(.current) > a {
 	color: #F0391C;
+	background: #f9f7f6;
 	transition: 0.6s;
 }
 .tabs-menu .current a {
     /*color: #2e7da3;*/
     outline: none;
     font-weight: 600;
-    margin-right: 5px;
-    margin-left: 5px;
+    background: #f9f7f6;;
+/*    margin-right: 5px;
+    margin-left: 5px;*/
     transition: 0.7s;
 }
-.tabs-menu li::after {
+/*.tabs-menu li::after {
     display:block;
-    /*content:attr(title);*/
     font-weight:600;
     height:10px;
     width: 10px;
     color:black;
     overflow:hidden;
     visibility:hidden;
-    /*margin-bottom:-1px;*/
-}
+    content:attr(title);
+    margin-bottom:-1px;
+}*/
 .tab {
     margin-top: 50px;
     width: auto;
@@ -217,6 +245,8 @@ a {
 #personal {				/* tab active by default */
  display: block;   
 }
+
+
 /* ---------------------------------------------------- END TABS CSS ------------------------------------------------*/
 
 /* ---------------------------------------------------- START FORMS -------------------------------------------------*/
@@ -310,8 +340,9 @@ a {
 	content: '';
 	position: absolute;
 	width: 100%;
-	height: 7px;
+	height: 2px;
 	background: #B7C3AC;
+	background: grey;
 	left: 0;
 	top: 100%;
 	-webkit-transform-origin: 50% 100%;
@@ -424,14 +455,12 @@ body .nomargin-bottom {
 	padding: 3em 190px 4em;
 	letter-spacing: -1px;
 }
-
 .codrops-header h1 {
 	font-weight: 800;
 	font-size: 4em;
 	line-height: 1;
 	margin: 0.25em 0 0;
 }
-
 .codrops-header h1 span {
 	display: block;
 	font-size: 50%;
@@ -439,7 +468,6 @@ body .nomargin-bottom {
 	padding: 0.325em 0 1em 0;
 	color: #c3c8cd;
 }
-
 /* Demos nav */
 .codrops-demos a {
 	text-transform: uppercase;
@@ -448,14 +476,12 @@ body .nomargin-bottom {
 	font-size: 0.85em;
 	display: inline-block;
 	margin: 0 1em;
-	font-family: "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	/*font-family: "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
-
 .codrops-demos a.current-demo {
 	border-bottom: 2px solid;
 	color: #404d5b;
 }
-
 /* Top Navigation Style */
 .codrops-links {
 	position: relative;
@@ -464,7 +490,6 @@ body .nomargin-bottom {
 	font-size: 1.25em;
 	text-align: center;
 }
-
 .codrops-links::after {
 	position: absolute;
 	top: 0;
@@ -567,7 +592,7 @@ body .nomargin-bottom {
   text-align: left;
   outline: none;
   margin-right: 5px;
-  border: 1px solid black;			/* remove 3d effect */
+  border: 1px solid #555;			/* remove 3d effect */
   transition: all .3s ease-in-out; 
 }
 

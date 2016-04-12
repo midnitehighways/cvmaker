@@ -8,37 +8,21 @@ $(document).ready(function() {
         $(".tab-content").not(tab).css("display", "none");
         $(tab).fadeIn();
     });
-
-});
-////////////////////// this function is part of __input functionality
-$(document).ready(function() {
-    if (!String.prototype.trim) {
-        (function() {
-            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-            String.prototype.trim = function() {
-                return this.replace(rtrim, '');
-            };
-        })();
-    }
-    [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
-        // in case the input is already filled
-        if( inputEl.value.trim() !== '' ) {
-            classie.add( inputEl.parentNode, 'input--filled' );
-        }
-        // events:
-        inputEl.addEventListener( 'focus', onInputFocus );
-        inputEl.addEventListener( 'blur', onInputBlur );
-    } );
-    function onInputFocus( ev ) {
-        classie.add( ev.target.parentNode, 'input--filled' );
-    }
-    function onInputBlur( ev ) {
-        if( ev.target.value.trim() === '' ) {
-            classie.remove( ev.target.parentNode, 'input--filled' );
-        }
-    }
 });
 
+
+// $(document).ready(function() {
+//     $(".headmenu a").click(function(event) {
+//         event.preventDefault();
+//         console.log($(this).parent());
+//         $(this).parent().addClass("active");
+//         $(this).parent().siblings().removeClass("active");
+//         var tab = $(this).attr("href");
+//         $(".tab-content").not(tab).css("display", "none");
+//         $(tab).fadeIn();
+//     });
+// });
+/////////////// saving the final PDF file.                      TO DO: make jquery - on event
 function savePDF(name) { doc.save(name + '.pdf'); }
 
 ////////////////////// Encode image to base64 format
@@ -75,6 +59,7 @@ $(function () {                         // reset form values
     })
 });
 
+//////////////////////////////////// Add textEx function to jsPDF. First of all, for right alligning the text
 var splitRegex = /\r\n|\r|\n/g;
 jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     var fontSize = this.internal.getFontSize() / this.internal.scaleFactor;
@@ -84,7 +69,6 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     var lineCount = 1;
     if (vAlign === 'middle' || vAlign === 'bottom' || hAlign === 'center' || hAlign === 'right') {
         splittedText = typeof text === 'string' ? text.split(splitRegex) : text;
-
         lineCount = splittedText.length || 1;
     }
     // Align the top
@@ -111,7 +95,34 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     this.text(text, x, y);
     return this;
 };
-
+////////////////////// this function is part of __input functionality
+$(document).ready(function() {
+    if (!String.prototype.trim) {
+        (function() {
+            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+            String.prototype.trim = function() {
+                return this.replace(rtrim, '');
+            };
+        })();
+    }
+    [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+        // in case the input is already filled
+        if( inputEl.value.trim() !== '' ) {
+            classie.add( inputEl.parentNode, 'input--filled' );
+        }
+        // events:
+        inputEl.addEventListener( 'focus', onInputFocus );
+        inputEl.addEventListener( 'blur', onInputBlur );
+    } );
+    function onInputFocus( ev ) {
+        classie.add( ev.target.parentNode, 'input--filled' );
+    }
+    function onInputBlur( ev ) {
+        if( ev.target.value.trim() === '' ) {
+            classie.remove( ev.target.parentNode, 'input--filled' );
+        }
+    }
+});
 
 //----- PREPARE PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // MAIN CV BUILDING FUNCTION
