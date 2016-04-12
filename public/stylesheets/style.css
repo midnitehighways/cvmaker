@@ -43,6 +43,7 @@ body, html {
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 /*  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 	background: #f9f7f6;
+	background: #EBEDEF;
 	color: #404d5b;
 	font-family: 'Raleway', Arial, sans-serif;
 	font-weight: 500;
@@ -169,6 +170,8 @@ a {
     /*padding-top: 20px; 	*/	/* move menu a bit lower to touch content-space */
     height: 60px;
     background: white;
+    	/*background-image: url('../images/bgnoise_lg.png');*/
+    	/*background: #EBEDEF;*/
     list-style-type: none;		/* no bullets before list items */
     text-align: center;
     		/* ONLY TEMPORARY !!!! To adjust allignment */
@@ -205,21 +208,25 @@ a {
     text-transform: lowercase;
     /*color: #fff;*/
     color: #000;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 16px;
     text-decoration: none; 
     letter-spacing: 0px;
 }
 .tabs-menu li:hover:not(.current) > a {
 	color: #F0391C;
-	background: #f9f7f6;
+	/*background: #f9f7f6;*/
+	background: #E4E4E4;
+	background: #EBEDEF;
 	transition: 0.6s;
 }
 .tabs-menu .current a {
     /*color: #2e7da3;*/
     outline: none;
     font-weight: 600;
-    background: #f9f7f6;;
+/*    background: #f9f7f6;;
+    background: grey;*/
+    background: #EBEDEF;
 /*    margin-right: 5px;
     margin-left: 5px;*/
     transition: 0.7s;
@@ -396,11 +403,11 @@ a {
 .clearfix:after { clear: both; }
 
 body {
-	background: #f9f7f6;
+/*	background: #f9f7f6;
 	color: #404d5b;
 	font-weight: 500;
 	font-size: 1.05em;
-	font-family: 'Raleway', Arial, sans-serif;
+*/	font-family: 'Raleway', Arial, sans-serif;
 }
 
 /*a {
