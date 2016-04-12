@@ -1,4 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:300,500,700,800);
+
+.icon-save { background: url('../images/save-icon.png') no-repeat 5px 4px; background-size: 18px 18px;}
+.icon-download { background: url('../images/download-icon.png') no-repeat 5px 4px; background-size: 18px 18px;}
+.icon-reset { background: url('../images/reset-icon.png') no-repeat 5px 5px; background-size: 18px 18px;}
+.icon-clean { background: url('../images/clean-icon.png') no-repeat 5px 5px; background-size: 18px 18px;}
 /*hr { 
    border: 0;
     height: 0;
@@ -42,7 +47,9 @@
 body, html {
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 /*  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-	background: #f9f7f6;
+	/*background: #f9f7f6;
+	background: #EBEDEF;*/
+	/*background-color: #525659;*/
 	background: #EBEDEF;
 	color: #404d5b;
 	font-family: 'Raleway', Arial, sans-serif;
@@ -262,9 +269,12 @@ a {
 	z-index: 1;
 	display: inline-block;
 	margin: 0.9em;
-	max-width: 300px;
-	width: calc(100% - 3em);
+	width: 300px;
+	/*width: calc(100% - 3em);*/
 	vertical-align: top;
+}
+.input.long {
+	width: 600px;
 }
 
 .input__field {
@@ -594,23 +604,32 @@ body .nomargin-bottom {
   color: #000;
   font-size: 17px;
   /*background: #dddddd;*/
-  padding: 5px 10px 5px 10px;
+  /*padding: 5px 10px 5px 10px;*/
   text-decoration: none;
   text-align: left;
   outline: none;
   margin-right: 5px;
   border: 1px solid #555;			/* remove 3d effect */
   transition: all .3s ease-in-out; 
+  padding: 4px 5px 3px 30px;
+}
+.normal {
+	padding: 5px 10px 5px 10px;
 }
 
 .my-button:hover {
   /*background: #088A08;*/
   /*background-color: grey;*/
   /*background-color: #CEF6E3;*/
-  background-color: #81BEF7;
-  border: 1px solid #81BEF7;
+  /*background-color: #81BEF7;
+  border: 1px solid #81BEF7;*/
+  background-color: #68B986;
+  border: 1px solid #68B986;
   /*color: white;*/
   text-decoration: none;
   transition: all .4s ease-in-out; 
-
+}
+.danger:hover {
+	background-color: #D65656;
+  border: 1px solid #D65656;
 }

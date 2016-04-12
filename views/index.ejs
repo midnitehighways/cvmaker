@@ -19,8 +19,8 @@
     <% include templates/header.ejs %>
     <div class="main">                  <!--////////////////////////////////// BEGIN MAIN //////////////////////////////  -->
         <div class="left">
-			<iframe class="preview-pane" type="application/pdf" width="100%" height="100%" 
-			frameborder="0" style="position:relative;z-index:999">Unfortunately, your browser does not support PDF preview:(</iframe>
+			<iframe id="ifr" allowtransparency="true" class="preview-pane" type="application/pdf" width="100%" height="100%" 
+			frameborder="0" style="position:relative;z-index:1">Unfortunately, your browser does not support PDF preview:(</iframe>
 		</div>
         <script>
             var person = <%- JSON.stringify(person) %>;
