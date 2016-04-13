@@ -1,3 +1,17 @@
+cvApp.controller("MenuCtrl", function() {
+    this.tab = 2;
+    console.log("chose");
+
+    this.isChosen = function(checkTab) {
+      return this.tab === checkTab;
+    };
+
+    this.chooseTab = function(chooseTab) {
+      this.tab = setTab;
+    };
+});
+
+
 cvApp.controller('PersonCtrl', function(){
                 this.p = person;
         });
@@ -20,5 +34,4 @@ cvApp.controller('PersonCtrl', function(){
                 languages: ["suomi"],
                 about: "about",
                 pic: ""
-            }
-})();
+            };

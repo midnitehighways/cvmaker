@@ -10,14 +10,7 @@
     <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
     <link rel="stylesheet" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> <!-- needed for ruri class for form controls -->
     <script src="javascripts/main.js"></script>
-    <script>
-        (function() {var cvApp = angular.module('cvApp', []);
-        cvApp.controller('PersonCtrl', function(){
-                this.p = per;
-        });
-        var person = {fullName: ""}
-        })();
-    </script>
+    <script src="javascripts/controllers/controllers.js"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -33,29 +26,32 @@
 <!-- Latest compiled and minified JavaScript -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
 </head>
-<body ng-controller="PersonCtrl as p">
-    <% include templates/header.ejs %>
-    <div class="main">                  <!--////////////////////////////////// BEGIN MAIN //////////////////////////////  -->
-        <div class="left">
-			<iframe id="ifr" allowtransparency="true" class="preview-pane" type="application/pdf" width="100%" height="100%" 
-			frameborder="0" style="position:relative;z-index:1">Unfortunately, your browser does not support PDF preview:(
-            You can download it though! <a href="javascript:savePDF('CV_'+person.fullName)" class="my-button icon-download">Get PDF</a></iframe>
-		</div>
-        <script>
-            var person = <%- JSON.stringify(person) %>;
-            preparePDF(person);     // TO DO: MOVE THIS TO MAIN.JS !!!!!!!!!!!
-        </script>
-    
-        <div class="right center">   <!--////////////////////////////////// BEGIN RIGHT DIV //////////////////////////////  -->
-            <div class="work-space">
-                <% include templates/work-space.ejs %>
+<body ng-controller="PersonCtrl as person">
+    <section ng-controller="MenuCtrl as menu">
+        <% include templates/header.ejs %>
+        <div class="main">                  <!--////////////////////////////////// BEGIN MAIN //////////////////////////////  -->
+            <div class="left">
+    			<iframe id="ifr" allowtransparency="true" class="preview-pane" type="application/pdf" width="100%" height="100%" 
+    			frameborder="0" style="position:relative;z-index:1">Unfortunately, your browser does not support PDF preview:(
+                <!-- You can download it though! <a href="javascript:savePDF('CV_'+person.fullName)" class="my-button icon-download">Get PDF</a> -->
+                </iframe>
+    		</div>
+            <script>
+                var person = <%- JSON.stringify(person) %>;
+                preparePDF(person);     // TO DO: MOVE THIS TO MAIN.JS !!!!!!!!!!!
+            </script>
+        
+            <div class="right center">   <!--////////////////////////////////// BEGIN RIGHT DIV //////////////////////////////  -->
+                <div class="work-space">
+                    <% include templates/work-space.ejs %>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer">            <!--////////////////////////////////// FOOTER /////////////////////////////////////////  -->
-        <% include templates/footer.ejs %>
-    </div>
     
-    <script src="javascripts/classie.js"></script>
+        <div class="footer">            <!--////////////////////////////////// FOOTER /////////////////////////////////////////  -->
+            <% include templates/footer.ejs %>
+        </div>
+    </div>    
+        <script src="javascripts/classie.js"></script>
 </body>
 </html>
