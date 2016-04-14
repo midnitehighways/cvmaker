@@ -254,12 +254,12 @@ a {
     width: auto;
 }
 .tab-content {
-    display: none;
+    /*display: block;*/
 }
-#personal {				/* tab active by default */
+/*#personal {				 tab active by default 
  display: block;   
 }
-
+*/
 
 /* ---------------------------------------------------- END TABS CSS ------------------------------------------------*/
 
