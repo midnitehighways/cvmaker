@@ -21,8 +21,9 @@
     </script>
 </head>
 <body ng-controller="MenuCtrl as menu"> <!-- ng-controller="PersonCtrl as person" -->
-
-        <% include templates/header.ejs %>
+        
+        <header> </header>
+        
         <div class="main">                  <!--////////////////////////////////// BEGIN MAIN //////////////////////////////  -->
             <div class="left">
     			<iframe allowtransparency="true" class="preview-pane" type="application/pdf" width="100%" height="100%" 
@@ -30,10 +31,7 @@
                 <!-- You can download it though! <a href="javascript:savePDF('CV_'+person.fullName)" class="my-button icon-download">Get PDF</a> -->
                 </iframe>
     		</div>
-            <script>
-                var person = <%- JSON.stringify(person) %>;
-                preparePDF(person);     // TO DO: MOVE THIS TO MAIN.JS !!!!!!!!!!!
-            </script>
+                 
         
             <div class="right center">   <!--////////////////////////////////// BEGIN RIGHT DIV //////////////////////////////  -->
                 <div class="work-space">
@@ -43,6 +41,6 @@
         </div>
     
         <footer></footer>               <!--////////////////////////////////// FOOTER /////////////////////////////////////////  -->
-         
+        <script>preparePDF(<%- JSON.stringify(person) %>);</script> 
 </body>
 </html>

@@ -1,3 +1,10 @@
+cvApp.directive("header", function() {
+      return {
+        restrict: 'E',
+        templateUrl: 'templates/header.html'
+      };
+});
+
 cvApp.directive("footer", function() {
       return {
         restrict: 'E',

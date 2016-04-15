@@ -22,6 +22,7 @@
 //         $(tab).fadeIn();
 //     });
 // });
+
 /////////////// saving the final PDF file.                      TO DO: make jquery - on event
 function savePDF(name) { doc.save(name + '.pdf'); }
 
