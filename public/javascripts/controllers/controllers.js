@@ -1,15 +1,16 @@
 var cvApp = angular.module('cvApp', []);
-        cvApp.controller("MenuCtrl", function() {
-            this.tab = 1;                               // tab shown by default
+        
+cvApp.controller("MenuCtrl", function() {
+    this.tab = 1;                               // tab shown by default
 
-            this.isSet = function(checkTab) {
-              return this.tab === checkTab;
-            };
+    this.isSet = function(checkTab) {
+      return this.tab === checkTab;
+    };
 
-            this.setTab = function(setTab) {
-              this.tab = setTab;
-            };
-        });
+    this.setTab = function(setTab) {
+      this.tab = setTab;
+    };
+});
 
 // cvApp.controller('PersonCtrl', function(){
 //                 this.p = person;

@@ -95,34 +95,6 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     this.text(text, x, y);
     return this;
 };
-////////////////////// this function is part of __input functionality
-$(document).ready(function() {
-    if (!String.prototype.trim) {
-        (function() {
-            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-            String.prototype.trim = function() {
-                return this.replace(rtrim, '');
-            };
-        })();
-    }
-    [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
-        // in case the input is already filled
-        if( inputEl.value.trim() !== '' ) {
-            classie.add( inputEl.parentNode, 'input--filled' );
-        }
-        // events:
-        inputEl.addEventListener( 'focus', onInputFocus );
-        inputEl.addEventListener( 'blur', onInputBlur );
-    } );
-    function onInputFocus( ev ) {
-        classie.add( ev.target.parentNode, 'input--filled' );
-    }
-    function onInputBlur( ev ) {
-        if( ev.target.value.trim() === '' ) {
-            classie.remove( ev.target.parentNode, 'input--filled' );
-        }
-    }
-});
 /*!
  * classie - class helper functions
  * from bonzo https://github.com/ded/bonzo
@@ -204,6 +176,34 @@ if ( typeof define === 'function' && define.amd ) {
 
 })( window );
 
+////////////////////// this function is part of __input functionality
+$(document).ready(function() {
+    if (!String.prototype.trim) {
+        (function() {
+            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+            String.prototype.trim = function() {
+                return this.replace(rtrim, '');
+            };
+        })();
+    }
+    [].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+        // in case the input is already filled
+        if( inputEl.value.trim() !== '' ) {
+            classie.add( inputEl.parentNode, 'input--filled' );
+        }
+        // events:
+        inputEl.addEventListener( 'focus', onInputFocus );
+        inputEl.addEventListener( 'blur', onInputBlur );
+    } );
+    function onInputFocus( ev ) {
+        classie.add( ev.target.parentNode, 'input--filled' );
+    }
+    function onInputBlur( ev ) {
+        if( ev.target.value.trim() === '' ) {
+            classie.remove( ev.target.parentNode, 'input--filled' );
+        }
+    }
+});
 
 //----- PREPARE PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // MAIN CV BUILDING FUNCTION
