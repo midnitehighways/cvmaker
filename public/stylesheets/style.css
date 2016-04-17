@@ -129,7 +129,10 @@ a {
 /*	background-color: lightgrey;	*/
 }
 
-
+iframe {
+	position:relative;
+	z-index:1;
+}
 
 
 
@@ -220,7 +223,7 @@ a {
     text-decoration: none; 
     letter-spacing: 0px;
 }
-.tabs-menu li:hover:not(.current) > a {
+.tabs-menu li:hover:not(.current):not(.left-side) > a {
 	color: #F0391C;
 	/*background: #f9f7f6;*/
 	background: #E4E4E4;
@@ -256,9 +259,33 @@ a {
 .tab-content {
     /*display: block;*/
 }
+.menu-item {
+	height: 18px; width: 18px; 
+	display: inline-block;
+    vertical-align: middle; margin-bottom: 2px;
+}
+.size14 {
+	height: 14px;
+	width: 14px; 
+}
+.size24 {
+	height: 24px;
+	width: 24px; 
+}
+.size16 {
+	height: 16px;
+	width: 16px; 
+}
+
+/*.menu-other {
+	height: 18px; width: 18px; display: inline-block;
+    vertical-align: middle; margin-bottom: 2px;
+}
+*/
 /*#personal {				 tab active by default 
  display: block;   
 }
+
 */
 
 /* ---------------------------------------------------- END TABS CSS ------------------------------------------------*/
