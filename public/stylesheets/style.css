@@ -259,20 +259,20 @@ iframe {
 .tab-content {
     /*display: block;*/
 }
-.menu-item {
+.tabs-menu img {
 	height: 18px; width: 18px; 
 	display: inline-block;
     vertical-align: middle; margin-bottom: 2px;
 }
-.size14 {
+#menu-item-size14 {
 	height: 14px;
 	width: 14px; 
 }
-.size24 {
+#menu-item-size24 {
 	height: 24px;
 	width: 24px; 
 }
-.size16 {
+#menu-item-size16 {
 	height: 16px;
 	width: 16px; 
 }

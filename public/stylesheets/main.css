@@ -50,23 +50,42 @@ body, html {
 }
 .main {
 	width: 100%;
-	height: 800px;
+	height: 670px;
 	background: #E4E4E3;
 	padding-top: 20px;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+	box-shadow: 0 1px 0px rgba(255,255,255,0.5);
 }
 .lower {
+	padding-top: 20px;
 	width: 100%;
 	height: 800px;
 	background: #F6F6F6;
+	background: #E4E4E3;
+}
+.lower img {
+	height: 250px;
+	width: auto;
+
+}
+.lower img:hover {
+		box-shadow: 4px 4px 3px #999;
 }
 .footer {
 	height: 100px;
 	/*	background: -moz-linear-gradient(top, 
 background: -webkit-linear-gradient(top, */
 background: linear-gradient(to top, #3A7952, #469865);
+	text-align: center;
+
+}
+.footer, .footer a {
+	color: #ccc;
+	text-decoration: none;
 }
 .footer i {
 	color: #eee;
+	padding-top: 15px;
 }
 .central {
 	margin: 0 auto;
@@ -135,12 +154,23 @@ div#menu a img {
   }
 }
 
+#font-orange {
+	color: orange; 
+	font-weight: 500;
+}
+
 .fa-github-square:hover {
     color: #000;
 }
 
 .fa-linkedin-square:hover {
     color: #0094BC;
+}
+.fa-facebook-square:hover {
+	color: #4E71A8;
+}
+.fa-smile-o {
+	color: orange;
 }
 
 #carousel-example-generic {	
@@ -189,6 +219,6 @@ div#menu a img {
     /*margin: 0 auto;  */
     /*left: 5%;*/
     width: 60%;
-    
+
     opacity: 0.7;
 }
