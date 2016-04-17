@@ -67,11 +67,11 @@ function Person(fullName, email, phone, born, address, citizenship, education, e
 var person = new Person("Alexandru Oat", "oat.alexandru@gmail.com", "+358-466-360-623", "23.03.1982", "Rälssintie 16 B 14 Helsinki", "Moldova",[edu0, edu],[job0, job],["Object Oriented Programming"], ["English (fluent), Russian (native), French (good), Finnish (basic)"], about, myPic);
 
 router.get('/main', function(req, res, next) {
-  res.render('main', { title: 'Welcome to CV Maker'});
+  res.render('index', { title: 'Welcome to CV Maker', person: person});
 });
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Build your CV', person: person});
+  res.render('main', { title: 'Build your CV', person: person});
 });
 
 /* handling POST request from form */
@@ -115,7 +115,7 @@ router.post('/add', function (req, res) {
 	// 	}
 	// }
 	// console.log(cv.texts[1]);
-  	res.redirect('/');
+  	res.redirect('/main');
 });
 router.post('/add_edu', function (req, res) {
   	edu = {}
@@ -124,7 +124,7 @@ router.post('/add_edu', function (req, res) {
   	edu.from = req.body.edu_from;
   	edu.till = req.body.edu_till;
   	person.education.push(edu);
-  	res.redirect('/');
+  	res.redirect('/main');
 });
 router.post('/add_job', function (req, res) {
   	job = {}
@@ -133,24 +133,24 @@ router.post('/add_job', function (req, res) {
   	job.from = req.body.job_from;
   	job.till = req.body.job_till;
   	person.employment.push(job);
-  	res.redirect('/');
+  	res.redirect('/main');
 });
 router.post('/add_skill', function (req, res) {
   	person.skills.push(req.body.skill);
-  	res.redirect('/');
+  	res.redirect('/main');
 });
 router.post('/add_lang', function (req, res) {
   	person.languages.push(req.body.lang);
-  	res.redirect('/');
+  	res.redirect('/main');
 });
 router.post('/add_other', function (req, res) {
   	person.about = (req.body.about);
-  	res.redirect('/');
+  	res.redirect('/main');
 });
 router.get('/clean', function (req, res) {
   	// person.skills.push("new skills");
   	person = new Person ("", "", "", "", "", "",[],[],[],[],"","");
-  	res.redirect('/');
+  	res.redirect('/main');
 });
 
 // console.log(person.education.length);
