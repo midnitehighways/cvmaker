@@ -15,6 +15,7 @@
     <!-- ANGULAR FILES -->
     <script src="javascripts/controllers/controllers.js"></script>
     <script src="javascripts/directives/directives.js"></script>
+    
     <script src="javascripts/main.js"></script>
     <script> // Google analytics 
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-76287851-1', 'auto');ga('send', 'pageview');
@@ -22,25 +23,21 @@
 </head>
 <body ng-controller="MenuCtrl as menu"> <!-- ng-controller="PersonCtrl as person" -->
         
-        <header> </header>
+        <header> </header>                  <!--////////////////////////////////// HEADER //////////////////////////////  -->
         
-        <div class="main">                  <!--////////////////////////////////// BEGIN MAIN //////////////////////////////  -->
+        <div class="main">                  <!--/////////////////////////////////// MAIN ///////////////////////////////  -->
             <div class="left">
-    			<iframe allowtransparency="true" class="preview-pane" type="application/pdf" width="100%" height="100%" 
-    			frameborder="0" style="position:relative;z-index:1">Unfortunately, your browser does not support PDF preview:(
-                <!-- You can download it though! <a href="javascript:savePDF('CV_'+person.fullName)" class="my-button icon-download">Get PDF</a> -->
-                </iframe>
+    			<iframe class="preview-pane" type="application/pdf" width="100%" height="100%"style="position:relative;z-index:1">No PDF</iframe>
     		</div>
                  
-        
-            <div class="right center">   <!--////////////////////////////////// BEGIN RIGHT DIV //////////////////////////////  -->
+            <div class="right center">      <!--//////////////////////////////// RIGHT DIV /////////////////////////////  -->
                 <div class="work-space">
                     <% include templates/work-space.ejs %>
                 </div>
             </div>
         </div>
     
-        <footer></footer>               <!--////////////////////////////////// FOOTER /////////////////////////////////////////  -->
-        <script>preparePDF(<%- JSON.stringify(person) %>);</script> 
+        <footer></footer>                   <!--///////////////////////////////// FOOTER ///////////////////////////////  -->
+        <script>preparePDF(<%- JSON.stringify(person) %>, 1);</script> 
 </body>
 </html>
