@@ -25,6 +25,7 @@ doc.addPage('a4')
  built your special (excellent, professional) resume - switching words
  */
 /* GET home page. */
+var cvType = 0;
 var edu = {
 	university: "Haaga-Helia University of Applied Sciences",
 	faculty: "Business Information Technology",
@@ -66,12 +67,13 @@ function Person(fullName, email, phone, born, address, citizenship, education, e
 
 var person = new Person("Alexandru Oat", "oat.alexandru@gmail.com", "+358-466-360-623", "23.03.1982", "Rälssintie 16 B 14 Helsinki", "Moldova",[edu0, edu],[job0, job],["Object Oriented Programming"], ["English (fluent), Russian (native), French (good), Finnish (basic)"], about, myPic);
 
-router.get('/main', function(req, res, next) {
-  res.render('index', { title: 'Welcome to CV Maker', person: person});
+router.get('/main', function(req, res, next) {			// TO DO !!!!!! SWITCH PLACES main and index names
+	// cvType = req.body.born;
+	res.render('index', { title: 'Welcome to CV Maker', person: person, cvType: cvType});
 });
 
 router.get('/', function(req, res, next) {
-  res.render('main', { title: 'Build your CV', person: person});
+	res.render('main', { title: 'Build your CV', person: person});
 });
 
 /* handling POST request from form */
@@ -89,34 +91,9 @@ router.post('/add', function (req, res) {
 	// 	if(cv.texts.filter(function(a){ return a.type == "name" })[0])								// thus we access the needed object
 	// 		cv.texts.filter(function(a){ return a.type == "name" })[0].string = person.fullName;	// for more info see link below
 	// 	else 							//http://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects
-	// 		cv.texts.push({type: "name", string: person.fullName, x: x, y: y, al: "left", size: 22});
-	// 	console.log(cv.texts.filter(function(a){ return a.type == "name" })[0].string);
-	// }
-	// if(person.address) {
-	// 	if(cv.texts.filter(function(a){ return a.type == "address" })[0])
-	// 		cv.texts.filter(function(a){ return a.type == "address" })[0].string = person.address;
-	// 	else
-	// 		cv.texts.push({type: "address", string: person.address, x: midX, y: y+30, al: "left", size: 12});
-	// }
-	// if(person.email) {
-	// 	if(cv.texts.filter(function(a){ return a.type == "email" })[0])
-	// 		cv.texts.filter(function(a){ return a.type == "email" })[0].string = person.email;
-	// 	else {
-	// 		cv.texts.push({type: "email", string: person.email, x: maxX, y: y+30, al: "right", size: 12});
-	// 		y+=interval;
-	// 	}
-	// }
-	// if(person.phone) {
-	// 	if(cv.texts.filter(function(a){ return a.type == "phone" })[0])
-	// 		cv.texts.filter(function(a){ return a.type == "phone" })[0].string = person.phone;
-	// 	else {
-	// 		cv.texts.push({type: "phone", string: person.phone, x: maxX, y: y+30, al: "right", size: 12});
-	// 		y+=interval;
-	// 	}
-	// }
-	// console.log(cv.texts[1]);
   	res.redirect('/main');
 });
+
 router.post('/add_edu', function (req, res) {
   	edu = {}
   	edu.university = req.body.university;
@@ -126,6 +103,7 @@ router.post('/add_edu', function (req, res) {
   	person.education.push(edu);
   	res.redirect('/main');
 });
+
 router.post('/add_job', function (req, res) {
   	job = {}
   	job.company = req.body.company;
@@ -135,20 +113,23 @@ router.post('/add_job', function (req, res) {
   	person.employment.push(job);
   	res.redirect('/main');
 });
+
 router.post('/add_skill', function (req, res) {
   	person.skills.push(req.body.skill);
   	res.redirect('/main');
 });
+
 router.post('/add_lang', function (req, res) {
   	person.languages.push(req.body.lang);
   	res.redirect('/main');
 });
+
 router.post('/add_other', function (req, res) {
   	person.about = (req.body.about);
   	res.redirect('/main');
 });
+
 router.get('/clean', function (req, res) {
-  	// person.skills.push("new skills");
   	person = new Person ("", "", "", "", "", "",[],[],[],[],"","");
   	res.redirect('/main');
 });

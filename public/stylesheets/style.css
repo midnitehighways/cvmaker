@@ -226,7 +226,7 @@ iframe {
 .tabs-menu li:hover:not(.current):not(.left-side) > a {
 	color: #F0391C;
 	/*background: #f9f7f6;*/
-	background: #E4E4E4;
+	/*background: #E4E4E4;*/
 	background: #EBEDEF;
 	transition: 0.6s;
 }

@@ -9,6 +9,7 @@ body, html {
 	margin: 0px;
 	padding: 0px;
 	border: 0px; 
+	background: #E3E3E3;
 }
 
 .header {
@@ -16,7 +17,6 @@ body, html {
 	height: 40px;
 	background: #484F58;
     /*text-align: center;*/
-
 	position: relative;
   	box-shadow: 0px 5px 3px #555;
   	z-index: 10;
@@ -28,17 +28,13 @@ body, html {
 	color: #eee;
 	text-decoration: none;
 	font-weight: 300;
-}
-.header a:hover {
-	color: orange;
-}
-.header li {
-	margin: 0;
-	display: inline;
-	vertical-align: middle;
-	list-style: none;
 	padding-left: 10px;
 }
+.header .texts a:hover 
+{
+	color: orange;
+}
+
 .header h4 {
 	color: #eee;
 	letter-spacing: 3px;
@@ -51,41 +47,15 @@ body, html {
 .main {
 	width: 100%;
 	height: 670px;
-	background: #E4E4E3;
+
 	padding-top: 20px;
-	border-bottom: 1px solid rgba(0,0,0,0.2);
-	box-shadow: 0 1px 0px rgba(255,255,255,0.5);
+/*	border-bottom: 1px solid rgba(0,0,0,0.2);
+	box-shadow: 0 1px 0px rgba(255,255,255,0.5);*/
 }
 .lower {
 	padding-top: 20px;
 	width: 100%;
-	height: 400px;
-	background: #F6F6F6;
-	background: #E4E4E3;
-}
-.lower img {
-	height: 250px;
-	width: auto;
-
-}
-.lower img:hover {
-		box-shadow: 4px 4px 3px #999;
-}
-.footer {
-	height: 100px;
-	/*	background: -moz-linear-gradient(top, 
-background: -webkit-linear-gradient(top, */
-background: linear-gradient(to top, #3A7952, #469865);
-	text-align: center;
-
-}
-.footer, .footer a {
-	color: #ccc;
-	text-decoration: none;
-}
-.footer i {
-	color: #eee;
-	padding-top: 15px;
+	height: 900px;
 }
 .central {
 	margin: 0 auto;
@@ -100,6 +70,7 @@ background: linear-gradient(to top, #3A7952, #469865);
 	padding-bottom: 20px;
 	border-bottom: 1px solid rgba(0,0,0,0.2);
 	box-shadow: 0 1px 0px rgba(255,255,255,0.5);
+	margin-bottom: 20px;
 }
 .central span {
 	/*text-align: center;*/	
@@ -113,6 +84,38 @@ background: linear-gradient(to top, #3A7952, #469865);
 h1 {
 	letter-spacing: 3px;
 }
+.instruction {
+	background: #CECECE;
+	border-left: 2px solid green;
+	border-right: 2px solid green;
+	line-height: 20px;
+	border-bottom: 0px;
+	padding-bottom: 0px;
+}
+.lower img {				/* CV model choices */
+	height: 250px;
+	width: auto;
+
+}
+.lower img:hover {
+		box-shadow: 4px 4px 3px #999;
+}
+.footer {
+	height: 100px;
+	background: #484F58;
+	text-align: center;
+  	box-shadow: 0px -5px 3px #555;
+  	z-index: 10;
+}
+.footer, .footer a {
+	color: #ccc;
+
+}
+.footer i {
+	color: #eee;
+	padding-top: 15px;
+}
+
 
 
 div#menu {
@@ -173,7 +176,7 @@ div#menu a img {
 	color: orange;
 }
 
-#carousel-example-generic {	
+#about {	
 	width: 1000px;
 	height: 400px;
 	margin: 0 auto;
@@ -208,11 +211,12 @@ div#menu a img {
   bottom: initial;
 */
 }
-.carousel-caption h4 {
-	background: #46A671;
+.carousel-caption h4 {		/* text in carousel */
+	background: #5263A7;
+	/*#46A671;*/
 	opacity: 0.3;
 	margin-top: 30px;
-	padding: 20px 5px 20px 5px;
+	padding: 20px 1px 20px 1px;
 }
 
 .carousel .item img{
