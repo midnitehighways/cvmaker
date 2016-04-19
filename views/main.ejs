@@ -11,18 +11,17 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="stylesheets/main.css" />
     <!-- <link rel="stylesheet" href="stylesheets/old-main.css" /> -->
-    <link rel="stylesheet" href="stylesheets/normalize.css" />
-    <link rel="stylesheet" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> <!-- needed for ruri class (form controls) -->   
+    <link rel="stylesheet" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> <!-- social icons taken from here -->   
     <!-- ANGULAR FILES -->
     <script src="javascripts/controllers/controllers2.js"></script>
     <script src="javascripts/directives/directives2.js"></script>
     <script src="javascripts/main.js"></script>
 </head>
-<body ng-controller="SliderCtrl as slider">
+<body ng-controller="MainCtrl as main">
 <div>
-    <div class="header">
+    <div class="header"><!--////////////////////////// HEADER BAR. BEGIN ///////////////////////////////////////-->
         
-        <h4><i class="fa fa-smile-o"></i> CV Maker</h4>    
+        <h4><a href="/"><i class="fa fa-smile-o"></i> CV Maker</a></h4>    
         
         <div class="col-md-1 pull-right icons">
                 <a href="https://www.linkedin.com/in/alexandruoat"><i class="fa fa-2x fa-linkedin-square"></i></a>
@@ -35,42 +34,38 @@
         </div>
     </div>
 
-    <div class="main">
-
+    <div class="main"> <!--////////////////////////// MAIN SECTION. BEGIN ///////////////////////////////////////-->
         <div class="central">  
-            <a href="/main"><img src="images/cv-central2.png"></a>
+            <a href="/main"><img src="images/cv-central2.png"></a>      <!-- central logo -->
             <h1>CV MAKER</h1>
             build your <span>special</span> resume
         </div>
-
+        <!-- Carousel. BEGIN-->
         <div ng-controller="CarouselCtrl" id="about" class="carousel slide" data-interval="3000" data-ride="carousel">
-          <!-- Indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#about" ng-repeat="slide in slides" data-slide-to="{{slide.index}}" ng-class="{'active': {{slide.index}} === 0}"></li>
             </ol>
-        <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div ng-repeat="slide in slides" class="item" ng-class="{'active': $index === 0}">
                     <img ng-src="{{slide.image}}" alt="Different resume types">
                     <div class="carousel-caption">
-                        <h4 ng-repeat="description in slide.descriptions">{{description}}</h4>
+                        <h4 ng-repeat="description in slide.descriptions">{{description}}</h4>      <!-- 3 texts per slide -->
                     </div>
                 </div>
             </div>
-            <!-- Controls -->
             <a class="left carousel-control" href="#about" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
             <a class="right carousel-control" href="#about" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
-        </div> <!-- Carousel -->
+        </div> <!-- Carousel. END-->
     </div>
 
     <div class="central"></div>
     
     <div id="choose-type" class="lower">
-        
+                                    <!--////////////////////////// LOWER SECTION. BEGIN ///////////////////////////////////////-->
         <div class="instruction central"> 
             <p>Start by choosing CV format. Click on the suitable model below and start filling in your resume.</p> 
             <p>You can later change CV type (using the Settings tab). </p>
@@ -78,16 +73,16 @@
         </div>        
         
         <p class="col-md-3"></p>
-        <form method="GET">
-        <div class="col-md-3">
-            <a href="/main"><img src="images/type1.png"></a>
-        </div>
-        <div class="col-md-3"><!-- <div style="position:absolute;left:460px;top: 757px;"> -->
-            <a href="/main"><img src="images/type0.png"></a>
-        </div>
+        <form method="POST" action="/main">                         <!-- CV model choices. Using POST request to pass cvType -->
+            <div class="col-md-3">
+                <button type=image name=cvType value="0"><img src="images/type1.png"></button>
+            </div>
+            <div class="col-md-3"><!-- <div style="position:absolute;left:460px;top: 757px;"> -->
+                <button type=image name=cvType value="1"><img src="images/type0.png"></button>
+            </div>
         </form>
     </div>
-
+                                    <!--////////////////////////// FOOTER SECTION. BEGIN ///////////////////////////////////////-->
     <div class="footer">
         <a href="https://www.linkedin.com/in/alexandruoat"><i class="fa fa-2x fa-linkedin-square"></i></a>
         <a href="https://github.com/midnitehighways/cvmaker"><i class="fa fa-2x fa-github-square"></i></a>
@@ -96,7 +91,7 @@
         | <a href="https://github.com/midnitehighways/cvmaker">Github</a> | <a href="mailto:alexandru.oat@gmail.com?Subject=Hei%20Alex" 
         target="_top">oat.alexandru@gmail.com</a> | Built with <a href="https://nodejs.org">Node.js</a>
     </div>
-    <script>$('.carousel').carousel({interval: 5000})</script> <!-- Carousel autoplay interval -->
+    <script>$('.carousel').carousel({interval: 5000})</script> <!-- Launch carousel and set its autoplay interval -->
 </div>
 </body>
 </html>

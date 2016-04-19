@@ -95,10 +95,13 @@ h1 {
 .lower img {				/* CV model choices */
 	height: 250px;
 	width: auto;
-
 }
 .lower img:hover {
 		box-shadow: 4px 4px 3px #999;
+}
+button[type='image'] {		/* this is for CV model choices. Hide the button used to submit the form */
+	border: 0; 
+	background: transparent;
 }
 .footer {
 	height: 100px;
@@ -109,7 +112,6 @@ h1 {
 }
 .footer, .footer a {
 	color: #ccc;
-
 }
 .footer i {
 	color: #eee;

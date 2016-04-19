@@ -20,7 +20,7 @@
 }
 .fileUpload {				/* cover the original file input and replace it with add-button */
 	position: relative;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	margin: 10px;
 }
 .fileUpload input.upload {

@@ -34,6 +34,10 @@
 
 ////////////////////// Encode image to base64 format
 $(function () {  
+    $('#inputFileToLoad').click(function(){
+    console.log("CLICKED");
+})});
+$(function () {  
     $('#inputFileToLoad').on('change', function encodeImageFileAsUrl(){
     console.log("HELLO");
     var filesSelected = document.getElementById("inputFileToLoad").files;
@@ -47,7 +51,7 @@ $(function () {
                 var filename = $('input[type=file]').val().split('\\').pop();       // get the file' name
                 $('.fileUpload').html(filename);
                 newImage.src = srcData;              // result is here as a string
-                // console.log(srcData);
+                console.log(srcData);
                 $("#pic").val(srcData);              // pass result to this hidden input, then it'll be uploaded with POST data after form submission
                 // document.getElementById("imgText").value = srcData;
                 document.getElementById("imgTest").src = srcData;   // show image in imgTest img-container

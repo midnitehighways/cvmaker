@@ -71,6 +71,10 @@ router.get('/main', function(req, res, next) {			// TO DO !!!!!! SWITCH PLACES m
 	// cvType = req.body.born;
 	res.render('index', { title: 'Welcome to CV Maker', person: person, cvType: cvType});
 });
+router.post('/main', function(req, res, next) {			// TO DO !!!!!! SWITCH PLACES main and index names
+	cvType = req.body.cvType;
+	res.render('index', { title: 'Welcome to CV Maker', person: person, cvType: cvType});
+});
 
 router.get('/', function(req, res, next) {
 	res.render('main', { title: 'Build your CV', person: person});
