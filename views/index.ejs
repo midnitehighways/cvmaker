@@ -1,44 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="cvApp">
+<html lang="en" ng-app="mainApp">
 <head>
     <meta charset="utf-8">
     <title><%= title %></title>
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-    <!-- import jsPDF to work with pdf-file -->
-    <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
     <!-- CSS -->
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <link rel="stylesheet" href="stylesheets/normalize.css" />
-    <link rel="stylesheet" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> <!-- needed for ruri class (form controls) -->   
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="stylesheets/index-page.css" />
+    <link rel="stylesheet" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> <!-- social icons taken from here -->   
     <!-- ANGULAR FILES -->
-    <script src="javascripts/controllers/controllers.js"></script>
-    <script src="javascripts/directives/directives.js"></script>
-    
+    <script src="javascripts/controllers/controllers-index.js"></script>
+    <script src="javascripts/directives/directives-index.js"></script>
     <script src="javascripts/main.js"></script>
-    <script> // Google analytics 
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-76287851-1', 'auto');ga('send', 'pageview');
-        console.log("<%= cvType %>");
-    </script>
 </head>
-<body ng-controller="MenuCtrl as menu"> <!-- ng-controller="PersonCtrl as person" -->
-        
-        <header> </header>                  <!--////////////////////////////////// HEADER //////////////////////////////  -->
-        
-        <div class="main">                  <!--/////////////////////////////////// MAIN ///////////////////////////////  -->
-            <div class="left">
-    			<iframe class="preview-pane"type="application/pdf"width="100%" height="100%"frameborder="0">No PDF</iframe>
-    		</div>
-                 
-            <div class="right center">      <!--//////////////////////////////// RIGHT DIV /////////////////////////////  -->
-                <div class="work-space">
-                    <% include templates/work-space.ejs %>
+<body ng-controller="MainCtrl as main">
+<div>
+    <header-index></header-index> <!--////////////////////////// HEADER BAR ///////////////////////////////////////-->
+
+    <div class="main"> <!--////////////////////////// MAIN SECTION. BEGIN ///////////////////////////////////////-->
+        <div class="central">  
+            <a href="/main"><img src="images/cv-central2.png"></a>      <!-- central logo -->
+            <h1>CV MAKER</h1>
+            build your <span>special</span> resume
+        </div>
+        <!-- Carousel. BEGIN-->
+        <div ng-controller="CarouselCtrl" id="about" class="carousel slide" data-interval="3000" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#about" ng-repeat="slide in slides" data-slide-to="{{slide.index}}" ng-class="{'active': {{slide.index}} === 0}"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div ng-repeat="slide in slides" class="item" ng-class="{'active': $index === 0}">
+                    <img ng-src="{{slide.image}}" alt="Different resume types">
+                    <div class="carousel-caption">
+                        <h4 ng-repeat="description in slide.descriptions">{{description}}</h4>      <!-- 3 texts per slide -->
+                    </div>
                 </div>
             </div>
-        </div>
+            <a class="left carousel-control" href="#about" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#about" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div> <!-- Carousel. END-->
+    </div>
+
+    <div class="central"></div>
     
-        <footer></footer>                   <!--///////////////////////////////// FOOTER ///////////////////////////////  -->
-        <script>preparePDF(<%- JSON.stringify(person) %>, <%= cvType %>);</script> 
+    <div id="choose-type" class="lower">
+                                    <!--////////////////////////// LOWER SECTION. BEGIN ///////////////////////////////////////-->
+        <div class="instruction central"> 
+            <p>Start by choosing CV format. Click on the suitable model below and start filling in your resume.</p> 
+            <p>You can later change CV type (using the Settings tab). </p>
+            <p>So far only two models are available. More to come by the end of April</p>
+        </div>        
+        
+        <p class="col-md-3"></p>
+        <form method="POST" action="/main">                         <!-- CV model choices. Using POST request to pass cvType -->
+            <div class="col-md-3">
+                <button type=image name=cvType value="0"><img src="images/type1.png"></button>
+            </div>
+            <div class="col-md-3"><!-- <div style="position:absolute;left:460px;top: 757px;"> -->
+                <button type=image name=cvType value="1"><img src="images/type0.png"></button>
+            </div>
+        </form>
+    </div>
+                                    
+    <footer-index></footer-index><!--////////////////////////// FOOTER SECTION ///////////////////////////////////////-->
+
+    <script>$('.carousel').carousel({interval: 5000})</script> <!-- Launch carousel and set its autoplay interval -->
+</div>
 </body>
 </html>
