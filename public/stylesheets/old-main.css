@@ -132,3 +132,49 @@
 }
 
 
+
+
+
+
+
+
+
+
+div#menu {
+  overflow: hidden;
+  margin: auto;
+  width: 50%;
+  max-width: 750px;
+  max-height: 430px;
+  padding-top: 30px;
+}
+div#menu a {
+  position: relative;
+  display: block;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  font-size: 0;
+  animation: 14s menu infinite;
+}
+div#menu a img {
+  width: 20%;
+  float: left;
+}
+@keyframes menu {
+  0% {
+    left: 0%;
+  }
+  35% {
+    left: 0%;
+  }
+  40% {
+    left: -100%;
+  }
+  80% {
+    left: -100%;
+  }
+  85% {
+    left: 0%;
+  }
+}

@@ -11,7 +11,7 @@ body, html {
 	border: 0px; 
 	background: #E3E3E3;
 }
-
+/*---------***************-----------HEAD BAR-----------***************---------*/
 .header {
 	width: 100%;
 	height: 40px;
@@ -30,6 +30,7 @@ body, html {
 	text-decoration: none;
 	font-weight: 300;
 	padding-left: 10px;
+	line-height: 1.8;
 }
 .header .texts a:hover 
 {
@@ -45,6 +46,9 @@ body, html {
 	line-height: 2.4;
 	padding-left: 20px;
 }
+
+/*---------***************---------MAIN SECTION--------***************---------*/
+
 .main {
 	width: 100%;
 	height: 670px;
@@ -85,6 +89,9 @@ body, html {
 h1 {
 	letter-spacing: 3px;
 }
+
+/*---------***************---------LOWER SECTION--------***************---------*/
+
 .instruction {
 	background: #CECECE;
 	border-left: 2px solid green;
@@ -104,8 +111,11 @@ button[type='image'] {		/* this is for CV model choices. Hide the button used to
 	border: 0; 
 	background: transparent;
 }
+
+/*---------***************--------FOOTER SECTION-------***************---------*/
+
 .footer {
-	height: 100px;
+	height: 40px;
 	background: #484F58;
 	text-align: center;
   	box-shadow: 0px -5px 3px #555;
@@ -116,49 +126,13 @@ button[type='image'] {		/* this is for CV model choices. Hide the button used to
 }
 .footer i {
 	color: #eee;
-	padding-top: 15px;
+	vertical-align: middle;
+}
+.footer div {
+	padding-top: 5px;
 }
 
-
-
-div#menu {
-  overflow: hidden;
-  margin: auto;
-  width: 50%;
-  max-width: 750px;
-  max-height: 430px;
-  padding-top: 30px;
-}
-div#menu a {
-  position: relative;
-  display: block;
-  width: 500%;
-  margin: 0;
-  left: 0;
-  font-size: 0;
-  animation: 14s menu infinite;
-}
-div#menu a img {
-  width: 20%;
-  float: left;
-}
-@keyframes menu {
-  0% {
-    left: 0%;
-  }
-  35% {
-    left: 0%;
-  }
-  40% {
-    left: -100%;
-  }
-  80% {
-    left: -100%;
-  }
-  85% {
-    left: 0%;
-  }
-}
+/*---------**************------OTHER MINOR STUFF-----*********************-----*/
 
 #font-orange {
 	color: orange; 
@@ -179,21 +153,20 @@ div#menu a img {
 	color: orange;
 }
 
-#about {	
+/*--------------**********---------CAROUSEL----------**********************-----*/
+
+#about {				/* carousel id */
 	width: 1000px;
 	height: 400px;
 	margin: 0 auto;
 	margin-top: 30px;
 }
 .carousel .item {
-
 	margin: 0 auto;
 	height: 400px;
-
-    -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
 }
 .carousel .item .carousel-caption {
 /*    min-width: 100px;
@@ -203,29 +176,22 @@ div#menu a img {
 	top: 50%;
 */	/*bottom: initial;*/
 	/*width: 20%;*/
-	    left: 62%;
-	    top: 38px;
-	    width: 30%;
-    text-align: center;
-    
-    right: auto;
-  bottom: 50px;
-/*  transform: translateY(-50%);
-  bottom: initial;
-*/
+	left: 62%;
+	top: 38px;
+	width: 30%;
+	text-align: center;
+
+	right: auto;
+	bottom: 50px;
 }
 .carousel-caption h4 {		/* text in carousel */
 	background: #5263A7;
-	/*#46A671;*/
 	opacity: 0.3;
 	margin-top: 30px;
 	padding: 20px 1px 20px 1px;
 }
 
 .carousel .item img{
-    /*margin: 0 auto;  */
-    /*left: 5%;*/
     width: 60%;
-
     opacity: 0.7;
 }

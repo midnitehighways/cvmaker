@@ -6,6 +6,9 @@
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <!-- <link rel="stylesheet/less" type="text/css" href="stylesheets/main.less" /> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>-->
+    
     <!-- import jsPDF to work with pdf-file -->
     <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
     <!-- CSS -->
@@ -23,7 +26,7 @@
 </head>
 <body ng-controller="MenuCtrl as menu"> <!-- ng-controller="PersonCtrl as person" -->
         
-        <header-main></header-main>                  <!--////////////////////////////////// HEADER //////////////////////////////  -->
+        <header-main></header-main>                  <!--///////////////////////// HEADER //////////////////////////////  -->
         
         <div class="main">                  <!--/////////////////////////////////// MAIN ///////////////////////////////  -->
             <div class="left">
@@ -37,7 +40,7 @@
             </div>
         </div>
     
-        <footer-main></footer-main>                   <!--///////////////////////////////// FOOTER ///////////////////////////////  -->
+        <footer-main></footer-main>              <!--///////////////////////////// FOOTER ///////////////////////////////  -->
         <script>preparePDF(<%- JSON.stringify(person) %>, <%= cvType %>);</script> 
 </body>
 </html>

@@ -7,7 +7,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-    <!-- CSS -->
+    <!-- <link rel="stylesheet/less" type="text/css" href="stylesheets/main.less" /> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>-->
+
+        <!-- CSS -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="stylesheets/index-page.css" />
     <link rel="stylesheet" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" /> <!-- social icons taken from here -->   
@@ -22,7 +25,7 @@
 
     <div class="main"> <!--////////////////////////// MAIN SECTION. BEGIN ///////////////////////////////////////-->
         <div class="central">  
-            <a href="/main" data-toggle="tooltip" data-placement="right" title="Click this logo to start building your resume right away">
+            <a tooltip href="/main" title="Click this logo to start building your resume right away">
                 <img src="images/cv-central2.png">                                          <!-- central logo -->
             </a>   
             <h1>CV MAKER</h1>
@@ -72,8 +75,9 @@
     </div>
                                     
     <footer-index></footer-index><!--////////////////////////// FOOTER SECTION ///////////////////////////////////////-->
-
-    <script>$('.carousel').carousel({interval: 5000})</script> <!-- Launch carousel and set its autoplay interval -->
+    
+    <!-- Launch carousel and set its autoplay interval && Activate tooltips-->
+    <script>$('.carousel').carousel({interval: 5000});$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});</script> 
 </div>
 </body>
 </html>

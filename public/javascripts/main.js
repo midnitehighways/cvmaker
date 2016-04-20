@@ -32,9 +32,9 @@
 /////////////// saving the final PDF file.                      TO DO: make jquery - on event
 // function savePDF(name) { doc.save(name + '.pdf'); }
 
-$(document).ready(function(){                       // activate bootstrap tooltips
-    $('[data-toggle="tooltip"]').tooltip(); 
-});
+// $(document).ready(function() {                       // activate bootstrap tooltips
+//     $('[data-toggle="tooltip"]').tooltip();
+// });
 ////////////////////// Encode image to base64 format
 $(function () {  
     $('#inputFileToLoad').on('change', function encodeImageFileAsUrl(){
