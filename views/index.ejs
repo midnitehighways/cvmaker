@@ -32,7 +32,7 @@
             build your <span>special</span> resume
         </div>
         <!-- Carousel. BEGIN-->
-        <div ng-controller="CarouselCtrl" id="about" class="carousel slide" data-interval="3000" data-ride="carousel">
+        <div ng-controller="CarouselCtrl" id="about" class="carousel slide" data-interval="4000" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#about" ng-repeat="slide in slides" data-slide-to="{{slide.index}}" ng-class="{'active': {{slide.index}} === 0}"></li>
             </ol>
@@ -65,11 +65,18 @@
         
         <p class="col-md-3"></p>
         <form method="POST" action="/main">                         <!-- CV model choices. Using POST request to pass cvType -->
-            <div class="col-md-3">
-                <button type=image name=cvType value="0"><img src="images/type1.png"></button>
-            </div>
-            <div class="col-md-3"><!-- <div style="position:absolute;left:460px;top: 757px;"> -->
-                <button type=image name=cvType value="1"><img src="images/type0.png"></button>
+            <div class="row">
+                <div class="col-md-3">
+                    <button type=image name=cvType value="0"><img src="images/type1.png"></button>
+                </div>
+                <div class="col-md-3"><!-- <div style="position:absolute;left:460px;top: 757px;"> -->
+                    <button type=image name=cvType value="1"><img src="images/type0.png"></button>
+                </div>
+                </div>
+            <div class="row" style="padding-top: 30px; padding-left:100px;"> <!-- temporary solution to center 3rd resume model -->
+                <div class="col-md-2 col-md-offset-4"><!-- <div style="position:absolute;left:460px;top: 757px;"> -->
+                    <button type=image name=cvType value="2"><img src="images/type2.png"></button>
+                </div>
             </div>
         </form>
     </div>
@@ -77,7 +84,7 @@
     <footer-index></footer-index><!--////////////////////////// FOOTER SECTION ///////////////////////////////////////-->
     
     <!-- Launch carousel and set its autoplay interval && Activate tooltips-->
-    <script>$('.carousel').carousel({interval: 5000});$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});</script> 
+    <script>$('.carousel').carousel({interval: 4000});$(document).ready(function(){$('[data-toggle="tooltip"]').tooltip();});</script> 
 </div>
 </body>
 </html>

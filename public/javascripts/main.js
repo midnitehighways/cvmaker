@@ -111,33 +111,18 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     this.text(text, x, y);
     return this;
 };
-/*!
+
+/*!  ----------CLASSIE mini-library for styled inputs which are being used in CVmaker just temporary (LATER will be deleted, so far OK)
  * classie - class helper functions
- * from bonzo https://github.com/ded/bonzo
- * 
- * classie.has( elem, 'my-class' ) -> true/false
- * classie.add( elem, 'my-new-class' )
- * classie.remove( elem, 'my-unwanted-class' )
- * classie.toggle( elem, 'my-class' )
- */
-
-/*jshint browser: true, strict: true, undef: true */
-/*global define: false */
-
-( function( window ) {
-
+ * from bonzo https://github.com/ded/bonzo*/
+ ( function( window ) {
 'use strict';
-
 // class helper functions from bonzo https://github.com/ded/bonzo
-
 function classReg( className ) {
   return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
 }
-
 // classList support for class management
-// altho to be fair, the api sucks because it won't accept multiple classes at once
 var hasClass, addClass, removeClass;
-
 if ( 'classList' in document.documentElement ) {
   hasClass = function( elem, c ) {
     return elem.classList.contains( c );
@@ -162,7 +147,6 @@ else {
     elem.className = elem.className.replace( classReg( c ), ' ' );
   };
 }
-
 function toggleClass( elem, c ) {
   var fn = hasClass( elem, c ) ? removeClass : addClass;
   fn( elem, c );
@@ -180,7 +164,6 @@ var classie = {
   remove: removeClass,
   toggle: toggleClass
 };
-
 // transport
 if ( typeof define === 'function' && define.amd ) {
   // AMD
@@ -189,10 +172,9 @@ if ( typeof define === 'function' && define.amd ) {
   // browser global
   window.classie = classie;
 }
-
 })( window );
 
-////////////////////// this function is part of __input functionality
+/////////////////// this function is part of __input functionality. Styled inputs used in CVmaker just temporary (LATER will be deleted, so far OK)
 $(document).ready(function() {
     if (!String.prototype.trim) {
         (function() {
@@ -221,8 +203,8 @@ $(document).ready(function() {
     }
 });
 
-//----- PREPARE PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// MAIN CV BUILDING FUNCTION
+//---------------------------------------------------- PREPARE PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//---------------------------------------------------- MAIN CV BUILDING FUNCTION
     var doc = new jsPDF();  // global
     function preparePDF(person, cvType) {
     var v, u;
@@ -232,15 +214,15 @@ $(document).ready(function() {
     var DOB_icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABUUlEQVQ4T52SX2rCQBDGv1kQhEDS4EvyZCMIQhAEL1BP0PQG7Q3aG/QI3qC9Qe0JzAWEQhAfBKUPwbyIf0BICOyWjaaYdtXgvO3u7O+b+WYIiuh2uwbnfADg7vDsM8a80Wi0+ZtOKkC73R4SUf45SxFC+EEQ9EoBXNcVKvB4PP4nqKyg1WopAUR0O5lMvo/hSkCz2Rwe9Z/n+9PptFwLjUbDEEIUTCQibzablTMxl3Qcpz6fzwslnzRRqiZJ8grgGcCac95ZLBbZZ9u264yxLwA3APphGL7koF8PLMt6A/B4pPAeRdGTPJ97ywC1Wu2eMSZ7LgQRdQ47INULwTn3lsvlZwYwTfNDmqSa/ak7afJqtXrIALquK+d+CbjdbikDaJp2FWC32+0B1Wr1KkAcx3tApVJRbd6lDvw0TXv5GA3GWB+ANFLO+lysAQw453JfNj8ZlXMRjnxkbQAAAABJRU5ErkJggg==";
     var citizenship_icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB9klEQVQ4T3VTS47aQBCtatsIiQVmgYQEgjEIIVbxnGA4AjkBPoJzA44wcwNygnCDcU4wzgrBAhHEgh0TCSQ+dlf0HBsRC1qy5K7q97rq1Wum3HJdd8TMHhENcqlARCZhGH6/jXO26ff7LcuypkTk5knT/YqInogovFwuw9ls9hvxhABgpVRIRDYzT7XWITOPiQggfKhmpbUeKKVwyZPW2gVJQtDr9T6YGTevzueza5qmr5Qai8gnEY2Z+VVEQhHxoihaWZYVADefz5+50+mMlFITIvpk5sFisfjV7Xbf05uhxXWJyDiO44lSCpVMtNYeO46DwwPcslwuv+G04zgtZvZFxM8LeSNu0h43m01JD/nr9fqt3W6XoyhCiffEBAgVQA/kfa7X6xkBQBALfdv3JgGBN5vNV+QajcaLiARcq9UyAoJQqZgPJknedrtNfFCr1V6IKOBqtXoleITK4qmIr6ZpemkbU65UKu9Q/wbsM/MKrrvXCkbLzLaIwA8227Y90lrjcLJglv1+/xP/5XL5h4gMH1WmlPISI5VKpY8b1cNCoTDY7XZ/0twX2PcOSXg4HJ4TgmKx2EoFTNTH/E+n0xviGFv+YaVtuMfj8Z+VM5I4jrPHBNsG6avMjzQ0DGMIMHBXgozIMAxo4uWERVUB7BvH8X/P+S/VgemqwJIq3QAAAABJRU5ErkJggg==";
 
-      if(cvType==1) {
-        var x = 8+3;
-        var x1 = 30;
-        var y = 15+3;
-        var mx = x+188;
-        var x2 = x 
-        var interval = 8;
-        var big_interval = 14;
-        var small_interval = 4;
+    if(cvType==1) {
+        var x = 8+3;            // starting X point
+        // var x1 = 30;
+        var y = 15+3;           // starting Y point
+        var mx = x+188;         // maximum X to the right - right margin
+        // var x2 = x
+        var interval = 8;       // normal space between the lines inside sections
+        var big_interval = 14;  // space between sections of resume
+        var small_interval = 4; // small space
         doc.setFontSize(24);
         doc.line(x,8,100,8);
         doc.textEx("c u r r i c u l u m   v i t a e", mx, 3, "right");
@@ -248,10 +230,8 @@ $(document).ready(function() {
         y=32;
         doc.setFontType("bold");doc.textEx(person.fullName, x, y-15, "left");doc.setFontType("normal");
         doc.setFontSize(12);
-
-        console.log("pic: "+person.pic);
         
-        if(person.pic) doc.addImage(person.pic, 'JPEG', mx-50, 18, 36, 36);
+        if(person.pic) doc.addImage(person.pic, 'JPEG', mx-50, 18, 36, 36);     // prevent possible errors if base64 string isn't ok
         doc.addImage(DOB_icon, 'JPEG', x+90, y, 4, 4);
         doc.textEx(person.born, x+97, y, "left");
         doc.addImage(phone_icon, 'JPEG', x, y, 4, 4);
@@ -290,6 +270,78 @@ $(document).ready(function() {
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("A bit about me",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         doc.textEx(person.about, x, y, "left");y+=interval;
 }
+else if(cvType==2) {
+        var x = 11;            // starting X point
+        var x_margin = 3;       // margin to the left and to the right from max X limits for rectangles and lines
+        var y = 15+3;           // starting Y point
+        var mx = x+188;         // maximum X to the right - right margin
+        // var x2 = x
+        var interval = 8;       // normal space between the lines inside sections
+        var big_interval = 14;  // space between sections of resume
+        var small_interval = 4; // small space
+        // doc.setFontSize(24);
+        // doc.rect(x-x_margin+1, 8+1, mx-x+x_margin*2-2, y+32-2, 'U');
+        // doc.rect(x-x_margin+0.5, 8+0.5, mx-x+x_margin*2-1, y+32-1, 'U');
+        // doc.rect(x-x_margin, 8, mx-x+x_margin*2, y+32, 'U');
+        doc.setLineWidth(1);
+        doc.setDrawColor(100, 101, 108); //39, 97, 26
+// doc.setFillColor(203, 203, 203,0.8); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        doc.rect(x-x_margin, 8, mx-x+x_margin*2, y+36, 'E');
+//doc.setTextColor(255,255,255); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // doc.textEx("c u r r i c u l u m   v i t a e", mx, 3, "right");
+        doc.setFontSize(16);
+        y=32;
+        doc.setFontType("bold");doc.textEx(person.fullName, x+7, y-20, "left");doc.setFontType("normal");
+        doc.setFontSize(12);
+        y-=10
+        if(person.pic) doc.addImage(person.pic, 'JPEG', mx-45, y-9, 45, 45);     // prevent possible errors if base64 string isn't ok
+        doc.addImage(phone_icon, 'JPEG', x, y, 4, 4);
+        doc.textEx(person.phone, x+7, y, "left"); y+=interval;
+        doc.addImage(email_icon, 'JPEG', x, y, 4, 4);
+        doc.textEx(person.email, x+7, y, "left"); y+=interval;
+        doc.addImage(home_icon, 'JPEG', x, y, 4, 4);
+        doc.textEx(person.address, x+7, y, "left");y+=interval;
+        doc.addImage(DOB_icon, 'JPEG', x, y, 4, 4);
+        doc.textEx(person.born, x+7, y, "left");y+=interval;
+        doc.addImage(citizenship_icon, 'JPEG', x, y, 4, 4);
+        doc.textEx(person.citizenship, x+7, y, "left");
+
+        y+=big_interval+interval;
+// doc.setTextColor(0,0,0); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        doc.setFillColor(203, 203, 203);
+        doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
+        doc.setFontType("bold");doc.textEx("Education",x,y-6,"left");doc.setFontType("normal");y+=small_interval-1;
+        for(var i = 0; i < person.education.length; i++) {
+            doc.textEx(person.education[i].university, x, y, "left");
+            doc.textEx(person.education[i].from + " - " + person.education[i].till, mx, y, "right");y+=interval-2;
+            doc.setFontSize(10);doc.textEx(person.education[i].faculty, x, y, "left");doc.setFontSize(12);y+=interval;
+        }
+        y+=big_interval-7;
+        doc.setFillColor(203, 203, 203);doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
+        doc.setFontType("bold");doc.textEx("Work experience",x,y-6,"left");doc.setFontType("normal");y+=small_interval-1;
+        for(var i = 0; i < person.employment.length; i++) {
+            doc.textEx(person.employment[i].company, x, y, "left");
+            doc.textEx(person.employment[i].from + " - " + person.employment[i].till, mx, y, "right");y+=interval-2;
+            doc.setFontSize(10);doc.textEx(person.employment[i].position, x, y, "left");doc.setFontSize(12);y+=interval;
+        }
+        y+=big_interval-7;
+        doc.setFillColor(203, 203, 203);doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
+        doc.setFontType("bold");doc.textEx("Qualifications and skills",x,y-6,"left");doc.setFontType("normal");y+=small_interval-1;
+        for(var i = 0; i < person.skills.length; i++) {
+            doc.textEx(person.skills[i], x, y, "left");y+=interval;
+        }
+        y+=big_interval-7;
+        doc.setFillColor(203, 203, 203);doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
+        doc.setFontType("bold");doc.textEx("Language proficiency",x,y-6,"left");doc.setFontType("normal");y+=small_interval-1;
+        for(var i = 0; i < person.languages.length; i++) {
+            doc.textEx(person.languages[i], x, y, "left");y+=interval;
+        }
+        y+=big_interval-7;
+        doc.setFillColor(203, 203, 203);doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
+        doc.setFontType("bold");doc.textEx("Couple of words about myself",x,y-6,"left");doc.setFontType("normal");y+=small_interval-1;
+        doc.textEx(person.about, x, y, "left");y+=interval;
+}
+
 else{
      var x = 8;          // left horizontal border
      var y = 18;         // top vertical border
@@ -348,8 +400,6 @@ else{
         }
     }
         var string = doc.output('bloburi');
-        // console.log(person.citizenship");
         $('.preview-pane').attr('src', string);
-
   }
 

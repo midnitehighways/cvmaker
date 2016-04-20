@@ -36,7 +36,7 @@ a {
 }
 
 .yellow {
-	color: red;
+	color: yellow;
 	font-weight: 900;
 	letter-spacing: 4px;
 }
@@ -46,12 +46,12 @@ a {
 	height: 88%;
 }
 .left {
-	width: 29%;
+	width: 49%;
 	height: 100%;
 	float: left;
 }
 .right {
-	width: 70%;
+	width: 50%;
 	height: 100%;
 	min-height: 400px;
 	float: right;
