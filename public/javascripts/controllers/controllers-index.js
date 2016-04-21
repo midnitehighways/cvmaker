@@ -21,6 +21,15 @@ mainApp.controller("CarouselCtrl", function($scope) {
     // };
 });
 
+mainApp.controller("ResumeTypesCtrl", function($scope) {
+    
+    $scope.items = [
+        {image: 'images/type0.png', name: 'Basic'},
+        {image: 'images/type1.png', name: 'Black blocks'},
+        {image: 'images/type2.png', name: 'Rectangle and lines'}
+    ];    
+});
+
 mainApp.controller("MainCtrl", function($scope) {
     
     // $scope.

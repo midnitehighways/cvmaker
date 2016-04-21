@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="mainApp">
+<html lang="en" ng-app="mainApp" class="ng-scope">
 <head>
     <meta charset="utf-8">
     <title><%= title %></title>
@@ -7,8 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-    <!-- <link rel="stylesheet/less" type="text/css" href="stylesheets/main.less" /> 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>-->
+    <link rel="stylesheet/less" type="text/css" href="stylesheets/main.less" /> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>
 
         <!-- CSS -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
@@ -23,7 +23,7 @@
 <div>
     <header-index></header-index> <!--////////////////////////// HEADER BAR ///////////////////////////////////////-->
 
-    <div class="main"> <!--////////////////////////// MAIN SECTION. BEGIN ///////////////////////////////////////-->
+    <div class="main">     <!--////////////////////////// MAIN SECTION. BEGIN ///////////////////////////////////////-->
         <div class="central">  
             <a tooltip href="/main" title="Click this logo to start building your resume right away">
                 <img src="images/cv-central2.png">                                          <!-- central logo -->
@@ -55,32 +55,34 @@
 
     <div class="central"></div>
     
-    <div id="choose-type" class="lower">
+    <div ng-controller='ResumeTypesCtrl' id="choose-type" class="lower">
                                     <!--////////////////////////// LOWER SECTION. BEGIN ///////////////////////////////////////-->
         <div class="instruction central"> 
             <p>Start by choosing CV format. Click on the suitable model below and start filling in your resume.</p> 
             <p>You can later change CV type (using the Settings tab). </p>
-            <p>So far only two models are available. More to come by the end of April</p>
+            <p>So far only three models are available. More to come by the end of April</p>
         </div>        
         
         <p class="col-md-3"></p>
         <form method="POST" action="/main">                         <!-- CV model choices. Using POST request to pass cvType -->
-            <div class="row">
-                <div class="col-md-3">
-                    <button type=image name=cvType value="0"><img src="images/type1.png"></button>
+            <div class="row">            <!-- Angular directive cv-types gonna be here instead-->
+                <div class="col-md-3">      
+                    <button type=image name=cvType value="0" data-toggle="tooltip" data-placement="left" title="This model isn't 100% ready">
+                    <img ng-src="{{ items[0].image }}"></button>
                 </div>
                 <div class="col-md-3"><!-- <div style="position:absolute;left:460px;top: 757px;"> -->
-                    <button type=image name=cvType value="1"><img src="images/type0.png"></button>
+                    <button type=image name=cvType value="1"><img ng-src="{{ items[1].image }}"></button>
                 </div>
                 </div>
             <div class="row" style="padding-top: 30px; padding-left:100px;"> <!-- temporary solution to center 3rd resume model -->
                 <div class="col-md-2 col-md-offset-4"><!-- <div style="position:absolute;left:460px;top: 757px;"> -->
-                    <button type=image name=cvType value="2"><img src="images/type2.png"></button>
+                    <button type=image name=cvType value="2"><img ng-src="{{ items[2].image }}"></button>
                 </div>
             </div>
         </form>
+    <div cv-types="{{items}}"></div>
     </div>
-                                    
+                         
     <footer-index></footer-index><!--////////////////////////// FOOTER SECTION ///////////////////////////////////////-->
     
     <!-- Launch carousel and set its autoplay interval && Activate tooltips-->
