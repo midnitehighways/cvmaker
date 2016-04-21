@@ -25,12 +25,12 @@
     </script>
 </head>
 <body ng-controller="MenuCtrl as menu"> <!-- ng-controller="PersonCtrl as person" -->
-        
+        <!-- <div ng-init="mytab=3"></div> -->
         <header-main></header-main>                  <!--///////////////////////// HEADER //////////////////////////////  -->
         
         <div class="main">                  <!--/////////////////////////////////// MAIN ///////////////////////////////  -->
             <div class="left">
-    			<iframe class="preview-pane"type="application/pdf"width="100%" height="100%"frameborder="0">No PDF</iframe>
+    			<iframe id="mydiv" class="preview-pane"type="application/pdf"width="100%" height="100%"frameborder="0">No PDF</iframe>
     		</div>
                  
             <div class="right center">      <!--//////////////////////////////// RIGHT DIV /////////////////////////////  -->
@@ -41,6 +41,7 @@
         </div>
     
         <footer-main></footer-main>              <!--///////////////////////////// FOOTER ///////////////////////////////  -->
-        <script>preparePDF(<%- JSON.stringify(person) %>, <%= cvType %>);</script> 
+        
+        <script>preparePDF(<%- JSON.stringify(person) %>, <%= cvType %>);</script>  <!--launch preparePDF for chosen cv type-->
 </body>
 </html>

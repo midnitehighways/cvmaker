@@ -14,7 +14,7 @@ var edu = {
 };
 var edu0 = {
 	university: "Moldova State University",
-	faculty: "Computer Science",
+	faculty: "Computer Science and Applied Foreign Languages",
 	from: "Sep. 2000",
 	till: "Jun. 2005"
 };
@@ -30,10 +30,11 @@ var job = {
 	from: "Jun. 2015",
 	till: "Jan. 2016"
 };
+// ------ Person class
 function Person(fullName, email, phone, born, address, citizenship, education, employment, skills, languages, about, pic) {
-	this.fullName = fullName || "";
-	this.email = email || "";
-	this.phone = phone || "";
+	this.fullName = fullName;
+	this.email = email;
+	this.phone = phone;
 	this.born = born || "";  
 	this.address = address || "";
 	this.citizenship = citizenship || "";
@@ -46,23 +47,27 @@ function Person(fullName, email, phone, born, address, citizenship, education, e
 }
 //var person = new Person("Alexandru Oat", "oat.alexandru@gmail.com", "+358-466-360-623", "23.03.1982", "Rälssintie 16 B 14 Helsinki", "Moldova",[edu0, edu],[job0, job],["Object Oriented Programming"], ["English (fluent), Russian (native), French (good), Finnish (basic)"], about, myPic);
 var person = new Person ("", "", "", "", "", "",[],[],[],[],"","");
+var tab = 1;
 /******************* ---------------------- ---------------------------------------- --------------------- *******************/
 /******************* ---------------------- my variables, objects and functions. END --------------------- *******************/
 /******************* ---------------------- ---------------------------------------- --------------------- *******************/
 
+
+/*----------****************** ---------------------handling GET requests --------------------- ******************-----------*/
+
 router.get('/', function(req, res, next) {			// START PAGE
-	res.render('index', { title: 'Build your CV'});
+	res.render('index', { title: 'Welcome to CV Maker'});
 });
 
 router.get('/main', function(req, res, next) {			
-	res.render('main', { title: 'Welcome to CV Maker', person: person, cvType: cvType});
+	res.render('main', { title: 'Build your CV', person: person, cvType: cvType});
 });
 
 /*---------------****************************** handling POST request from form ************************----------------------*/
 
 router.post('/main', function(req, res, next) {			
 	cvType = req.body.cvType;
-	res.render('main', { title: 'Welcome to CV Maker', person: person, cvType: cvType});
+	res.render('main', { title: 'Build your CV', person: person, cvType: cvType});
 });
 
 router.post('/add', function (req, res) {

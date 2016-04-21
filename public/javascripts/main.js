@@ -1,3 +1,35 @@
+// $(document).ready(function(){
+//     $(function(){
+//         $('#personal').submit(function(e){
+//                 e.preventDefault();
+//                 var form = $(this);
+//                 // var post_url = form.attr('action');
+//                 var post_data = form.serialize();
+//                 // $("#mydiv").load("#mydiv>*","");
+//                 var newUser = {
+//             'fullName': 'sasha'
+//             // $('#addUser fieldset input#inputUserName').val(),
+//             // 'email': $('#addUser fieldset input#inputUserEmail').val(),
+//             // 'fullname': $('#addUser fieldset input#inputUserFullname').val(),
+//             // 'age': $('#addUser fieldset input#inputUserAge').val(),
+//             // 'location': $('#addUser fieldset input#inputUserLocation').val(),
+//             // 'gender': $('#addUser fieldset input#inputUserGender').val()
+//         }
+//                 $.ajax({
+//                     type: 'POST',
+//                     url: '/add', 
+//                     data: newUser,
+//                     dataType: 'JSON'
+//                     success: function(msg) {
+//                         // $(form).fadeOut(800, function(){
+//                         //     form.html(msg).fadeIn().delay(2000);
+
+                        
+//                     }
+//                 });
+//             });
+//         });
+// });
 // ///////////////////////////////// switching the tabs in work-space
 // $(document).ready(function() {
 //     $(".tabs-menu a").click(function(event) {
@@ -73,7 +105,6 @@ $(function () {                         // save PDF file
         doc.save('CV.pdf');
     })
 });
-
 
 //////////////////////////////////// Add textEx function to jsPDF. First of all, for right alligning the text
 var splitRegex = /\r\n|\r|\n/g;
@@ -232,24 +263,27 @@ $(document).ready(function() {
         doc.setFontSize(12);
         
         if(person.pic) doc.addImage(person.pic, 'JPEG', mx-50, 18, 36, 36);     // prevent possible errors if base64 string isn't ok
-        doc.addImage(DOB_icon, 'JPEG', x+90, y, 4, 4);
+        if(person.born) doc.addImage(DOB_icon, 'JPEG', x+90, y, 4, 4);
         doc.textEx(person.born, x+97, y, "left");
-        doc.addImage(phone_icon, 'JPEG', x, y, 4, 4);
+        if(person.phone) doc.addImage(phone_icon, 'JPEG', x, y, 4, 4);
         doc.textEx(person.phone, x+7, y, "left"); y+=interval;
-        doc.addImage(citizenship_icon, 'JPEG', x+90, y, 4, 4);
+        if(person.citizenship) doc.addImage(citizenship_icon, 'JPEG', x+90, y, 4, 4);
         doc.textEx(person.citizenship, x+97, y, "left");
-        doc.addImage(email_icon, 'JPEG', x, y, 4, 4);
+        if(person.email) doc.addImage(email_icon, 'JPEG', x, y, 4, 4);
         doc.textEx(person.email, x+7, y, "left"); y+=interval;
-        doc.addImage(home_icon, 'JPEG', x, y, 4, 4);
+        if(person.address) doc.addImage(home_icon, 'JPEG', x, y, 4, 4);
         doc.textEx(person.address, x+7, y, "left");y+=big_interval+interval-4;
 
+    if(person.education.length) {
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("Education",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         for(var i = 0; i < person.education.length; i++) {
             doc.textEx(person.education[i].university, x, y, "left");
             doc.textEx(person.education[i].from + " - " + person.education[i].till, mx, y, "right");y+=interval-2;
             doc.setFontSize(10);doc.textEx(person.education[i].faculty, x, y, "left");doc.setFontSize(12);y+=interval;
-        }
+            }
         y+=big_interval-4;
+    }
+    if(person.employment.length) {
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("Work experience",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         for(var i = 0; i < person.employment.length; i++) {
             doc.textEx(person.employment[i].company, x, y, "left");
@@ -257,18 +291,25 @@ $(document).ready(function() {
             doc.setFontSize(10);doc.textEx(person.employment[i].position, x, y, "left");doc.setFontSize(12);y+=interval;
         }
         y+=big_interval-4;
+    }
+    if(person.skills.length) {
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("Qualifications and skills",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         for(var i = 0; i < person.skills.length; i++) {
             doc.textEx(person.skills[i], x, y, "left");y+=interval;
         }
         y+=big_interval-4;
+    }
+    if(person.languages.length) {
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("Language proficiency",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         for(var i = 0; i < person.languages.length; i++) {
             doc.textEx(person.languages[i], x, y, "left");y+=interval;
         }
         y+=big_interval-4;
+    }
+    if(person.about) {
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("A bit about me",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         doc.textEx(person.about, x, y, "left");y+=interval;
+    }
 }
 else if(cvType==2) {
         var x = 11;            // starting X point
@@ -295,21 +336,22 @@ else if(cvType==2) {
         doc.setFontSize(12);
         y-=10
         if(person.pic) doc.addImage(person.pic, 'JPEG', mx-45, y-9, 45, 45);     // prevent possible errors if base64 string isn't ok
-        doc.addImage(phone_icon, 'JPEG', x, y, 4, 4);
+        if(person.phone) doc.addImage(phone_icon, 'JPEG', x, y, 4, 4);
         doc.textEx(person.phone, x+7, y, "left"); y+=interval;
-        doc.addImage(email_icon, 'JPEG', x, y, 4, 4);
+        if(person.email) doc.addImage(email_icon, 'JPEG', x, y, 4, 4);
         doc.textEx(person.email, x+7, y, "left"); y+=interval;
-        doc.addImage(home_icon, 'JPEG', x, y, 4, 4);
+        if(person.address) doc.addImage(home_icon, 'JPEG', x, y, 4, 4);
         doc.textEx(person.address, x+7, y, "left");y+=interval;
-        doc.addImage(DOB_icon, 'JPEG', x, y, 4, 4);
+        if(person.born) doc.addImage(DOB_icon, 'JPEG', x, y, 4, 4);
         doc.textEx(person.born, x+7, y, "left");y+=interval;
-        doc.addImage(citizenship_icon, 'JPEG', x, y, 4, 4);
+        if(person.citizenship) doc.addImage(citizenship_icon, 'JPEG', x, y, 4, 4);
         doc.textEx(person.citizenship, x+7, y, "left");
 
         y+=big_interval+interval;
 // doc.setTextColor(0,0,0); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        doc.setFillColor(203, 203, 203);
-        doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
+    
+    if(person.education.length) {    
+        doc.setFillColor(203, 203, 203);doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
         doc.setFontType("bold");doc.textEx("Education",x,y-6,"left");doc.setFontType("normal");y+=small_interval-1;
         for(var i = 0; i < person.education.length; i++) {
             doc.textEx(person.education[i].university, x, y, "left");
@@ -317,6 +359,8 @@ else if(cvType==2) {
             doc.setFontSize(10);doc.textEx(person.education[i].faculty, x, y, "left");doc.setFontSize(12);y+=interval;
         }
         y+=big_interval-7;
+    }
+    if(person.employment.length) {
         doc.setFillColor(203, 203, 203);doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
         doc.setFontType("bold");doc.textEx("Work experience",x,y-6,"left");doc.setFontType("normal");y+=small_interval-1;
         for(var i = 0; i < person.employment.length; i++) {
@@ -325,21 +369,28 @@ else if(cvType==2) {
             doc.setFontSize(10);doc.textEx(person.employment[i].position, x, y, "left");doc.setFontSize(12);y+=interval;
         }
         y+=big_interval-7;
+    }
+    if(person.skills.length) {
         doc.setFillColor(203, 203, 203);doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
         doc.setFontType("bold");doc.textEx("Qualifications and skills",x,y-6,"left");doc.setFontType("normal");y+=small_interval-1;
         for(var i = 0; i < person.skills.length; i++) {
             doc.textEx(person.skills[i], x, y, "left");y+=interval;
         }
         y+=big_interval-7;
+    }
+    if(person.languages.length) {
         doc.setFillColor(203, 203, 203);doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
         doc.setFontType("bold");doc.textEx("Language proficiency",x,y-6,"left");doc.setFontType("normal");y+=small_interval-1;
         for(var i = 0; i < person.languages.length; i++) {
             doc.textEx(person.languages[i], x, y, "left");y+=interval;
         }
         y+=big_interval-7;
+    }
+    if(person.about) {
         doc.setFillColor(203, 203, 203);doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
         doc.setFontType("bold");doc.textEx("Couple of words about myself",x,y-6,"left");doc.setFontType("normal");y+=small_interval-1;
         doc.textEx(person.about, x, y, "left");y+=interval;
+    }
 }
 
 else{
@@ -369,24 +420,24 @@ else{
         doc.rect(x-1, y+dist*4-1+w, 34, 7, 'F');
         doc.textEx("CONTACT", x, y+dist, "left");
         doc.textEx("PERSONAL", x, y+dist*2, "left");
-        doc.textEx("EDUCATION", x, y+dist*3, "left");
+        if(person.education.length) { doc.textEx("EDUCATION", x, y+dist*3, "left");}
         doc.textEx("WORK", x, y+dist*3+v, "left");doc.textEx("EXPERIENCE", x, y+dist*3+8+v, "left");
         doc.textEx("SKILLS", x, y+dist*4+w, "left");
         doc.setFontSize(12); doc.setTextColor(0, 0, 0);
-        doc.textEx("Email: " + person.email, maxX, y+dist, "right");
-        doc.textEx("Phone: " + person.phone, maxX, y+dist+interval, "right");
-        doc.textEx(person.address, midX, y+dist, "left");
-        doc.textEx("Date of birth: " + person.born, midX, y+dist*2, "left");             // DOB
-        doc.textEx("Citizenship: " + person.citizenship, midX, y+dist*2+interval*1, "left"); // citizenship
-
+        if(person.email) doc.textEx("Email: " + person.email, maxX, y+dist, "right");
+        if(person.phone) doc.textEx("Phone: " + person.phone, maxX, y+dist+interval, "right");
+        if(person.address) doc.textEx(person.address, midX, y+dist, "left");
+        if(person.born) doc.textEx("Date of birth: " + person.born, midX, y+dist*2, "left");                        // DOB
+        if(person.citizenship) doc.textEx("Citizenship: " + person.citizenship, midX, y+dist*2+interval*1, "left"); // citizenship
         for (var i=0; i < person.education.length; i++) {
          doc.setFontType("bold");
-         doc.textEx(person.education[i].university, midX, y+dist*3+interval*i*2, "left");            // uni
+         doc.textEx(person.education[i].university, midX, y+dist*3+interval*i*2, "left");                           // uni
          doc.setFontType("normal");
-         doc.textEx(person.education[i].faculty, midX, y+dist*3+interval*(i*2+1)-2, "left");         // faculty
+         doc.textEx(person.education[i].faculty, midX, y+dist*3+interval*(i*2+1)-2, "left");                        // faculty
          doc.textEx(person.education[i].from + " - " + person.education[i].till, maxX, y+dist*3+interval*i*2, "right");
         }
-
+    
+    if(person.employment.length) {    
         for (var i=0; i < person.employment.length; i++) {
             doc.setFontType("bold");
             doc.textEx(person.employment[i].company, midX, y+u+interval*i*2, "left");          // company
@@ -394,10 +445,12 @@ else{
             doc.textEx(person.employment[i].position, midX, y+u+interval*(i*2+1)-2, "left");         // position
             doc.textEx(person.employment[i].from + " - " + person.employment[i].till, maxX, y+u+interval*i*2, "right");
         }
-
+    }
+    if(person.skills.length) {    
         for (var i=0; i < person.skills.length; i++) {
             doc.textEx(person.skills[i], midX, y+dist*4+w+1+interval*(i), "left");          // skill
         }
+    }
     }
         var string = doc.output('bloburi');
         $('.preview-pane').attr('src', string);

@@ -32,7 +32,7 @@
             build your <span>special</span> resume
         </div>
         <!-- Carousel. BEGIN-->
-        <div ng-controller="CarouselCtrl" id="about" class="carousel slide" data-interval="4000" data-ride="carousel">
+        <div ng-controller="CarouselCtrl" id="about" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#about" ng-repeat="slide in slides" data-slide-to="{{slide.index}}" ng-class="{'active': {{slide.index}} === 0}"></li>
             </ol>
@@ -67,8 +67,7 @@
         <form method="POST" action="/main">                         <!-- CV model choices. Using POST request to pass cvType -->
             <div class="row">            <!-- Angular directive cv-types gonna be here instead-->
                 <div class="col-md-3">      
-                    <button type=image name=cvType value="0" data-toggle="tooltip" data-placement="left" title="This model isn't 100% ready">
-                    <img ng-src="{{ items[0].image }}"></button>
+                    <button type=image name=cvType value="0" data-toggle="tooltip" data-placement="left" title="This model isn't 100% ready. Feel free to use it though"><img ng-src="{{ items[0].image }}"></button>
                 </div>
                 <div class="col-md-3"><!-- <div style="position:absolute;left:460px;top: 757px;"> -->
                     <button type=image name=cvType value="1"><img ng-src="{{ items[1].image }}"></button>
