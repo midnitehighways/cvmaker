@@ -1,13 +1,13 @@
 <!--////////////////////////////////// BEGIN SKILLS //////////////////////////////  -->
     <div ng-show="menu.isSet(4)" id="skills" class="tab-content">        
-        <form action="/add_skill" method="POST">
+        <form class="cv-form" action="/add_skill" method="POST">
             <span class="input input--ruri long">
                 <input class="input__field input__field--ruri long" type="text" id="input-14" name="skill"/>
                 <label class="input__label input__label--ruri" for="input-14">
                     <span class="input__label-content input__label-content--ruri">Skills and qualifications</span>
                 </label>
             </span>            
-            <div class="buttons"><input type="submit" class="my-button icon-save" value="Save form" />
+            <div class="buttons"><input type="submit" id="skills-submit" class="my-button icon-save" value="Save form" />
             <input type="button" class="reset my-button icon-reset danger" value="Reset form"/>
             <a href class="get my-button icon-download">Get PDF</a>
             <a href="/clean" class="my-button icon-clean danger">Clean PDF</a></div>

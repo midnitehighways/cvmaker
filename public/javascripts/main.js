@@ -1,3 +1,100 @@
+/******------------ AJAX for cv building forms ------------********/
+$(function () {  
+        //$('body').on('click', '#lll', function(e) {
+   // $("#languages-submit").on('click', function (event) {
+    $('.cv-form').on('submit', function(event) {
+        // var element = $(this)
+        event.preventDefault();
+        event.stopImmediatePropagation();       // prevent multiple event firings (page doesn't refresh, so events are triggered 1,2, 4, 6...etc. times)
+        // ex = $("body").find("#input-15").val();
+        //var example_text = element.children('.add-example-field').val()
+        // console.log("stroka = " + ex);
+        var form = $(this);
+        console.log("serialize " + form.serialize() + "/naction: " + form.attr('action'));
+        // $("#input-15").val("");
+        // $("#mydiv").load("#mydiv>*","");
+
+        
+        $.ajax({
+            url: form.attr('action'), 
+            async: true,
+            // dataType: JSON, 
+            
+            type: "POST",
+            // contentType: "application/json; charset=utf-8",
+            data: form.serialize(), // data sent with the post request
+            // handle the successful response
+            success: function(response) {        
+                // $(".footer").hide("slow", function(){console.log("hideeeee");});
+
+                console.log("success");           
+            }, 
+            
+            //error : function(xhr, status){ console.log(status);$("#mydiv").load("#mydiv>*",""); $("#input-15").val("");   },
+            // error: function(JSON) {        console.log("error");$("#mydiv").load("#mydiv>*",""); $("#input-15").val("");           },
+            cache: false
+            //dataType: 'JSON'
+            // complete: function() {$("#mydiv").load("#mydiv>*",""); }
+            // handle non-successful response
+             })
+        .done(function(html) {
+            // $( "body" ).append( html );
+            $( "#mydiv" ).empty().append( html );
+            $( "#work-space" ).empty().append( "#work-space" );
+            // $( "#skills" ).empty().append( "#skills" );
+            // $( "#languages" ).empty().append( "#languages" );
+            // $( "#skills" ).empty().append( "#skills" );
+            // $( "#languages" ).append( html );
+        });
+// $("#la").load("#la");
+//$("#mydiv").ajax("#mydiv>*","");
+// $("#languages").load("#languages>*","");
+
+// $("#mydiv").load("#mydiv>*","");
+//$("#input-155").val(""); 
+            
+    })
+
+});
+
+// $(function () {  
+//    $("#skills-submit").on('click', function (event) {
+//         event.preventDefault();
+//         event.stopImmediatePropagation();       // prevent multiple event firings (page doesn't refresh, so events are triggered 1,2, 4, 6...etc. times)
+//         ex = $("body").find("#input-14").val();
+//         console.log("stroka = " + ex);
+//         $.ajax({
+//             url : "/add_skill", 
+//             async: true,
+//             type : "POST",
+//             data: {  "ex" : ex }, // data sent with the post request
+//             success: function(response) {        
+//                 console.log("success");           
+//             }, 
+//             cache: false
+//              })
+//         .done(function( html ) {
+//             $( "#mydiv" ).empty().append( html );
+//             $( "#work-space" ).empty().append( "#work-space" );
+//         });
+//     })
+
+// });
+
+
+
+
+
+
+$(function () {  
+    // $('body').on('click', '#lll', function(e) {
+    $("#input-155").on('change', function (event) { 
+        //$("#input-155").attr('value', $("#input-155").val());
+        console.log($("#input-155").attr('value'));
+    })
+});
+
+
 // $(document).ready(function(){
 //     $(function(){
 //         $('#personal').submit(function(e){
@@ -101,7 +198,8 @@ $(function () {                         // reset form values
 });
 /////////////// saving the final PDF file
 $(function () {                         // save PDF file
-    $(".get").click(function() {
+    $(".get").click(function(event) {
+        event.stopImmediatePropagation(); 
         doc.save('CV.pdf');
     })
 });

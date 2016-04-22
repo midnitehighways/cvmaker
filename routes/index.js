@@ -60,14 +60,14 @@ router.get('/', function(req, res, next) {			// START PAGE
 });
 
 router.get('/main', function(req, res, next) {			
-	res.render('main', { title: 'Build your CV', person: person, cvType: cvType});
+	res.render('main', { title: 'Build your CV', person: person, cvType: cvType, tab: tab});
 });
 
 /*---------------****************************** handling POST request from form ************************----------------------*/
 
 router.post('/main', function(req, res, next) {			
 	cvType = req.body.cvType;
-	res.render('main', { title: 'Build your CV', person: person, cvType: cvType});
+	res.render('main', { title: 'Build your CV', person: person, cvType: cvType, tab: tab});
 });
 
 router.post('/add', function (req, res) {
@@ -103,16 +103,23 @@ router.post('/add_job', function (req, res) {
   	job.from = req.body.job_from;
   	job.till = req.body.job_till;
   	person.employment.push(job);
+  	tab=3;
   	res.redirect('/main');
 });
 
 router.post('/add_skill', function (req, res) {
   	person.skills.push(req.body.skill);
+  	tab=4;
   	res.redirect('/main');
 });
 
 router.post('/add_lang', function (req, res) {
   	person.languages.push(req.body.lang);
+  	// console.log("LANG: ----- " + req.body.ex);
+  	// console.log("BODY: ----- " + req);
+  	// var l = req.body.ex;
+  	// person.languages.push(l);
+  	tab=5;
   	res.redirect('/main');
 });
 

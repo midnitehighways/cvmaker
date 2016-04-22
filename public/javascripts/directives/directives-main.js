@@ -1,3 +1,14 @@
+cvApp.directive("mydir" , function() {
+    return {
+        // You can copy all of the attributes into the scope
+        scope : {
+            one : '@myOne'
+
+        },
+        
+        template: '<p>ng-init = "menu.setTab{{one}}"One = {{one}} // Passed as my-one</p>'
+      }});
+
 cvApp.directive("headerMain", function() {
       return {
         restrict: 'E',
