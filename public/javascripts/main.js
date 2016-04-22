@@ -1,185 +1,47 @@
-/******------------ AJAX for cv building forms ------------********/
-$(function () {  
-        //$('body').on('click', '#lll', function(e) {
-   // $("#languages-submit").on('click', function (event) {
-    $('.cv-form').on('submit', function(event) {
-        // var element = $(this)
-        event.preventDefault();
-        event.stopImmediatePropagation();       // prevent multiple event firings (page doesn't refresh, so events are triggered 1,2, 4, 6...etc. times)
-        // ex = $("body").find("#input-15").val();
-        //var example_text = element.children('.add-example-field').val()
-        // console.log("stroka = " + ex);
-        var form = $(this);
-        console.log("serialize " + form.serialize() + "/naction: " + form.attr('action'));
-        // $("#input-15").val("");
-        // $("#mydiv").load("#mydiv>*","");
+////////////////////////////////////////////////////////////////////
+/******------------ AJAX for CV building forms ------------********/
+////////////////////////////////////////////////////////////////////
 
-        
+$(function () {  
+    $('.cv-form').on('submit', function(event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();// prevent multiple event firings (otherwise events are triggered multiple times, because page isn't refreshed)
+        var form = $(this);
+        //console.log("serialize " + form.serialize() + "/naction: " + form.attr('action'));
         $.ajax({
             url: form.attr('action'), 
             async: true,
-            // dataType: JSON, 
-            
             type: "POST",
-            // contentType: "application/json; charset=utf-8",
             data: form.serialize(), // data sent with the post request
-            // handle the successful response
             success: function(response) {        
-                // $(".footer").hide("slow", function(){console.log("hideeeee");});
-
-                console.log("success");           
+                console.log("success");   
+                resetForm();                        // clean form controls after successful ajax call        
             }, 
-            
-            //error : function(xhr, status){ console.log(status);$("#mydiv").load("#mydiv>*",""); $("#input-15").val("");   },
-            // error: function(JSON) {        console.log("error");$("#mydiv").load("#mydiv>*",""); $("#input-15").val("");           },
             cache: false
-            //dataType: 'JSON'
-            // complete: function() {$("#mydiv").load("#mydiv>*",""); }
-            // handle non-successful response
-             })
-        .done(function(html) {
-            // $( "body" ).append( html );
+        })
+        .done(function(html) {                      // when ajax is done, refresh pdf-preview (mydiv) and the whole work-space div
             $( "#mydiv" ).empty().append( html );
             $( "#work-space" ).empty().append( "#work-space" );
-            // $( "#skills" ).empty().append( "#skills" );
-            // $( "#languages" ).empty().append( "#languages" );
-            // $( "#skills" ).empty().append( "#skills" );
-            // $( "#languages" ).append( html );
+            //resetForm();
         });
-// $("#la").load("#la");
-//$("#mydiv").ajax("#mydiv>*","");
-// $("#languages").load("#languages>*","");
-
-// $("#mydiv").load("#mydiv>*","");
-//$("#input-155").val(""); 
-            
-    })
-
-});
-
-// $(function () {  
-//    $("#skills-submit").on('click', function (event) {
-//         event.preventDefault();
-//         event.stopImmediatePropagation();       // prevent multiple event firings (page doesn't refresh, so events are triggered 1,2, 4, 6...etc. times)
-//         ex = $("body").find("#input-14").val();
-//         console.log("stroka = " + ex);
-//         $.ajax({
-//             url : "/add_skill", 
-//             async: true,
-//             type : "POST",
-//             data: {  "ex" : ex }, // data sent with the post request
-//             success: function(response) {        
-//                 console.log("success");           
-//             }, 
-//             cache: false
-//              })
-//         .done(function( html ) {
-//             $( "#mydiv" ).empty().append( html );
-//             $( "#work-space" ).empty().append( "#work-space" );
-//         });
-//     })
-
-// });
-
-
-
-
-
-
-$(function () {  
-    // $('body').on('click', '#lll', function(e) {
-    $("#input-155").on('change', function (event) { 
-        //$("#input-155").attr('value', $("#input-155").val());
-        console.log($("#input-155").attr('value'));
     })
 });
 
+////////////////////// Encode image to base64 format ////////////////////////////
 
-// $(document).ready(function(){
-//     $(function(){
-//         $('#personal').submit(function(e){
-//                 e.preventDefault();
-//                 var form = $(this);
-//                 // var post_url = form.attr('action');
-//                 var post_data = form.serialize();
-//                 // $("#mydiv").load("#mydiv>*","");
-//                 var newUser = {
-//             'fullName': 'sasha'
-//             // $('#addUser fieldset input#inputUserName').val(),
-//             // 'email': $('#addUser fieldset input#inputUserEmail').val(),
-//             // 'fullname': $('#addUser fieldset input#inputUserFullname').val(),
-//             // 'age': $('#addUser fieldset input#inputUserAge').val(),
-//             // 'location': $('#addUser fieldset input#inputUserLocation').val(),
-//             // 'gender': $('#addUser fieldset input#inputUserGender').val()
-//         }
-//                 $.ajax({
-//                     type: 'POST',
-//                     url: '/add', 
-//                     data: newUser,
-//                     dataType: 'JSON'
-//                     success: function(msg) {
-//                         // $(form).fadeOut(800, function(){
-//                         //     form.html(msg).fadeIn().delay(2000);
-
-                        
-//                     }
-//                 });
-//             });
-//         });
-// });
-// ///////////////////////////////// switching the tabs in work-space
-// $(document).ready(function() {
-//     $(".tabs-menu a").click(function(event) {
-//         event.preventDefault();
-//         $(this).parent().addClass("current");
-//         $(this).parent().siblings().removeClass("current");
-//         var tab = $(this).attr("href");
-//         $(".tab-content").not(tab).css("display", "none");
-//         $(tab).fadeIn();
-//     });
-// });
-
-
-// $(document).ready(function() {
-//     $(".headmenu a").click(function(event) {
-//         event.preventDefault();
-//         console.log($(this).parent());
-//         $(this).parent().addClass("active");
-//         $(this).parent().siblings().removeClass("active");
-//         var tab = $(this).attr("href");
-//         $(".tab-content").not(tab).css("display", "none");
-//         $(tab).fadeIn();
-//     });
-// });
-
-// <script>
-//   $('.carousel').carousel({
-//     interval: 3000
-//   })
-// </script>
-
-/////////////// saving the final PDF file.                      TO DO: make jquery - on event
-// function savePDF(name) { doc.save(name + '.pdf'); }
-
-// $(document).ready(function() {                       // activate bootstrap tooltips
-//     $('[data-toggle="tooltip"]').tooltip();
-// });
-////////////////////// Encode image to base64 format
 $(function () {  
     $('#inputFileToLoad').on('change', function encodeImageFileAsUrl(){
-    console.log("HELLO");
     var filesSelected = document.getElementById("inputFileToLoad").files;
     if(filesSelected){
-        if(filesSelected.length > 0){
+        if(filesSelected.length > 0) {
             var fileToLoad = filesSelected[0];
             var fileReader = new FileReader();
-            fileReader.onload = function(fileLoadedEvent){
+            fileReader.onload = function(fileLoadedEvent) {                         // when image is uploaded
                 var srcData = fileLoadedEvent.target.result;
                 var newImage = document.createElement('img');
                 var filename = $('input[type=file]').val().split('\\').pop();       // get the file' name
                 $('.fileUpload').html(filename);
                 newImage.src = srcData;              // result is here as a string
-                console.log(srcData);
                 $("#pic").val(srcData);              // pass result to this hidden input, then it'll be uploaded with POST data after form submission
                 // document.getElementById("imgText").value = srcData;
                 document.getElementById("imgTest").src = srcData;   // show image in imgTest img-container
@@ -191,15 +53,26 @@ $(function () {
     })
 });
 
-$(function () {                         // reset form values
-    $(".reset").click(function() {
-        $(this).closest('form').find("input[type=text], [type=email], [type=date], textarea").val("");
-    })
+/////////////////////////////// reset form values //////////////////////////////////
+function resetForm() {
+        // $(this).closest('form').find("input[type=text], [type=email], [type=date], textarea").val("");
+        $('.cv-form').find("input[type=text], [type=email], [type=date], textarea").val("");
+        console.log("reset!" + $("#pic").val());
+        if($("#pic").val()) {                       // if image was uploaded - clean and fileUpload section
+            $("#pic").val("");
+            document.getElementById("imgTest").src = "";
+            $('.fileUpload').html('Please, refresh your page to upload new photo');
+        }
+    }
+$(function () {                       
+    $(".reset").click(function(){ resetForm()})
 });
-/////////////// saving the final PDF file
+
+/////////////////////////////// save the final PDF file //////////////////////////////////
+
 $(function () {                         // save PDF file
     $(".get").click(function(event) {
-        event.stopImmediatePropagation(); 
+        event.stopImmediatePropagation(); // prevent multiple event firings (otherwise save is made many times, because page isn't refreshed in AJAX)
         doc.save('CV.pdf');
     })
 });
@@ -332,8 +205,11 @@ $(document).ready(function() {
     }
 });
 
-//---------------------------------------------------- PREPARE PDF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//---------------------------------------------------- MAIN CV BUILDING FUNCTION
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------- PREPARE PDF -------------------------------------------------------------------
+//-------------------------------------------- MAIN CV BUILDING FUNCTION -------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     var doc = new jsPDF();  // global
     function preparePDF(person, cvType) {
     var v, u;
@@ -342,6 +218,8 @@ $(document).ready(function() {
     var email_icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAjdJREFUOBFdk71rU1EYh8/9TC69SfAjZMmiVnQQQe9Q0SUxIDiJQhwUBx0FKQiCU4lQBQeFLl0UJ3XuP2Cb4KIW1GxqlIqgiFFMMQk1IabP7/YGigee/u77ed5zcuoYY6z/wDQBHIez8Bgi8KADf0DL3hIalEolt1ar2cJxnMuWZb2Hv/AFVqEFA+jYtj1fKBSmlDtpYskoFosBwUckjdGHnucdlW88HlsilUpN47+vOCypCQ00vYkTCC4SGDHBxUlRJpPZ7bruCSgFQVCUn7yrySZzKo4XRacT500l6Ugk3sCnI2hH8RvfXcVZDWhTvEsNbIxlWMvn82Gyyx1sZeoenoHuID5aEp+VTe1JNdiDMaT7PQU5+wy2LuyHRk8KHmCrwaxsJj4jm9oLuskD4OJ4i5rRaHQe8bAXhsNhQz6K9kvxtaQsf0vMhhrsTIx1KcmHpOz2XKqLRA7CgJ3X5CPniJTVUoON+NOYbKLyKWmvtN/vX0cK0PN9/1c6nd5H7Ar2C3gH5rDOw44LBPQz3ZINHdAj+goNkO8V/IR1/bwq1vJxvIZvYRjmc7ncDpo8wf4Ey7pUPSK+V+AzLMmnzaiNpzWc7RwBTfE0iiJPQb006Xa2+/RW1CD+RyJJTWqoXled7/lsNrtaqVR67XbbajabU91ud5rpPpTL5b585Jl6vf5PalWrVUc7UXiJST5qGvgOL+FN8t1j9Eh52n0yQdyAPzpL3BUN4RTchgGswDU4BimYnD2u2QQIj+YoA3Rr8gAAAABJRU5ErkJggg==";
     var DOB_icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABUUlEQVQ4T52SX2rCQBDGv1kQhEDS4EvyZCMIQhAEL1BP0PQG7Q3aG/QI3qC9Qe0JzAWEQhAfBKUPwbyIf0BICOyWjaaYdtXgvO3u7O+b+WYIiuh2uwbnfADg7vDsM8a80Wi0+ZtOKkC73R4SUf45SxFC+EEQ9EoBXNcVKvB4PP4nqKyg1WopAUR0O5lMvo/hSkCz2Rwe9Z/n+9PptFwLjUbDEEIUTCQibzablTMxl3Qcpz6fzwslnzRRqiZJ8grgGcCac95ZLBbZZ9u264yxLwA3APphGL7koF8PLMt6A/B4pPAeRdGTPJ97ywC1Wu2eMSZ7LgQRdQ47INULwTn3lsvlZwYwTfNDmqSa/ak7afJqtXrIALquK+d+CbjdbikDaJp2FWC32+0B1Wr1KkAcx3tApVJRbd6lDvw0TXv5GA3GWB+ANFLO+lysAQw453JfNj8ZlXMRjnxkbQAAAABJRU5ErkJggg==";
     var citizenship_icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB9klEQVQ4T3VTS47aQBCtatsIiQVmgYQEgjEIIVbxnGA4AjkBPoJzA44wcwNygnCDcU4wzgrBAhHEgh0TCSQ+dlf0HBsRC1qy5K7q97rq1Wum3HJdd8TMHhENcqlARCZhGH6/jXO26ff7LcuypkTk5knT/YqInogovFwuw9ls9hvxhABgpVRIRDYzT7XWITOPiQggfKhmpbUeKKVwyZPW2gVJQtDr9T6YGTevzueza5qmr5Qai8gnEY2Z+VVEQhHxoihaWZYVADefz5+50+mMlFITIvpk5sFisfjV7Xbf05uhxXWJyDiO44lSCpVMtNYeO46DwwPcslwuv+G04zgtZvZFxM8LeSNu0h43m01JD/nr9fqt3W6XoyhCiffEBAgVQA/kfa7X6xkBQBALfdv3JgGBN5vNV+QajcaLiARcq9UyAoJQqZgPJknedrtNfFCr1V6IKOBqtXoleITK4qmIr6ZpemkbU65UKu9Q/wbsM/MKrrvXCkbLzLaIwA8227Y90lrjcLJglv1+/xP/5XL5h4gMH1WmlPISI5VKpY8b1cNCoTDY7XZ/0twX2PcOSXg4HJ4TgmKx2EoFTNTH/E+n0xviGFv+YaVtuMfj8Z+VM5I4jrPHBNsG6avMjzQ0DGMIMHBXgozIMAxo4uWERVUB7BvH8X/P+S/VgemqwJIq3QAAAABJRU5ErkJggg==";
+
+   //////////////////////////////////////////////// ---------------- cvType = 1 -------------- ////////////////////////////////////////////
 
     if(cvType==1) {
         var x = 8+3;            // starting X point
@@ -360,7 +238,15 @@ $(document).ready(function() {
         doc.setFontType("bold");doc.textEx(person.fullName, x, y-15, "left");doc.setFontType("normal");
         doc.setFontSize(12);
         
-        if(person.pic) doc.addImage(person.pic, 'JPEG', mx-50, 18, 36, 36);     // prevent possible errors if base64 string isn't ok
+        if(person.pic) {            // prevent possible errors if base64 string isn't ok or file isn't uploaded
+            try {
+            doc.addImage(person.pic, 'JPEG', mx-50, 18, 36, 36);     
+            }
+            catch(err) {            // catch error if file is uploaded, but isn't ok
+                console.log("Uploaded image isn't OK. Please, try another one or try again");
+                // $("imgTest").text("Try another file");
+            }
+        }
         if(person.born) doc.addImage(DOB_icon, 'JPEG', x+90, y, 4, 4);
         doc.textEx(person.born, x+97, y, "left");
         if(person.phone) doc.addImage(phone_icon, 'JPEG', x, y, 4, 4);
@@ -409,6 +295,9 @@ $(document).ready(function() {
         doc.textEx(person.about, x, y, "left");y+=interval;
     }
 }
+
+//////////////////////////////////////////////// ---------------- cvType = 2 -------------- ////////////////////////////////////////////
+
 else if(cvType==2) {
         var x = 11;            // starting X point
         var x_margin = 3;       // margin to the left and to the right from max X limits for rectangles and lines
@@ -491,7 +380,9 @@ else if(cvType==2) {
     }
 }
 
-else{
+//////////////////////////////////////////////// ---------------- cvType = 3 -------------- ////////////////////////////////////////////
+
+else {
      var x = 8;          // left horizontal border
      var y = 18;         // top vertical border
      var maxX = x+194;   // right horizontal border
