@@ -7,7 +7,7 @@ $(function () {
         event.preventDefault();
         event.stopImmediatePropagation();// prevent multiple event firings (otherwise events are triggered multiple times, because page isn't refreshed)
         var form = $(this);
-        //console.log("serialize " + form.serialize() + "/naction: " + form.attr('action'));
+        
         $.ajax({
             url: form.attr('action'), 
             async: true,
@@ -20,12 +20,12 @@ $(function () {
             cache: false
         })
         .done(function(html) {                      // when ajax is done, refresh pdf-preview (mydiv) and the whole work-space div
-            $( "#mydiv" ).empty().append( html );
-            $( "#work-space" ).empty().append( "#work-space" );
-            //resetForm();
+            $("#mydiv").empty().append(html);
+            $("#work-space").empty().append("#work-space");
         });
     })
 });
+
 
 ////////////////////// Encode image to base64 format ////////////////////////////
 
@@ -53,7 +53,9 @@ $(function () {
     })
 });
 
+
 /////////////////////////////// reset form values //////////////////////////////////
+
 function resetForm() {
         // $(this).closest('form').find("input[type=text], [type=email], [type=date], textarea").val("");
         $('.cv-form').find("input[type=text], [type=email], [type=date], textarea").val("");
@@ -64,20 +66,26 @@ function resetForm() {
             $('.fileUpload').html('Please, refresh your page to upload new photo');
         }
     }
+
+
+/////////////////// call resetForm() function on reset-button click //////////////////////////////////
+
 $(function () {                       
     $(".reset").click(function(){ resetForm()})
 });
 
-/////////////////////////////// save the final PDF file //////////////////////////////////
 
-$(function () {                         // save PDF file
+/////////////////////////////// download the final PDF file //////////////////////////////////////////
+
+$(function () {                         
     $(".get").click(function(event) {
         event.stopImmediatePropagation(); // prevent multiple event firings (otherwise save is made many times, because page isn't refreshed in AJAX)
         doc.save('CV.pdf');
     })
 });
 
-//////////////////////////////////// Add textEx function to jsPDF. First of all, for right alligning the text
+
+//////////////////////////////////// Customizing jsPDF. Adding textEx() function. First of all, for right alligning the text
 var splitRegex = /\r\n|\r|\n/g;
 jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     var fontSize = this.internal.getFontSize() / this.internal.scaleFactor;
@@ -113,6 +121,7 @@ jsPDF.API.textEx = function (text, x, y, hAlign, vAlign) {
     this.text(text, x, y);
     return this;
 };
+
 
 /*!  ----------CLASSIE mini-library for styled inputs which are being used in CVmaker just temporary (LATER will be deleted, so far OK)
  * classie - class helper functions
@@ -176,6 +185,7 @@ if ( typeof define === 'function' && define.amd ) {
 }
 })( window );
 
+
 /////////////////// this function is part of __input functionality. Styled inputs used in CVmaker just temporary (LATER will be deleted, so far OK)
 $(document).ready(function() {
     if (!String.prototype.trim) {
@@ -205,6 +215,7 @@ $(document).ready(function() {
     }
 });
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //---------------------------------------------------- PREPARE PDF -------------------------------------------------------------------
 //-------------------------------------------- MAIN CV BUILDING FUNCTION -------------------------------------------------------------
@@ -230,6 +241,7 @@ $(document).ready(function() {
         var interval = 8;       // normal space between the lines inside sections
         var big_interval = 14;  // space between sections of resume
         var small_interval = 4; // small space
+        
         doc.setFontSize(24);
         doc.line(x,8,100,8);
         doc.textEx("c u r r i c u l u m   v i t a e", mx, 3, "right");
@@ -248,17 +260,17 @@ $(document).ready(function() {
             }
         }
         if(person.born) doc.addImage(DOB_icon, 'JPEG', x+90, y, 4, 4);
-        doc.textEx(person.born, x+97, y, "left");
+        doc.textEx(person.born, x+97, y, "left");                                   // DOB
         if(person.phone) doc.addImage(phone_icon, 'JPEG', x, y, 4, 4);
-        doc.textEx(person.phone, x+7, y, "left"); y+=interval;
+        doc.textEx(person.phone, x+7, y, "left"); y+=interval;                      // phone
         if(person.citizenship) doc.addImage(citizenship_icon, 'JPEG', x+90, y, 4, 4);
-        doc.textEx(person.citizenship, x+97, y, "left");
+        doc.textEx(person.citizenship, x+97, y, "left");                            // country
         if(person.email) doc.addImage(email_icon, 'JPEG', x, y, 4, 4);
-        doc.textEx(person.email, x+7, y, "left"); y+=interval;
+        doc.textEx(person.email, x+7, y, "left"); y+=interval;                      // email
         if(person.address) doc.addImage(home_icon, 'JPEG', x, y, 4, 4);
         doc.textEx(person.address, x+7, y, "left");y+=big_interval+interval-4;
 
-    if(person.education.length) {
+    if(person.education.length) {                                                   // education
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("Education",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         for(var i = 0; i < person.education.length; i++) {
             doc.textEx(person.education[i].university, x, y, "left");
@@ -267,7 +279,7 @@ $(document).ready(function() {
             }
         y+=big_interval-4;
     }
-    if(person.employment.length) {
+    if(person.employment.length) {                                                  // work experience
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("Work experience",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         for(var i = 0; i < person.employment.length; i++) {
             doc.textEx(person.employment[i].company, x, y, "left");
@@ -276,21 +288,23 @@ $(document).ready(function() {
         }
         y+=big_interval-4;
     }
-    if(person.skills.length) {
+    
+    if(person.skills.length) {                                                      // qualifications
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("Qualifications and skills",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         for(var i = 0; i < person.skills.length; i++) {
             doc.textEx(person.skills[i], x, y, "left");y+=interval;
         }
         y+=big_interval-4;
     }
-    if(person.languages.length) {
+
+    if(person.languages.length) {                                                   // language skills
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("Language proficiency",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         for(var i = 0; i < person.languages.length; i++) {
             doc.textEx(person.languages[i], x, y, "left");y+=interval;
         }
         y+=big_interval-4;
     }
-    if(person.about) {
+    if(person.about) {                                                              // about
         doc.line(x,y,mx,y);doc.setFontType("bold");doc.textEx("A bit about me",x,y-7,"left");doc.setFontType("normal");y+=small_interval;
         doc.textEx(person.about, x, y, "left");y+=interval;
     }
@@ -307,35 +321,29 @@ else if(cvType==2) {
         var interval = 8;       // normal space between the lines inside sections
         var big_interval = 14;  // space between sections of resume
         var small_interval = 4; // small space
-        // doc.setFontSize(24);
-        // doc.rect(x-x_margin+1, 8+1, mx-x+x_margin*2-2, y+32-2, 'U');
-        // doc.rect(x-x_margin+0.5, 8+0.5, mx-x+x_margin*2-1, y+32-1, 'U');
-        // doc.rect(x-x_margin, 8, mx-x+x_margin*2, y+32, 'U');
+
         doc.setLineWidth(1);
         doc.setDrawColor(100, 101, 108); //39, 97, 26
-// doc.setFillColor(203, 203, 203,0.8); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         doc.rect(x-x_margin, 8, mx-x+x_margin*2, y+36, 'E');
-//doc.setTextColor(255,255,255); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // doc.textEx("c u r r i c u l u m   v i t a e", mx, 3, "right");
+
         doc.setFontSize(16);
         y=32;
         doc.setFontType("bold");doc.textEx(person.fullName, x+7, y-20, "left");doc.setFontType("normal");
         doc.setFontSize(12);
         y-=10
         if(person.pic) doc.addImage(person.pic, 'JPEG', mx-45, y-9, 45, 45);     // prevent possible errors if base64 string isn't ok
-        if(person.phone) doc.addImage(phone_icon, 'JPEG', x, y, 4, 4);
+        if(person.phone) doc.addImage(phone_icon, 'JPEG', x, y, 4, 4);          // phone
         doc.textEx(person.phone, x+7, y, "left"); y+=interval;
-        if(person.email) doc.addImage(email_icon, 'JPEG', x, y, 4, 4);
+        if(person.email) doc.addImage(email_icon, 'JPEG', x, y, 4, 4);          // email
         doc.textEx(person.email, x+7, y, "left"); y+=interval;
         if(person.address) doc.addImage(home_icon, 'JPEG', x, y, 4, 4);
-        doc.textEx(person.address, x+7, y, "left");y+=interval;
+        doc.textEx(person.address, x+7, y, "left");y+=interval;                 // address
         if(person.born) doc.addImage(DOB_icon, 'JPEG', x, y, 4, 4);
-        doc.textEx(person.born, x+7, y, "left");y+=interval;
+        doc.textEx(person.born, x+7, y, "left");y+=interval;                    // DOB
         if(person.citizenship) doc.addImage(citizenship_icon, 'JPEG', x, y, 4, 4);
-        doc.textEx(person.citizenship, x+7, y, "left");
+        doc.textEx(person.citizenship, x+7, y, "left");                         // country
 
         y+=big_interval+interval;
-// doc.setTextColor(0,0,0); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
     if(person.education.length) {    
         doc.setFillColor(203, 203, 203);doc.rect(x-x_margin, y-7, mx-x+x_margin*2, 6, 'F');
@@ -418,18 +426,19 @@ else {
         if(person.address) doc.textEx(person.address, midX, y+dist, "left");
         if(person.born) doc.textEx("Date of birth: " + person.born, midX, y+dist*2, "left");                        // DOB
         if(person.citizenship) doc.textEx("Citizenship: " + person.citizenship, midX, y+dist*2+interval*1, "left"); // citizenship
+        
         for (var i=0; i < person.education.length; i++) {
-         doc.setFontType("bold");
-         doc.textEx(person.education[i].university, midX, y+dist*3+interval*i*2, "left");                           // uni
-         doc.setFontType("normal");
-         doc.textEx(person.education[i].faculty, midX, y+dist*3+interval*(i*2+1)-2, "left");                        // faculty
-         doc.textEx(person.education[i].from + " - " + person.education[i].till, maxX, y+dist*3+interval*i*2, "right");
+            doc.setFontType("bold");
+            doc.textEx(person.education[i].university, midX, y+dist*3+interval*i*2, "left");                           // uni
+            doc.setFontType("normal");
+            doc.textEx(person.education[i].faculty, midX, y+dist*3+interval*(i*2+1)-2, "left");                        // faculty
+            doc.textEx(person.education[i].from + " - " + person.education[i].till, maxX, y+dist*3+interval*i*2, "right");
         }
     
     if(person.employment.length) {    
         for (var i=0; i < person.employment.length; i++) {
             doc.setFontType("bold");
-            doc.textEx(person.employment[i].company, midX, y+u+interval*i*2, "left");          // company
+            doc.textEx(person.employment[i].company, midX, y+u+interval*i*2, "left");                // company
             doc.setFontType("normal");
             doc.textEx(person.employment[i].position, midX, y+u+interval*(i*2+1)-2, "left");         // position
             doc.textEx(person.employment[i].from + " - " + person.employment[i].till, maxX, y+u+interval*i*2, "right");
@@ -437,7 +446,7 @@ else {
     }
     if(person.skills.length) {    
         for (var i=0; i < person.skills.length; i++) {
-            doc.textEx(person.skills[i], midX, y+dist*4+w+1+interval*(i), "left");          // skill
+            doc.textEx(person.skills[i], midX, y+dist*4+w+1+interval*(i), "left");                  // skills
         }
     }
     }

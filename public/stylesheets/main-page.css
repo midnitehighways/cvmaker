@@ -19,27 +19,14 @@ body, html {
 	position: relative;
 }
 
-a {
-	text-decoration: none;
-	outline: none;
-}
-
-.center {    /*CENTERING!!!!!*/
+.center {    /*CENTERING CLASS!!!!! Has to be before basic sections */
 	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 	/*overflow: hidden;*/
  }
 
-.active {
-	background-color:#228A32;
-}
-
-.yellow {
-	color: yellow;
-	font-weight: 900;
-	letter-spacing: 4px;
-}
+/***************************************	BASIC SECTIONS	*********************************************/
 
 .main {
 	width: 100%;
@@ -56,13 +43,14 @@ a {
 	min-height: 400px;
 	float: right;
 }
+
 .work-space {
 	display: inline-block;
 	vertical-align: middle;
 	/*width: 98%;*/
 	max-width: 800px;
 	height: 90%;
-/*	background: black;*/
+	/*background: black;*/
 	margin-top: 40px;
 }
 .footer {
@@ -75,7 +63,7 @@ a {
 	bottom: 5px;
 	font-weight: 300;
 	color: black;
-	font-size: 14px;
+	font-size: 10px;
 /*	background-color: lightgrey;	*/
 }
 
@@ -84,81 +72,47 @@ iframe {
 	z-index:1;
 }
 
-.icon-save { background: url('../images/save-icon.png') no-repeat 5px 4px; background-size: 18px 18px;}
-.icon-download { background: url('../images/download-icon.png') no-repeat 5px 4px; background-size: 18px 18px;}
-.icon-reset { background: url('../images/reset-icon.png') no-repeat 5px 5px; background-size: 18px 18px;}
-.icon-clean { background: url('../images/clean-icon.png') no-repeat 5px 5px; background-size: 18px 18px;}
-/*hr { 
-   border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}*/
-.upload-section {
-	height: 90px;
-}
-.upload-section img {
-	display: block;
-	margin: 0 auto;
-	margin-top: 10px;
-}
-.fileUpload {				/* cover the original file input and replace it with add-button */
-	position: relative;
-	/*overflow: hidden;*/
-	margin: 10px;
-}
-.fileUpload input.upload {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	padding: 0;
-	font-size: 20px;
-	cursor: pointer;
-	opacity: 0;
-}
-.buttons {
-	padding-top: 50px;
+/***************************************	MEDIA QUERIES FOR BASIC SECTIONS	*********************************************/
+
+
+@media screen and (min-height: 800px) {
+
+	body, html {
+		height: auto;
+	}
+	.work-space {
+		margin-top: 0px;
+	}
+	.footer {
+		position: relative;
+	}
 }
 
-.headmenu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;border: 0;
-    overflow: hidden;
-    background: #088A08; 
-  	background: -webkit-linear-gradient(#38610B, #088A68); 
-    background: -o-linear-gradient(#38610B, #088A68); 
-    background: -moz-linear-gradient(#38610B, #088A68); 
-    background: linear-gradient(#03401F, #0F6905);
-    text-transform: uppercase;
+@media screen and (min-width: 1280px) {
+	.left {
+		width: 33%;
+	}
+	.right {
+		width: 66%;
+	}
+	.work-space {
+
+	}
 }
-.headmenu li {
-    float: right;
-}
-#logo {
-	float: left;
-	margin-left: 50px;
-}
-.headmenu img {
-	display: inline-block;
-	vertical-align: middle;
-	padding: 0;border: 0; margin: 0;
-}
-.headmenu li a {
-    display: block;
-    color: white;
-    font-weight: 300;
-    text-align: center;
-    padding: 20px 16px;
-    text-decoration: none;
+@media screen and (min-width: 1600px) {
+	.left {
+		width: 39%;
+	}
+	.right {
+		width: 60%;
+	}
+	.work-space {
+
+	}
 }
 
-.headmenu a:hover:not(.active) {
-    background-color: #041C01;
-    -webkit-transition: 0.7s; /* Safari */
-    transition: 0.7s;
-}
+
+
 /*//!!!!!!!!!*/ /*START!!!!!!!*/
 /* ---------------------------------------------------- START TABS CSS ------------------------------------------------*/
 .tabs-menu {
@@ -274,6 +228,120 @@ iframe {
 */
 
 /* ---------------------------------------------------- END TABS CSS ------------------------------------------------*/
+
+/* --------------------------------------------- MEDIA QUERIES FOR TABS MENU ----------------------------------------*/
+
+@media screen and (max-width: 1100px) {
+	.tabs-menu {
+ 
+    	height: 40px;
+	}
+	
+	.tabs-menu li a {
+		font-size: 10px;
+	}
+	
+	.tabs-menu li {
+    height: 20px;
+    line-height: 40px;
+    width: 80px;
+	}
+
+}
+
+
+
+
+a {
+	text-decoration: none;
+	outline: none;
+}
+
+.active {
+	background-color:#228A32;
+}
+
+.yellow {
+	color: yellow;
+	font-weight: 900;
+	letter-spacing: 4px;
+}
+
+.icon-save { background: url('../images/save-icon.png') no-repeat 5px 4px; background-size: 18px 18px;}
+.icon-download { background: url('../images/download-icon.png') no-repeat 5px 4px; background-size: 18px 18px;}
+.icon-reset { background: url('../images/reset-icon.png') no-repeat 5px 5px; background-size: 18px 18px;}
+.icon-clean { background: url('../images/clean-icon.png') no-repeat 5px 5px; background-size: 18px 18px;}
+/*hr { 
+   border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}*/
+.upload-section {
+	height: 90px;
+}
+.upload-section img {
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.fileUpload {				/* cover the original file input and replace it with add-button */
+	position: relative;
+	/*overflow: hidden;*/
+	margin: 10px;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+}
+.buttons {
+	padding-top: 50px;
+}
+
+.headmenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;border: 0;
+    overflow: hidden;
+    background: #088A08; 
+  	background: -webkit-linear-gradient(#38610B, #088A68); 
+    background: -o-linear-gradient(#38610B, #088A68); 
+    background: -moz-linear-gradient(#38610B, #088A68); 
+    background: linear-gradient(#03401F, #0F6905);
+    text-transform: uppercase;
+}
+.headmenu li {
+    float: right;
+}
+#logo {
+	float: left;
+	margin-left: 50px;
+}
+.headmenu img {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0;border: 0; margin: 0;
+}
+.headmenu li a {
+    display: block;
+    color: white;
+    font-weight: 300;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+}
+
+.headmenu a:hover:not(.active) {
+    background-color: #041C01;
+    -webkit-transition: 0.7s; /* Safari */
+    transition: 0.7s;
+}
 
 /* ---------------------------------------------------- START FORMS -------------------------------------------------*/
 .input {
@@ -406,6 +474,24 @@ iframe {
 }
 
 /* ---------------------------------------------------- END FORM CONTROLS ------------------------------------------------*/
+
+/*******************************************	MEDIA QUERIES FOR FORM CONTROLS	*********************************************/
+
+
+@media screen and (max-width: 900px) {
+
+	.input {
+		margin: 0.5em;
+		width: 120px;
+
+	}
+	.input.long {
+		width: 300px;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+}
 
 /* ------------------------------------------------------ START DEMO.CSS -------------------------------------------------*/
 

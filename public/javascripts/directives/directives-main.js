@@ -5,7 +5,6 @@ cvApp.directive("mydir" , function() {
             one : '@myOne'
 
         },
-        
         template: '<p>ng-init = "menu.setTab{{one}}"One = {{one}} // Passed as my-one</p>'
       }});
 

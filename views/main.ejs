@@ -26,21 +26,21 @@
 </head>
 <body ng-controller="MenuCtrl as menu"> <!-- ng-controller="PersonCtrl as person" -->
         <!-- <div mydir my-one='<%=tab%>'></div> -->
-        <header-main></header-main>                  <!--///////////////////////// HEADER //////////////////////////////  -->
+        <header-main></header-main>                  <!--           HEADER           -->
         
-        <div class="main">                  <!--/////////////////////////////////// MAIN ///////////////////////////////  -->
+        <div class="main">                  <!--                    MAIN             -->
             <div class="left">
     			<iframe id="mydiv" class="preview-pane"type="application/pdf"width="100%" height="100%"frameborder="0">No PDF</iframe>
     		</div>
                  
-            <div id="right" class="right center">      <!--//////////////////////////////// RIGHT DIV /////////////////////////////  -->
+            <div id="right" class="right center">      <!--         RIGHT DIV        -->
                 <div id="work-space" class="work-space">
                     <% include templates/work-space.ejs %>
                 </div>
             </div>
         </div>
     
-        <footer-main></footer-main>              <!--///////////////////////////// FOOTER ///////////////////////////////  -->
+        <footer-main></footer-main>              <!--               FOOTER           -->
         
         <script>preparePDF(<%- JSON.stringify(person) %>, <%= cvType %>);</script>  <!--launch preparePDF for chosen cv type-->
 </body>

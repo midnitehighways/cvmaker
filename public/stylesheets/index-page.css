@@ -10,6 +10,7 @@ body, html {
 	padding: 0px;
 	border: 0px; 
 	background: #E3E3E3;
+	overflow-x: hidden;
 }
 /*---------***************-----------HEAD BAR-----------***************---------*/
 .header {
@@ -23,6 +24,7 @@ body, html {
 }
 .icons {
 	padding-top: 10px;
+	padding-right: 30px;
 }
 
 .header a {
@@ -105,7 +107,7 @@ h1 {
 	width: auto;
 }
 .lower img:hover {
-		box-shadow: 4px 4px 3px #999;
+	box-shadow: 4px 4px 3px #999;
 }
 button[type='image'] {		/* this is for CV model choices. Hide the button used to submit the form */
 	border: 0; 
