@@ -726,3 +726,11 @@ body .nomargin-bottom {
   border: 1px solid #F04708;
   color: white;
 }
+
+.hint {
+	padding-top: 30px;
+	/*border: 1px solid grey;*/
+	width: 70%;
+	margin: 0 auto;
+	color: #999;
+}
