@@ -10,7 +10,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>-->
     
     <!-- import jsPDF to work with pdf-file -->
-    <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+    <!--<script src="http://mrrio.github.io/jsPDF/dist/jspdf.min.js"></script>-->
+    <!--<script src="https://github.com/MrRio/jsPDF/tree/master/dist/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.1.135/jspdf.debug.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.60/jspdf.min.js"></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="stylesheets/main-page.css" />
     <link rel="stylesheet" href="stylesheets/normalize.css" />
@@ -27,10 +31,10 @@
 <body ng-controller="MenuCtrl as menu"> <!-- ng-controller="PersonCtrl as person" -->
         <!-- <div mydir my-one='<%=tab%>'></div> -->
         <header-main></header-main>                  <!--           HEADER           -->
-        
+        <!-- <iframe id="mydiv" class="preview-pane"type="application/pdf"width="100%" height="100%"frameborder="0">No PDF</iframe> -->
         <div class="main">                  <!--                    MAIN             -->
             <div class="left">
-    			<iframe id="mydiv" class="preview-pane"type="application/pdf"width="100%" height="100%"frameborder="0">No PDF</iframe>
+    			<iframe id="mydiv" class="preview-pane"type="application/pdf" width="100%" height="100%"frameborder="0">No PDF</iframe>
     		</div>
                  
             <div id="right" class="right center">      <!--         RIGHT DIV        -->
